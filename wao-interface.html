@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard WAO | La Saison Bleue</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/sidebar-menu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- HEADER FIXE (LEFT TRIGGER) -->
+    <header class="nav-trigger-container">
+        <!-- Logo REMOVED -->
+        <!-- Home Button -->
+        <a href="index.html" class="home-btn" title="Retour à l'accueil">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+        </a>
+        <div class="menu-btn" id="menuToggle">
+            <span>MENU</span>
+            <div class="btn-icon">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BACKDROP & DRAWER -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+
+    <div class="menu-drawer" id="menuDrawer">
+        <!-- Close Button inside drawer -->
+        <div class="menu-close-area" id="menuCloseBtn">Close <i class="fas fa-times"></i></div>
+
+        <div class="menu-content">
+            <ul class="main-nav-list">
+
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        ACCUEIL
+                        <span class="nav-num">01</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="missions.html">Nos missions</a></li>
+                        <li><a href="partenaires.html">Nos partenaires</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        INITIATIVE
+                        <span class="nav-num">02</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="wao.html">Women Actions for the Ocean</a></li>
+                        <li><a href="pacte-afrique.html">Le Pacte pour une Afrique Bleue Durable</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        ÉVÉNEMENTS
+                        <span class="nav-num">03</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="blue-africa-summit.html">Blue Africa Summit</a></li>
+                        <li><a href="grande-maree.html">La Grande Marée</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        ACTU & MEDIA
+                        <span class="nav-num">04</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="#">Photos</a></li>
+                        <li><a href="videos.html">Vidéos</a></li>
+                        <li><a href="documents.html">Documents</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">
+                        CONTACT
+                        <span class="nav-num">05</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Script for Sidebar Menu -->
+    <script src="assets/js/sidebar-menu.js"></script>
+
+    <header class="dash-header">
+        <div class="logo-area">
+            <h2>Espace WAO</h2>
+        </div>
+        <div class="user-area">
+            <span>Bienvenue, Membre</span>
+            <a href="wao.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+        </div>
+    </header>
+
+    <main class="dash-container">
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="icon-box blue"><i class="fas fa-female"></i></div>
+                <div class="stat-info">
+                    <h3>110</h3>
+                    <p>Femmes</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="icon-box green"><i class="fas fa-globe-africa"></i></div>
+                <div class="stat-info">
+                    <h3>50</h3>
+                    <p>Pays</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="icon-box purple"><i class="fas fa-project-diagram"></i></div>
+                <div class="stat-info">
+                    <h3>70</h3>
+                    <p>Projets partagés</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="icon-box orange"><i class="fas fa-lightbulb"></i></div>
+                <div class="stat-info">
+                    <h3>110</h3>
+                    <p>Initiatives portées</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <h3>Annuaire des Membres</h3>
+            <div class="search-controls">
+                <select id="countryFilter" class="filter-select">
+                    <option value="all">Tous les pays</option>
+                </select>
+                <input type="text" id="nameSearch" placeholder="Rechercher par nom ou pays..." class="search-input">
+            </div>
+        </div>
+
+        <div id="membersGrid" class="members-grid">
+        </div>
+
+    </main>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        // --- DONNÉES SIMULÉES (MOCK DATA) ---
+        const membersData = [
+            { name: "Sarah Cohen", country: "France", role: "Biologiste Marine", project: "Protection des coraux" },
+            { name: "Fatima Zahra", country: "Maroc", role: "Entrepreneure Blue Tech", project: "Algues Durables" },
+            { name: "Layla Mahfouz", country: "Egypte", role: "Chercheuse", project: "Mer Rouge 2030" },
+            { name: "Elena Rossi", country: "Italie", role: "Directrice ONG", project: "Clean Med" },
+            { name: "Amina Diop", country: "Sénégal", role: "Ingénieure Océan", project: "Pêche Durable" },
+            { name: "Nour El-Houda", country: "Tunisie", role: "Activiste Climat", project: "Plage Propre Bizerte" },
+            { name: "Maya Schmidt", country: "Allemagne", role: "Investisseuse", project: "Blue Finance" },
+            { name: "Rania Youssef", country: "Egypte", role: "Éducatrice", project: "École de la Mer" },
+            // Nouveaux membres ajoutés via user request
+            { name: "Rym Benzina", country: "Tunisie", role: "Chairwoman of La Saison Bleue", project: "Women Actions for the Ocean" },
+            { name: "Patricia Ricard", country: "France", role: "Chairwoman of Oceanographic Institute Paul Ricard", project: "Women Actions for the Ocean" },
+            { name: "Rili Djohani", country: "Indonésie", role: "Co-Founder & Executive Director", project: "Coral Triangle Center" }
+        ];
+
+        const grid = document.getElementById('membersGrid');
+        const countrySelect = document.getElementById('countryFilter');
+        const nameInput = document.getElementById('nameSearch');
+
+        // 1. Initialisation
+        function initDashboard() {
+            populateCountries();
+            renderMembers(membersData);
+        }
+
+        // 2. Remplir le menu déroulant des pays
+        function populateCountries() {
+            // Extrait les pays uniques
+            const countries = [...new Set(membersData.map(m => m.country))].sort();
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country;
+                countrySelect.appendChild(option);
+            });
+        }
+
+        // 3. Afficher les cartes membres (NOUVEAU DESIGN)
+        function renderMembers(data) {
+            grid.innerHTML = ""; // Nettoyer la grille
+            if (data.length === 0) {
+                grid.innerHTML = "<p>Aucun résultat trouvé.</p>";
+                return;
+            }
+
+            data.forEach(member => {
+                // On utilise la structure "Card" de Alexruix adaptée avec les données
+                const cardHTML = `
+                <div class="card">
+                    <div class="card-details">
+                        <p class="text-title">${member.name}</p>
+                        <p class="text-body" style="font-weight:bold;">${member.role}</p>
+                        <p class="text-body" style="font-size: 0.9em;"><i class="fas fa-map-marker-alt"></i> ${member.country}</p>
+                        <p class="text-body" style="font-size: 0.8em; margin-top:5px;">Projet : ${member.project}</p>
+                    </div>
+                    <button class="card-button">Voir le profil</button>
+                </div>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+        }
+
+        // 4. Logique de Filtrage
+        function filterMembers() {
+            const countryVal = countrySelect.value;
+            const searchVal = nameInput.value.toLowerCase();
+
+            const filtered = membersData.filter(member => {
+                const matchCountry = (countryVal === 'all') || (member.country === countryVal);
+                // Recherche par NOM ou par PAYS
+                const matchSearch = member.name.toLowerCase().includes(searchVal) || member.country.toLowerCase().includes(searchVal);
+                return matchCountry && matchSearch;
+            });
+
+            renderMembers(filtered);
+        }
+
+        // Écouteurs d'événements
+        countrySelect.addEventListener('change', filterMembers);
+        nameInput.addEventListener('input', filterMembers);
+
+        // Lancement
+        initDashboard();
+    </script>
+</body>
+
+</html>

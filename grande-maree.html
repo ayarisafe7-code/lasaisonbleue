@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Grande Marée — La Saison Bleue</title>
+  <meta name="description" content="La Grande Marée — Communiqué de presse" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Playfair Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/loader.css">
+  <link rel="stylesheet" href="assets/css/glassy-search.css">
+  <link rel="stylesheet" href="assets/css/glassy-menu.css">
+  <link rel="stylesheet" href="assets/css/blur-text.css">
+  <link rel="stylesheet" href="./grande-maree.prod.css">
+
+  <link rel="stylesheet" href="assets/css/animated-button.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    /* Animation Rainbow pour le bouton KIDS */
+    @keyframes colorCycle {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
+
+    .animate-rainbow {
+      animation: colorCycle 8s linear infinite;
+    }
+
+    .hero-cover {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .article-container {
+      max-width: 64rem;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .info-box {
+      border-left: 4px solid #1e40af;
+      padding: 1rem;
+      background: #ffffff10;
+      border-radius: 0.5rem;
+    }
+
+    /* Scroll to top button float animation */
+    @keyframes float {
+      0% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(5px);
+      }
+
+      100% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Visibility class for scroll button */
+    .scroll-top-btn {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 300ms ease, background-color 150ms ease;
+    }
+
+    .scroll-top-btn.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+
+<body class="antialiased text-gray-900 bg-white">
+
+  <!-- CSS for Sidebar Menu -->
+  <link rel="stylesheet" href="assets/css/sidebar-menu.css">
+
+  <!-- HEADER FIXE (LEFT TRIGGER) -->
+  <header class="nav-trigger-container">
+    <!-- Logo REMOVED -->
+    <!-- Home Button -->
+    <a href="index.html" class="home-btn" title="Retour à l'accueil">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        <polyline points="9 22 9 12 15 12 15 22" />
+      </svg>
+    </a>
+
+    <div class="menu-btn" id="menuToggle">
+      <span>MENU</span>
+      <div class="btn-icon">
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BACKDROP & DRAWER -->
+  <div class="menu-backdrop" id="menuBackdrop"></div>
+
+  <div class="menu-drawer" id="menuDrawer">
+    <!-- Close Button inside drawer -->
+    <div class="menu-close-area" id="menuCloseBtn">Close <i class="fas fa-times"></i></div>
+
+    <div class="menu-content">
+      <ul class="main-nav-list">
+
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">
+            ACCUEIL
+            <span class="nav-num">01</span>
+          </a>
+          <ul class="nav-submenu">
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="missions.html">Nos missions</a></li>
+            <li><a href="partenaires.html">Nos partenaires</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            INITIATIVE
+            <span class="nav-num">02</span>
+          </a>
+          <ul class="nav-submenu">
+            <li><a href="wao.html">Women Actions for the Ocean</a></li>
+            <li><a href="pacte-afrique.html">Le Pacte pour une Afrique Bleue Durable</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            ÉVÉNEMENTS
+            <span class="nav-num">03</span>
+          </a>
+          <ul class="nav-submenu">
+            <li><a href="blue-africa-summit.html">Blue Africa Summit</a></li>
+            <li><a href="grande-maree.html">La Grande Marée</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            ACTU & MEDIA
+            <span class="nav-num">04</span>
+          </a>
+          <ul class="nav-submenu">
+            <li><a href="news.html">News</a></li>
+            <li><a href="#">Photos</a></li>
+            <li><a href="videos.html">Vidéos</a></li>
+            <li><a href="documents.html">Documents</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="contact.html" class="nav-link">
+            CONTACT
+            <span class="nav-num">05</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Script for Sidebar Menu -->
+  <script src="assets/js/sidebar-menu.js"></script>
+
+  <!-- Hero: uses <picture> with WebP sources (generated by scripts/convert-grande-maree.sh) -->
+  <section class="hero-cover relative overflow-hidden">
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+      <source src="./BGNVGM.mp4" type="video/mp4">
+      <!-- fallback image if video fails -->
+      <img src="./AdobeStock_549180191_Editorial_Use_Only.jpeg" alt="La Grande Marée — musée national de la Marine"
+        class="absolute inset-0 w-full h-full object-cover">
+    </video>
+    <!-- Bottom Gradient Fade to White -->
+    <div
+      class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-b from-transparent to-white z-10 pointer-events-none">
+    </div>
+
+  </section>
+
+  <!-- Article content -->
+  <div class="relative">
+    <main class="article-container">
+      <article class="prose max-w-none mx-auto text-slate-800 bg-white/90 p-8 rounded-lg shadow">
+        <h1 class="text-3xl font-bold text-blue-900 mb-4 animate-title" data-i18n="gm_press_release_title">COMMUNIQUÉ DE
+          PRESSE : LA
+          GRANDE MARÉE – Premier festival de la
+          mer et des marins à Paris</h1>
+        <div class="text-gray-500 italic mb-8" data-i18n="gm_date">21 février 2025</div>
+
+        <p data-i18n="gm_p1">La Saison Bleue, en partenariat avec le musée national de la Marine, lance la première
+          édition de La Grande
+          Marée, festival entièrement consacré à l’océan et amarré à Paris.</p>
+
+        <p data-i18n="gm_p2">Du 28 au 30 mars 2025, le musée national de la Marine, situé sur la place du Trocadéro à
+          Paris, accueillera la
+          première édition du festival La Grande Marée. Cet événement gratuit et ouvert à tous célèbrera et fera
+          découvrir
+          l’océan à travers le regard, les voix et les témoignages d’une centaine de personnalités qui viendront
+          partager
+          leur grand rêve de la mer.</p>
+
+        <p data-i18n="gm_p3">La Grande Marée, c’est très simple.</p>
+
+        <p data-i18n="gm_p4">Paris, capitale d’un pays deuxième domaine maritime au monde, méritait bien d’accueillir
+          l’Océan, que la Seine
+          rejoint, 365 kilomètres plus loin. La mer, chaque année, montera donc à Paris, le week-end du plus fort
+          coefficient de grande marée.</p>
+
+        <p data-i18n="gm_p5">En 2025, la barre est placée haute. Avec un coefficient record de 114 sur notre littoral,
+          entre le 28 au 30
+          mars, La Grande Marée fera le plein d’images et d’émotions.</p>
+
+        <p data-i18n="gm_p6">Au pied du fleuve, face à la Tour Eiffel, dans les magnifiques espaces du nouveau musée
+          national de la Marine,
+          femmes et hommes de mer, venus de France et d’ailleurs, artistes, navigatrices, écrivains, scientifiques,
+          plongeurs, aventurières ou grands reporters, nous feront voyager au plus profond de l’océan.</p>
+
+        <p data-i18n="gm_p7">Et pour clore cette première édition de manière exceptionnelle, en cette année où la France
+          accueille en juin à
+          Nice la Conférence Océan des Nations Unies, la Tour Eiffel se vêtira vers 20h le dimanche 30 mars d’un grand
+          manteau bleu.</p>
+
+        <p data-i18n="gm_p8">Une grande première : La Grande Marée à Paris et la Tour Eiffel aux couleurs de la planète
+          bleue.</p>
+
+        <p data-i18n="gm_p9">Les conférences, rencontres et signatures sont toutes en accès libre. Le programme détaillé
+          sera accessible à
+          partir du 1er mars.</p>
+
+        <p data-i18n="gm_p10">Parmi les premiers intervenants confirmés : Laurent Ballesta, Sophie Beau, Maxime
+          Blondeau,
+          Catherine Chabaud,
+          Sylvia Earle, Lamya Essemlali, Jean-Louis Etienne, Jean-Yves Le Drian, Laure Limongi, Claire Nouvian,
+          Christophe
+          Ono-dit-Biot, Erik Orsenna, Bertrand Piccard, Olivier Poivre d’Arvor, Alexis Rosenfeld, François Sarano,
+          Jacques
+          Rougerie, Romain Troublé…</p>
+
+        <div class="mt-6 font-semibold text-sm" data-i18n="gm_partners">Partenaires : Fondation Oceano Azul, Ville de
+          Paris, Mirova</div>
+
+        <!-- Informations pratiques -->
+        <section class="mt-10 info-box">
+          <h2 class="text-xl font-bold text-blue-800 mb-4" data-i18n="gm_info_title">Informations pratiques</h2>
+          <div class="space-y-3">
+            <div>
+              <div class="text-blue-600 font-semibold" data-i18n="gm_info_dates_label">Dates</div>
+              <div class="text-blue-800" data-i18n="gm_info_dates_value">28-30 mars 2025</div>
+            </div>
+
+            <div>
+              <div class="text-blue-600 font-semibold" data-i18n="gm_info_location_label">Lieu</div>
+              <div class="text-blue-800" data-i18n="gm_info_location_value">Musée national de la Marine, Place du
+                Trocadéro, Paris</div>
+            </div>
+
+            <div>
+              <div class="text-blue-600 font-semibold" data-i18n="gm_info_note_label">Note</div>
+              <div data-i18n="gm_info_note_value">Entrée gratuite pour toutes les activités de La Grande Marée (dans la
+                limite des places disponibles).
+              </div>
+            </div>
+
+            <div>
+              <div class="text-blue-600 font-semibold" data-i18n="gm_info_contact_label">Contacts presse</div>
+              <div>
+                <div>La Saison Bleue : agathe.laurent@lasaisonbleue.com</div>
+                <div>Musée national de la Marine : musee-marine@alambret.com</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </main>
+    <!-- Bottom Gradient Fade to Slate-900 (Footer) -->
+    <div
+      class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-slate-900 to-transparent z-10 pointer-events-none">
+    </div>
+  </div>
+
+  <footer class="relative bg-slate-900 text-white py-16 overflow-hidden">
+    <!-- Background Image Placeholder (Dark gradient) -->
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-slate-900/90 z-0"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <!-- Top Section -->
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+        <div>
+          <h2 class="text-5xl md:text-7xl font-serif font-bold tracking-tight mb-2 animate-agissons"
+            data-i18n="footer_cta_title">
+            Agissons Ensemble</h2>
+        </div>
+        <div class="flex flex-col items-end gap-4">
+
+          <a href="contact.html" class="btn-join" data-i18n="btn_join">
+            Newsletter
+          </a>
+        </div>
+      </div>
+      <!-- Divider -->
+      <div class="w-full h-px bg-white/10 mb-12"></div>
+      <!-- Bottom Section -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-sm text-gray-400">
+        <!-- Menu -->
+        <div>
+          <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_menu">Menu</h3>
+          <ul class="space-y-4">
+            <li><a href="index.html" class="hover:text-white transition-colors" data-i18n="nav_home">Accueil</a></li>
+            <li><a href="missions.html" class="hover:text-white transition-colors" data-i18n="nav_missions">Nos
+                missions</a></li>
+            <li><a href="wao.html" class="hover:text-white transition-colors" data-i18n="nav_initiative">Initiative</a>
+            </li>
+            <li><a href="grande-maree.html" class="hover:text-white transition-colors" data-i18n="nav_events">Nos
+                événements</a></li>
+            <li><a href="news.html" class="hover:text-white transition-colors" data-i18n="nav_news">News</a></li>
+          </ul>
+        </div>
+        <!-- Contact -->
+        <div class="md:col-span-2">
+          <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_contact">Contact
+          </h3>
+          <ul class="space-y-4">
+            <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i><span>94, avenue Émile
+                Zola, 75015 Paris</span></li>
+            <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i><span>+33 7 88 69 58
+                94</span></li>
+            <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i><a
+                href="mailto:contact@lasaisonbleue.com"
+                class="hover:text-white transition-colors">contact@lasaisonbleue.com</a></li>
+          </ul>
+        </div>
+        <!-- Socials -->
+        <div class="flex flex-col justify-between">
+          <div>
+            <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_follow">
+              Suivez-nous</h3>
+            <div class="flex gap-4">
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/lasaisonbleue/?hl=fr" target="_blank" class="social-bloom-btn"
+                aria-label="Instagram">
+                <div class="bloom-container">
+                  <div class="button-container-main">
+                    <div class="button-inner">
+                      <div class="back"></div>
+                      <div class="front">
+                        <i data-lucide="instagram"></i>
+                      </div>
+                    </div>
+                    <div class="button-glass"></div>
+                  </div>
+                  <div class="bloom bloom1"></div>
+                  <div class="bloom bloom2"></div>
+                </div>
+              </a>
+
+              <!-- Facebook -->
+              <a href="https://www.facebook.com/lasaisonbleue/?locale=fr_FR" target="_blank" class="social-bloom-btn"
+                aria-label="Facebook">
+                <div class="bloom-container">
+                  <div class="button-container-main">
+                    <div class="button-inner">
+                      <div class="back"></div>
+                      <div class="front">
+                        <i data-lucide="facebook"></i>
+                      </div>
+                    </div>
+                    <div class="button-glass"></div>
+                  </div>
+                  <div class="bloom bloom1"></div>
+                  <div class="bloom bloom2"></div>
+                </div>
+              </a>
+
+              <!-- YouTube -->
+              <a href="https://www.youtube.com/@lasaisonbleue3150" target="_blank" class="social-bloom-btn"
+                aria-label="YouTube">
+                <div class="bloom-container">
+                  <div class="button-container-main">
+                    <div class="button-inner">
+                      <div class="back"></div>
+                      <div class="front">
+                        <i data-lucide="youtube"></i>
+                      </div>
+                    </div>
+                    <div class="button-glass"></div>
+                  </div>
+                  <div class="bloom bloom1"></div>
+                  <div class="bloom bloom2"></div>
+                </div>
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/company/la-saison-bleue/posts/?feedView=all" target="_blank"
+                class="social-bloom-btn" aria-label="LinkedIn">
+                <div class="bloom-container">
+                  <div class="button-container-main">
+                    <div class="button-inner">
+                      <div class="back"></div>
+                      <div class="front">
+                        <i data-lucide="linkedin"></i>
+                      </div>
+                    </div>
+                    <div class="button-glass"></div>
+                  </div>
+                  <div class="bloom bloom1"></div>
+                  <div class="bloom bloom2"></div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="mt-12 md:mt-0 text-right">
+            <p class="text-[10px] text-gray-600" data-i18n="footer_powered">Powered by Image&Actions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-to-top button behavior (matching homepage)
+    (function () {
+      const btn = document.getElementById('scroll-top-btn');
+      if (!btn) return;
+      const showAt = 300;
+      function toggle() {
+        if (window.scrollY > showAt) {
+          btn.classList.add('show');
+        } else {
+          btn.classList.remove('show');
+        }
+      }
+      window.addEventListener('scroll', toggle, { passive: true });
+      // initialize
+      toggle();
+      btn.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    })();
+  </script>
+
+  <!-- Scroll to top button (blue variant) -->
+  <button id="scroll-top-btn"
+    class="scroll-top-btn fixed top-32 left-1/2 -translate-x-1/2 z-50 w-12 h-12 rounded-full border-2 border-blue-600 bg-transparent text-blue-600 animate-float flex items-center justify-center hover:bg-blue-50"
+    aria-label="Retour en haut" title="Retour en haut" data-i18n-aria-label="scroll_top_btn_aria_label"
+    data-i18n-title="scroll_top_btn_title">
+    <i data-lucide="chevron-up" aria-hidden="true"></i>
+  </button>
+
+  <script>lucide.createIcons();</script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/navbar-scroll.js"></script>
+  <script src="assets/js/blur-text.js"></script>
+  <script src="assets/js/loader.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actualités Océan - BlueHope</title>
+    <meta name="description"
+        content="Suivez les dernières actualités mondiales sur les océans, le climat et la biodiversité marine." />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Playfair Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/blur-text.css">
+    <link rel="stylesheet" href="assets/css/loader.css">
+    <link rel="stylesheet" href="assets/css/glassy-search.css">
+    <link rel="stylesheet" href="assets/css/glassy-menu.css">
+
+    <link rel="stylesheet" href="assets/css/animated-button.css">
+    <style>
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .font-arabic {
+            font-family: 'Amiri', serif;
+        }
+
+        /* Animation Rainbow pour le bouton KIDS */
+        @keyframes colorCycle {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .animate-rainbow {
+            animation: colorCycle 8s linear infinite;
+        }
+
+        /* Page transition */
+        .page-transition {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 60;
+            pointer-events: none;
+        }
+
+        .page-transition.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            top: 8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            border: 2px solid rgba(255, 255, 255, 1);
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 200ms ease, transform 200ms ease, background-color 150ms ease;
+        }
+
+        .scroll-top:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-top svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+        }
+
+        .levitate {
+            animation: levitate 3s ease-in-out infinite;
+        }
+
+        @keyframes levitate {
+            0% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(5px);
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            90% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-summary {
+            animation: fadeInOut 6s infinite;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-slate-800 bg-slate-900">
+
+    <div id="app">
+        <div class="page-transition show" id="page-transition"></div>
+
+        <!-- Background Slideshow -->
+        <div id="newsPageBackground"
+            class="fixed inset-0 z-[-1] bg-cover bg-center transition-all duration-1000 ease-in-out bg-slate-900"></div>
+        <div class="fixed inset-0 z-[-1] bg-black/60"></div>
+
+        <!-- CSS for Sidebar Menu -->
+        <link rel="stylesheet" href="assets/css/sidebar-menu.css">
+
+        <!-- HEADER FIXE (LEFT TRIGGER) -->
+        <header class="nav-trigger-container">
+            <!-- Logo REMOVED -->
+            <!-- Home Button -->
+            <a href="index.html" class="home-btn" title="Retour à l'accueil">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+            </a>
+
+            <div class="menu-btn" id="menuToggle">
+                <span>MENU</span>
+                <div class="btn-icon">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- BACKDROP & DRAWER -->
+        <div class="menu-backdrop" id="menuBackdrop"></div>
+
+        <div class="menu-drawer" id="menuDrawer">
+            <!-- Close Button inside drawer -->
+            <div class="menu-close-area" id="menuCloseBtn">Close <i class="fas fa-times"></i></div>
+
+            <div class="menu-content">
+                <ul class="main-nav-list">
+
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">
+                            ACCUEIL
+                            <span class="nav-num">01</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="about.html">À propos</a></li>
+                            <li><a href="missions.html">Nos missions</a></li>
+                            <li><a href="partenaires.html">Nos partenaires</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            INITIATIVE
+                            <span class="nav-num">02</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="wao.html">Women Actions for the Ocean</a></li>
+                            <li><a href="pacte-afrique.html">Le Pacte pour une Afrique Bleue Durable</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            ÉVÉNEMENTS
+                            <span class="nav-num">03</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="blue-africa-summit.html">Blue Africa Summit</a></li>
+                            <li><a href="grande-maree.html">La Grande Marée</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            ACTU & MEDIA
+                            <span class="nav-num">04</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="news.html">News</a></li>
+                            <li><a href="#">Photos</a></li>
+                            <li><a href="videos.html">Vidéos</a></li>
+                            <li><a href="documents.html">Documents</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">
+                            CONTACT
+                            <span class="nav-num">05</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Script for Sidebar Menu -->
+        <script src="assets/js/sidebar-menu.js"></script>
+
+        <!-- Main Content -->
+        <div class="relative">
+            <main class="pt-32 pb-20 px-6 md:px-12 container mx-auto">
+
+                <!-- Header Section -->
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight" data-i18n="news_title">
+                        L'actualité
+                        des Océans &
+                        Climats</h1>
+                </div>
+
+                <!-- Edito du Jour (Dynamic Summary) -->
+                <div class="mb-16 text-center">
+                    <div
+                        class="max-w-4xl mx-auto bg-slate-800/50 rounded-2xl p-8 md:p-12 border border-white/5 shadow-2xl backdrop-blur-sm">
+                        <div class="flex items-center justify-center gap-3 mb-6">
+                            <span class="text-3xl">⚡</span>
+                            <h3 class="text-2xl font-serif font-bold text-white tracking-wide" data-i18n="news_edito">En
+                                bref
+                                aujourd'hui</h3>
+                        </div>
+                        <p id="dynamicSummary" class="text-gray-300 italic text-lg leading-relaxed"
+                            data-i18n="news_summary_loading">
+                            Chargement du résumé...
+                        </p>
+                    </div>
+                </div>
+
+                <!-- News Grid -->
+                <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Content will be injected by JS -->
+                </div>
+
+
+
+            </main>
+            <!-- Bottom Gradient Fade to Slate-900 (Footer) -->
+            <div
+                class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-slate-900 to-transparent z-10 pointer-events-none">
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="relative bg-slate-900 text-white py-16 overflow-hidden">
+            <!-- Background Image Placeholder (Dark gradient) -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-slate-900/90 z-0"></div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <!-- Top Section -->
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+                    <div>
+                        <h2 class="text-5xl md:text-7xl font-serif font-bold tracking-tight mb-2 animate-agissons"
+                            data-i18n="footer_cta_title">Agissons Ensemble</h2>
+                    </div>
+                    <div class="flex flex-col items-end gap-4">
+
+                        <a href="contact.html" class="btn-join" data-i18n="btn_join">
+                            Newsletter
+                        </a>
+                    </div>
+                </div>
+                <!-- Divider -->
+                <div class="w-full h-px bg-white/10 mb-12"></div>
+                <!-- Bottom Section -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-sm text-gray-400">
+                    <!-- Menu -->
+                    <div>
+                        <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_menu">
+                            Menu</h3>
+                        <ul class="space-y-4">
+                            <li><a href="index.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_home">Accueil</a></li>
+                            <li><a href="wao.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_initiative">Initiative</a></li>
+                            <li><a href="grande-maree.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_events">Nos événements</a></li>
+                            <li><a href="news.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_news">News</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Contact -->
+                    <div class="md:col-span-2">
+                        <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6"
+                            data-i18n="footer_contact">
+                            Contact</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i><span>94,
+                                    avenue Émile Zola, 75015 Paris</span></li>
+                            <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i><span>+33 7
+                                    88 69 58 94</span></li>
+                            <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i><a
+                                    href="mailto:contact@lasaisonbleue.com"
+                                    class="hover:text-white transition-colors">contact@lasaisonbleue.com</a></li>
+                        </ul>
+                    </div>
+                    <!-- Socials -->
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6"
+                                data-i18n="footer_follow">Suivez-nous</h3>
+                            <div class="flex gap-4">
+                                <!-- Instagram -->
+                                <a href="https://www.instagram.com/lasaisonbleue/?hl=fr" target="_blank"
+                                    class="social-bloom-btn" aria-label="Instagram">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="instagram"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+
+                                <!-- Facebook -->
+                                <a href="https://www.facebook.com/lasaisonbleue/?locale=fr_FR" target="_blank"
+                                    class="social-bloom-btn" aria-label="Facebook">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="facebook"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+
+                                <!-- YouTube -->
+                                <a href="https://www.youtube.com/@lasaisonbleue3150" target="_blank"
+                                    class="social-bloom-btn" aria-label="YouTube">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="youtube"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+
+                                <!-- LinkedIn -->
+                                <a href="https://www.linkedin.com/company/la-saison-bleue/posts/?feedView=all"
+                                    target="_blank" class="social-bloom-btn" aria-label="LinkedIn">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="linkedin"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mt-12 md:mt-0 text-right">
+                            <p class="text-[10px] text-gray-600" data-i18n="footer_powered">Powered by Image&Actions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll to top button -->
+        <button id="scroll-top-btn" class="scroll-top levitate" aria-label="Retour en haut" title="Retour en haut">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </button>
+
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && closeMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+            closeMenuBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+        }
+
+        // Page transition
+        (function () {
+            const transition = document.getElementById('page-transition');
+            function hideOverlay() { if (transition) requestAnimationFrame(() => requestAnimationFrame(() => transition.classList.remove('show'))); }
+            function showOverlayThenNavigate(href) {
+                if (!transition) { window.location.href = href; return; }
+                transition.classList.add('show');
+                setTimeout(() => { window.location.href = href; }, 500);
+            }
+            document.addEventListener('DOMContentLoaded', hideOverlay);
+            document.addEventListener('click', (e) => {
+                const a = e.target.closest('a');
+                if (!a) return;
+                const href = a.getAttribute('href');
+                if (!href || href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+                try {
+                    const url = new URL(href, window.location.href);
+                    if (url.origin !== window.location.origin || (a.target && a.target === '_blank') || url.href === window.location.href) return;
+                    e.preventDefault();
+                    showOverlayThenNavigate(url.href);
+                } catch (err) { }
+            });
+        })();
+
+        // Scroll-to-top button
+        (function () {
+            const btn = document.getElementById('scroll-top-btn');
+            if (!btn) return;
+            const showAt = 300;
+            function toggle() { window.scrollY > showAt ? btn.classList.add('show') : btn.classList.remove('show'); }
+            window.addEventListener('scroll', toggle, { passive: true });
+            toggle();
+            btn.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        })();
+
+        // --- NEWS GENERATION SCRIPT ---
+        // --- DYNAMIC NEWS FETCHING ---
+        const newsGrid = document.getElementById('news-grid');
+        const fallbackImages = [
+            './AdobeStock_1447151152.jpeg',
+            './AdobeStock_1543335255.jpeg',
+            './AdobeStock_1778290935.jpeg',
+            './AdobeStock_549180191_Editorial_Use_Only.jpeg',
+            './AdobeStock_116240936.jpeg',
+            './AdobeStock_1258717502.jpeg',
+            './AdobeStock_1372252180.jpeg',
+            './AdobeStock_1471865854.jpeg',
+            './AdobeStock_1482985149.jpeg',
+            './AdobeStock_1563364358.jpeg',
+            './AdobeStock_1683965727.jpeg'
+        ];
+
+        const categories = [
+            { id: "news_cat_diplomacy", color: "bg-cyan-500", label: "Diplomatie" },
+            { id: "news_cat_biodiversity", color: "bg-emerald-500", label: "Biodiversité" },
+            { id: "news_cat_urgent", color: "bg-red-500", label: "Urgence" },
+            { id: "news_cat_innovation", color: "bg-blue-500", label: "Innovation" },
+            { id: "news_cat_science", color: "bg-indigo-500", label: "Science" }
+        ];
+
+        async function fetchNews() {
+            const googleRssUrl = 'https://news.google.com/rss/search?q=océan+climat+changement+activités+océaniques&hl=fr&gl=FR&ceid=FR:fr';
+            const marineLinkRssUrl = 'https://www.marinelink.com/rss';
+
+            const googleApiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(googleRssUrl)}`;
+            const marineApiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(marineLinkRssUrl)}`;
+
+            try {
+                // Show loading state
+                newsGrid.innerHTML = '<div class="col-span-full text-center text-white text-xl animate-pulse">Chargement des actualités...</div>';
+
+                // Fetch both feeds in parallel
+                const results = await Promise.allSettled([
+                    fetch(googleApiUrl).then(res => res.json()),
+                    fetch(marineApiUrl).then(res => res.json())
+                ]);
+
+                let allItems = [];
+
+                // Process Google News results
+                if (results[0].status === 'fulfilled' && results[0].value.status === 'ok') {
+                    allItems = allItems.concat(results[0].value.items);
+                }
+
+                // Process MarineLink results
+                if (results[1].status === 'fulfilled' && results[1].value.status === 'ok') {
+                    // Add a source tag to MarineLink items if needed, or just mix them in
+                    const marineItems = results[1].value.items.map(item => ({
+                        ...item,
+                        author: 'MarineLink' // Ensure source is clear
+                    }));
+                    allItems = allItems.concat(marineItems);
+                }
+
+                if (allItems.length > 0) {
+                    newsGrid.innerHTML = ''; // Clear loading
+
+                    const now = new Date();
+                    // Filter for last 48 hours (48 * 60 * 60 * 1000)
+                    const timeWindow = new Date(now.getTime() - (48 * 60 * 60 * 1000));
+
+                    // Filter and Sort by date (newest first)
+                    const recentItems = allItems
+                        .filter(item => {
+                            const itemDate = new Date(item.pubDate);
+                            return itemDate >= timeWindow;
+                        })
+                        .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+                    if (recentItems.length === 0) {
+                        newsGrid.innerHTML = '<div class="col-span-full text-center text-white text-xl py-12">Aucune actualité majeure détectée dans les dernières 48h.</div>';
+                        return;
+                    }
+
+                    // Start summary cycle with recent items
+                    startSummaryCycle(recentItems);
+
+                    recentItems.slice(0, 9).forEach((item, index) => {
+                        // Select random category and image
+                        const category = categories[index % categories.length];
+                        const image = fallbackImages[index % fallbackImages.length];
+
+                        // Format date
+                        const date = new Date(item.pubDate).toLocaleDateString('fr-FR', {
+                            day: 'numeric', month: 'short', year: 'numeric'
+                        });
+
+                        // Clean title (remove source if present at the end)
+                        let title = item.title.split(' - ')[0];
+
+                        const card = document.createElement('div');
+                        card.className = "group bg-slate-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/5 flex flex-col h-full";
+
+                        card.innerHTML = `
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="${image}" alt="${title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                <div class="absolute top-4 left-4">
+                                    <span class="${category.color} text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                                        ${category.label}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex justify-between items-center mb-4 text-xs text-gray-500 font-medium uppercase tracking-wide">
+                                    <span>${item.author || 'Actualité'}</span>
+                                    <span>${date}</span>
+                                </div>
+                                
+                                <h3 class="text-xl font-bold text-white mb-4 leading-tight group-hover:text-blue-400 transition-colors duration-300 line-clamp-3">
+                                    ${title}
+                                </h3>
+                                
+                                <div class="mt-auto pt-4 border-t border-white/10">
+                                    <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-blue-400 hover:text-white transition-colors group/link">
+                                        <span>Lire l'article</span>
+                                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        newsGrid.appendChild(card);
+                    });
+
+                    // Re-initialize icons
+                    lucide.createIcons();
+                } else {
+                    throw new Error('No items found');
+                }
+            } catch (error) {
+                console.error('Error fetching news:', error);
+                newsGrid.innerHTML = `
+                    <div class="col-span-full text-center text-white">
+                        <p class="text-xl mb-4">Impossible de charger les actualités pour le moment.</p>
+                        <button onclick="fetchNews()" class="px-6 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition-colors">Réessayer</button>
+                    </div>
+                `;
+            }
+        }
+
+        // Load news on start
+        fetchNews();
+
+        // Re-initialize icons for dynamic content
+        lucide.createIcons();
+
+        // --- DYNAMIC SUMMARY GENERATOR ---
+        function startSummaryCycle(items) {
+            const summaryEl = document.getElementById('dynamicSummary');
+            if (!summaryEl || !items || items.length === 0) return;
+
+            let currentIndex = 0;
+
+            function update() {
+                summaryEl.classList.remove('animate-summary');
+                void summaryEl.offsetWidth; // trigger reflow
+
+                // Clean title
+                let title = items[currentIndex].title.split(' - ')[0];
+                summaryEl.textContent = title;
+
+                summaryEl.classList.add('animate-summary');
+                currentIndex = (currentIndex + 1) % items.length;
+            }
+
+            update();
+            setInterval(update, 6000); // Change every 6 seconds
+        }
+
+        // --- BACKGROUND SLIDESHOW ---
+        const backgrounds = [
+            './4K Beach Backgrounds HD.jpeg',
+            './_.jpeg',
+            './UN Ocean Conference makes progress on protecting marine waters.jpeg',
+            './United Nations General Assembly in New York Editorial Photography - Image of assembly, opening_ 77562667.jpeg',
+            './United Nations Oceans Conference (UNOC3).jpeg'
+        ];
+
+        let currentBgIndex = 0;
+        const bgElement = document.getElementById('newsPageBackground');
+
+        function changeBackground() {
+            if (bgElement) {
+                // Applique la nouvelle image
+                bgElement.style.backgroundImage = `url('${backgrounds[currentBgIndex]}')`;
+                // Passe à l'image suivante, et boucle au début si on est à la fin
+                currentBgIndex = (currentBgIndex + 1) % backgrounds.length;
+            }
+        }
+
+        // Lance le changement toutes les 5000ms (5 secondes)
+        setInterval(changeBackground, 5000);
+
+        // Lance une première fois au chargement
+        changeBackground();
+    </script>
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/navbar-scroll.js"></script>
+    <script src="assets/js/blur-text.js"></script>
+    <script src="assets/js/loader.js"></script>
+</body>
+
+</html>

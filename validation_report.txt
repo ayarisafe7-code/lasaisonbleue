@@ -1,0 +1,586 @@
+HTML Validation Report
+======================
+
+File: videos.html
+  - Line 133: Mismatched closing tag </a>. Expected </div> (opened at line 123)
+  - Line 146: Mismatched closing tag </a>. Expected </div> (opened at line 123)
+  - Line 148: Mismatched closing tag </a>. Expected </div> (opened at line 123)
+  - Line 150: Mismatched closing tag </a>. Expected </div> (opened at line 123)
+  - Line 152: Unexpected closing tag </div>
+  - Line 164: Unexpected closing tag </div>
+  - Line 165: Unexpected closing tag </div>
+  - Line 175: Unexpected closing tag </a>
+  - Line 178: Unexpected closing tag </div>
+  - Line 179: Unexpected closing tag </div>
+  - Line 188: Unexpected closing tag </a>
+  - Line 190: Unexpected closing tag </a>
+  - Line 192: Unexpected closing tag </a>
+  - Line 194: Unexpected closing tag </div>
+  - Line 195: Unexpected closing tag </div>
+  - Line 203: Unexpected closing tag </div>
+  - Line 205: Unexpected closing tag </div>
+  - Line 210: Mismatched closing tag </button>. Expected </div> (opened at line 206)
+  - Line 217: Unexpected closing tag </div>
+  - Line 221: Unexpected closing tag </div>
+  - Line 222: Unexpected closing tag </nav>
+  - Line 235: Mismatched closing tag </a>. Expected </div> (opened at line 232)
+  - Line 263: Mismatched closing tag </a>. Expected </div> (opened at line 258)
+  - Line 269: Unexpected closing tag </a>
+  - Line 270: Unexpected closing tag </div>
+  - Line 306: Mismatched closing tag </a>. Expected </div> (opened at line 274)
+  - Line 321: Mismatched closing tag </a>. Expected </main> (opened at line 273)
+  - Line 334: Mismatched closing tag </div>. Expected </main> (opened at line 273)
+  - Line 335: Mismatched closing tag </a>. Expected </main> (opened at line 273)
+  - Line 348: Mismatched closing tag </div>. Expected </main> (opened at line 273)
+  - Line 349: Mismatched closing tag </a>. Expected </main> (opened at line 273)
+  - Line 362: Mismatched closing tag </div>. Expected </main> (opened at line 273)
+  - Line 363: Mismatched closing tag </a>. Expected </main> (opened at line 273)
+  - Line 376: Mismatched closing tag </div>. Expected </main> (opened at line 273)
+  - Line 377: Mismatched closing tag </a>. Expected </main> (opened at line 273)
+  - Line 379: Mismatched closing tag </div>. Expected </main> (opened at line 273)
+  - Line 380: Mismatched closing tag </div>. Expected </main> (opened at line 273)
+  - Line 393: Mismatched closing tag </h2>. Expected </div> (opened at line 391)
+  - Line 402: Mismatched closing tag </span>. Expected </div> (opened at line 395)
+  - Line 406: Mismatched closing tag </a>. Expected </div> (opened at line 390)
+  - Line 419: Mismatched closing tag </a>. Expected </li> (opened at line 418)
+  - Line 421: Mismatched closing tag </a>. Expected </li> (opened at line 420)
+  - Line 423: Mismatched closing tag </a>. Expected </li> (opened at line 422)
+  - Line 439: Mismatched closing tag </a>. Expected </li> (opened at line 437)
+  - Line 446: Mismatched closing tag </h3>. Expected </div> (opened at line 444)
+  - Line 450: Mismatched closing tag </a>. Expected </div> (opened at line 447)
+  - Line 453: Mismatched closing tag </a>. Expected </div> (opened at line 447)
+  - Line 456: Mismatched closing tag </a>. Expected </div> (opened at line 447)
+  - Line 460: Mismatched closing tag </a>. Expected </div> (opened at line 447)
+  - Line 468: Mismatched closing tag </div>. Expected </footer> (opened at line 384)
+  - Line 479: Unexpected closing tag </div>
+
+File: index.html
+  - Line 530: Mismatched closing tag </h2>. Expected </div> (opened at line 525)
+  - Line 535: Mismatched closing tag </h2>. Expected </div> (opened at line 525)
+
+File: pacte-afrique.html
+  - Line 141: Unexpected closing tag </div>
+  - Line 154: Mismatched closing tag </a>. Expected </div> (opened at line 144)
+  - Line 167: Mismatched closing tag </a>. Expected </div> (opened at line 144)
+  - Line 169: Mismatched closing tag </a>. Expected </div> (opened at line 144)
+  - Line 171: Mismatched closing tag </a>. Expected </div> (opened at line 144)
+  - Line 173: Unexpected closing tag </div>
+  - Line 185: Unexpected closing tag </div>
+  - Line 186: Unexpected closing tag </div>
+  - Line 196: Unexpected closing tag </a>
+  - Line 199: Unexpected closing tag </div>
+  - Line 200: Unexpected closing tag </div>
+  - Line 209: Unexpected closing tag </a>
+  - Line 211: Unexpected closing tag </a>
+  - Line 213: Unexpected closing tag </a>
+  - Line 215: Unexpected closing tag </div>
+  - Line 216: Unexpected closing tag </div>
+  - Line 224: Unexpected closing tag </div>
+  - Line 226: Unexpected closing tag </div>
+  - Line 234: Mismatched closing tag </button>. Expected </div> (opened at line 230)
+  - Line 251: Unexpected closing tag </a>
+  - Line 260: Mismatched closing tag </button>. Expected </div> (opened at line 252)
+  - Line 262: Mismatched closing tag </button>. Expected </div> (opened at line 252)
+  - Line 264: Mismatched closing tag </button>. Expected </div> (opened at line 252)
+  - Line 266: Mismatched closing tag </button>. Expected </div> (opened at line 252)
+  - Line 268: Mismatched closing tag </button>. Expected </div> (opened at line 252)
+  - Line 270: Unexpected closing tag </div>
+  - Line 273: Unexpected closing tag </a>
+  - Line 279: Mismatched closing tag </button>. Expected </div> (opened at line 275)
+  - Line 286: Unexpected closing tag </div>
+  - Line 290: Unexpected closing tag </div>
+  - Line 291: Unexpected closing tag </nav>
+  - Line 304: Unexpected closing tag </a>
+  - Line 305: Unexpected closing tag </div>
+  - Line 314: Mismatched closing tag </div>. Expected </main> (opened at line 308)
+  - Line 327: Mismatched closing tag </h2>. Expected </div> (opened at line 325)
+  - Line 332: Mismatched closing tag </span>. Expected </div> (opened at line 329)
+  - Line 337: Mismatched closing tag </span>. Expected </div> (opened at line 329)
+  - Line 341: Mismatched closing tag </a>. Expected </div> (opened at line 324)
+  - Line 354: Mismatched closing tag </a>. Expected </li> (opened at line 353)
+  - Line 356: Mismatched closing tag </a>. Expected </li> (opened at line 355)
+  - Line 358: Mismatched closing tag </a>. Expected </li> (opened at line 357)
+  - Line 360: Mismatched closing tag </a>. Expected </li> (opened at line 359)
+  - Line 368: Mismatched closing tag </h3>. Expected </div> (opened at line 365)
+  - Line 376: Mismatched closing tag </a>. Expected </li> (opened at line 374)
+  - Line 383: Mismatched closing tag </h3>. Expected </div> (opened at line 381)
+  - Line 387: Mismatched closing tag </a>. Expected </div> (opened at line 384)
+  - Line 390: Mismatched closing tag </a>. Expected </div> (opened at line 384)
+  - Line 393: Mismatched closing tag </a>. Expected </div> (opened at line 384)
+  - Line 397: Mismatched closing tag </a>. Expected </div> (opened at line 384)
+  - Line 405: Mismatched closing tag </div>. Expected </footer> (opened at line 318)
+  - Line 416: Unexpected closing tag </div>
+
+File: about.html
+  - Line 115: Mismatched closing tag </a>. Expected </div> (opened at line 104)
+  - Line 128: Mismatched closing tag </a>. Expected </div> (opened at line 104)
+  - Line 130: Mismatched closing tag </a>. Expected </div> (opened at line 104)
+  - Line 132: Mismatched closing tag </a>. Expected </div> (opened at line 104)
+  - Line 134: Unexpected closing tag </div>
+  - Line 146: Unexpected closing tag </div>
+  - Line 147: Unexpected closing tag </div>
+  - Line 157: Unexpected closing tag </a>
+  - Line 160: Unexpected closing tag </div>
+  - Line 161: Unexpected closing tag </div>
+  - Line 170: Unexpected closing tag </a>
+  - Line 172: Unexpected closing tag </a>
+  - Line 174: Unexpected closing tag </a>
+  - Line 176: Unexpected closing tag </div>
+  - Line 177: Unexpected closing tag </div>
+  - Line 185: Unexpected closing tag </div>
+  - Line 187: Unexpected closing tag </div>
+  - Line 188: Unexpected closing tag </div>
+  - Line 199: Mismatched closing tag </button>. Expected </div> (opened at line 191)
+  - Line 201: Mismatched closing tag </button>. Expected </div> (opened at line 191)
+  - Line 203: Mismatched closing tag </button>. Expected </div> (opened at line 191)
+  - Line 205: Mismatched closing tag </button>. Expected </div> (opened at line 191)
+  - Line 207: Mismatched closing tag </button>. Expected </div> (opened at line 191)
+  - Line 219: Unexpected closing tag </a>
+  - Line 225: Mismatched closing tag </button>. Expected </div> (opened at line 221)
+  - Line 232: Unexpected closing tag </div>
+  - Line 236: Unexpected closing tag </div>
+  - Line 237: Unexpected closing tag </nav>
+  - Line 261: Mismatched closing tag </a>. Expected </div> (opened at line 255)
+  - Line 267: Mismatched closing tag </a>. Expected </div> (opened at line 263)
+  - Line 276: Mismatched closing tag </a>. Expected </div> (opened at line 271)
+  - Line 281: Unexpected closing tag </a>
+  - Line 282: Unexpected closing tag </div>
+  - Line 344: Mismatched closing tag </h2>. Expected </div> (opened at line 342)
+  - Line 353: Mismatched closing tag </span>. Expected </div> (opened at line 346)
+  - Line 357: Mismatched closing tag </a>. Expected </div> (opened at line 341)
+  - Line 370: Mismatched closing tag </a>. Expected </li> (opened at line 369)
+  - Line 372: Mismatched closing tag </a>. Expected </li> (opened at line 371)
+  - Line 374: Mismatched closing tag </a>. Expected </li> (opened at line 373)
+  - Line 390: Mismatched closing tag </a>. Expected </li> (opened at line 388)
+  - Line 397: Mismatched closing tag </h3>. Expected </div> (opened at line 395)
+  - Line 401: Mismatched closing tag </a>. Expected </div> (opened at line 398)
+  - Line 404: Mismatched closing tag </a>. Expected </div> (opened at line 398)
+  - Line 407: Mismatched closing tag </a>. Expected </div> (opened at line 398)
+  - Line 411: Mismatched closing tag </a>. Expected </div> (opened at line 398)
+  - Line 419: Mismatched closing tag </div>. Expected </footer> (opened at line 335)
+  - Line 430: Unexpected closing tag </div>
+
+File: contact.html
+  - Line 147: Mismatched closing tag </a>. Expected </nav> (opened at line 141)
+  - Line 162: Mismatched closing tag </a>. Expected </div> (opened at line 157)
+  - Line 164: Mismatched closing tag </a>. Expected </div> (opened at line 157)
+  - Line 180: Mismatched closing tag </div>. Expected </nav> (opened at line 141)
+  - Line 188: Mismatched closing tag </a>. Expected </div> (opened at line 183)
+  - Line 192: Mismatched closing tag </div>. Expected </nav> (opened at line 141)
+  - Line 200: Mismatched closing tag </a>. Expected </div> (opened at line 195)
+  - Line 202: Mismatched closing tag </a>. Expected </div> (opened at line 195)
+  - Line 204: Mismatched closing tag </a>. Expected </div> (opened at line 195)
+  - Line 207: Mismatched closing tag </div>. Expected </nav> (opened at line 141)
+  - Line 216: Mismatched closing tag </div>. Expected </nav> (opened at line 141)
+  - Line 218: Mismatched closing tag </div>. Expected </nav> (opened at line 141)
+  - Line 226: Mismatched closing tag </button>. Expected </div> (opened at line 222)
+  - Line 238: Mismatched closing tag </div>. Expected </nav> (opened at line 141)
+  - Line 273: Mismatched closing tag </button>. Expected </div> (opened at line 270)
+  - Line 331: Mismatched closing tag </span>. Expected </div> (opened at line 324)
+  - Line 335: Mismatched closing tag </a>. Expected </div> (opened at line 319)
+  - Line 365: Mismatched closing tag </a>. Expected </li> (opened at line 363)
+  - Line 376: Mismatched closing tag </a>. Expected </div> (opened at line 373)
+  - Line 379: Mismatched closing tag </a>. Expected </div> (opened at line 373)
+  - Line 382: Mismatched closing tag </a>. Expected </div> (opened at line 373)
+  - Line 385: Mismatched closing tag </a>. Expected </div> (opened at line 373)
+  - Line 393: Mismatched closing tag </div>. Expected </footer> (opened at line 313)
+
+File: kids.html
+  - Line 132: Unexpected closing tag </a>
+  - Line 148: Mismatched closing tag </a>. Expected </div> (opened at line 134)
+  - Line 150: Mismatched closing tag </a>. Expected </div> (opened at line 134)
+  - Line 152: Mismatched closing tag </a>. Expected </div> (opened at line 134)
+  - Line 154: Unexpected closing tag </div>
+  - Line 165: Unexpected closing tag </a>
+  - Line 166: Unexpected closing tag </div>
+  - Line 167: Unexpected closing tag </div>
+  - Line 177: Unexpected closing tag </a>
+  - Line 180: Unexpected closing tag </div>
+  - Line 181: Unexpected closing tag </div>
+  - Line 190: Unexpected closing tag </a>
+  - Line 192: Unexpected closing tag </a>
+  - Line 194: Unexpected closing tag </a>
+  - Line 196: Unexpected closing tag </div>
+  - Line 197: Unexpected closing tag </div>
+  - Line 205: Unexpected closing tag </div>
+  - Line 207: Unexpected closing tag </div>
+  - Line 209: Unexpected closing tag </div>
+  - Line 221: Mismatched closing tag </button>. Expected </div> (opened at line 213)
+  - Line 223: Mismatched closing tag </button>. Expected </div> (opened at line 213)
+  - Line 225: Mismatched closing tag </button>. Expected </div> (opened at line 213)
+  - Line 227: Mismatched closing tag </button>. Expected </div> (opened at line 213)
+  - Line 229: Mismatched closing tag </button>. Expected </div> (opened at line 213)
+  - Line 241: Unexpected closing tag </a>
+  - Line 247: Mismatched closing tag </button>. Expected </div> (opened at line 243)
+  - Line 254: Unexpected closing tag </div>
+  - Line 258: Unexpected closing tag </div>
+  - Line 259: Unexpected closing tag </nav>
+  - Line 272: Unexpected closing tag </div>
+  - Line 285: Mismatched closing tag </h1>. Expected </main> (opened at line 275)
+  - Line 294: Mismatched closing tag </div>. Expected </main> (opened at line 275)
+  - Line 312: Mismatched closing tag </div>. Expected </main> (opened at line 275)
+  - Line 316: Mismatched closing tag </span>. Expected </main> (opened at line 275)
+  - Line 317: Mismatched closing tag </button>. Expected </main> (opened at line 275)
+  - Line 331: Mismatched closing tag </div>. Expected </main> (opened at line 275)
+  - Line 332: Mismatched closing tag </div>. Expected </main> (opened at line 275)
+  - Line 336: Mismatched closing tag </span>. Expected </main> (opened at line 275)
+  - Line 337: Mismatched closing tag </button>. Expected </main> (opened at line 275)
+  - Line 351: Mismatched closing tag </div>. Expected </main> (opened at line 275)
+  - Line 352: Mismatched closing tag </div>. Expected </main> (opened at line 275)
+  - Line 356: Mismatched closing tag </span>. Expected </main> (opened at line 275)
+  - Line 357: Mismatched closing tag </button>. Expected </main> (opened at line 275)
+  - Line 371: Mismatched closing tag </div>. Expected </main> (opened at line 275)
+  - Line 372: Mismatched closing tag </div>. Expected </main> (opened at line 275)
+  - Line 376: Mismatched closing tag </span>. Expected </main> (opened at line 275)
+  - Line 377: Mismatched closing tag </button>. Expected </main> (opened at line 275)
+  - Line 379: Mismatched closing tag </div>. Expected </main> (opened at line 275)
+  - Line 381: Mismatched closing tag </div>. Expected </main> (opened at line 275)
+  - Line 395: Mismatched closing tag </h2>. Expected </div> (opened at line 393)
+  - Line 400: Mismatched closing tag </span>. Expected </div> (opened at line 397)
+  - Line 405: Mismatched closing tag </span>. Expected </div> (opened at line 397)
+  - Line 409: Mismatched closing tag </a>. Expected </div> (opened at line 392)
+  - Line 422: Mismatched closing tag </a>. Expected </li> (opened at line 421)
+  - Line 424: Mismatched closing tag </a>. Expected </li> (opened at line 423)
+  - Line 426: Mismatched closing tag </a>. Expected </li> (opened at line 425)
+  - Line 428: Mismatched closing tag </a>. Expected </li> (opened at line 427)
+  - Line 436: Mismatched closing tag </h3>. Expected </div> (opened at line 433)
+  - Line 444: Mismatched closing tag </a>. Expected </li> (opened at line 442)
+  - Line 451: Mismatched closing tag </h3>. Expected </div> (opened at line 449)
+  - Line 455: Mismatched closing tag </a>. Expected </div> (opened at line 452)
+  - Line 458: Mismatched closing tag </a>. Expected </div> (opened at line 452)
+  - Line 461: Mismatched closing tag </a>. Expected </div> (opened at line 452)
+  - Line 465: Mismatched closing tag </a>. Expected </div> (opened at line 452)
+  - Line 473: Mismatched closing tag </div>. Expected </footer> (opened at line 386)
+  - Line 484: Unexpected closing tag </div>
+
+File: watch.html
+  - Line 73: Mismatched closing tag </a>. Expected </div> (opened at line 63)
+  - Line 86: Mismatched closing tag </a>. Expected </div> (opened at line 63)
+  - Line 88: Mismatched closing tag </a>. Expected </div> (opened at line 63)
+  - Line 90: Mismatched closing tag </a>. Expected </div> (opened at line 63)
+  - Line 92: Unexpected closing tag </div>
+  - Line 104: Unexpected closing tag </div>
+  - Line 105: Unexpected closing tag </div>
+  - Line 115: Unexpected closing tag </a>
+  - Line 118: Unexpected closing tag </div>
+  - Line 119: Unexpected closing tag </div>
+  - Line 128: Unexpected closing tag </a>
+  - Line 130: Unexpected closing tag </a>
+  - Line 132: Unexpected closing tag </a>
+  - Line 134: Unexpected closing tag </div>
+  - Line 135: Unexpected closing tag </div>
+  - Line 143: Unexpected closing tag </div>
+  - Line 145: Unexpected closing tag </div>
+  - Line 153: Mismatched closing tag </button>. Expected </div> (opened at line 149)
+  - Line 170: Unexpected closing tag </a>
+  - Line 179: Mismatched closing tag </button>. Expected </div> (opened at line 171)
+  - Line 181: Mismatched closing tag </button>. Expected </div> (opened at line 171)
+  - Line 183: Mismatched closing tag </button>. Expected </div> (opened at line 171)
+  - Line 185: Mismatched closing tag </button>. Expected </div> (opened at line 171)
+  - Line 187: Mismatched closing tag </button>. Expected </div> (opened at line 171)
+  - Line 189: Unexpected closing tag </div>
+  - Line 193: Unexpected closing tag </div>
+  - Line 194: Unexpected closing tag </nav>
+  - Line 207: Mismatched closing tag </a>. Expected </div> (opened at line 204)
+  - Line 228: Mismatched closing tag </a>. Expected </div> (opened at line 222)
+  - Line 236: Mismatched closing tag </a>. Expected </div> (opened at line 231)
+  - Line 242: Unexpected closing tag </a>
+  - Line 243: Unexpected closing tag </div>
+  - Line 254: Mismatched closing tag </a>. Expected </div> (opened at line 247)
+  - Line 269: Mismatched closing tag </h1>. Expected </div> (opened at line 266)
+  - Line 274: Mismatched closing tag </a>. Expected </div> (opened at line 266)
+  - Line 286: Mismatched closing tag </p>. Expected </div> (opened at line 265)
+  - Line 291: Mismatched closing tag </div>. Expected </main> (opened at line 246)
+  - Line 304: Mismatched closing tag </h2>. Expected </div> (opened at line 302)
+  - Line 309: Mismatched closing tag </span>. Expected </div> (opened at line 306)
+  - Line 314: Mismatched closing tag </span>. Expected </div> (opened at line 306)
+  - Line 318: Mismatched closing tag </a>. Expected </div> (opened at line 301)
+  - Line 331: Mismatched closing tag </a>. Expected </li> (opened at line 330)
+  - Line 333: Mismatched closing tag </a>. Expected </li> (opened at line 332)
+  - Line 335: Mismatched closing tag </a>. Expected </li> (opened at line 334)
+  - Line 337: Mismatched closing tag </a>. Expected </li> (opened at line 336)
+  - Line 345: Mismatched closing tag </h3>. Expected </div> (opened at line 342)
+  - Line 353: Mismatched closing tag </a>. Expected </li> (opened at line 351)
+  - Line 360: Mismatched closing tag </h3>. Expected </div> (opened at line 358)
+  - Line 364: Mismatched closing tag </a>. Expected </div> (opened at line 361)
+  - Line 367: Mismatched closing tag </a>. Expected </div> (opened at line 361)
+  - Line 370: Mismatched closing tag </a>. Expected </div> (opened at line 361)
+  - Line 374: Mismatched closing tag </a>. Expected </div> (opened at line 361)
+  - Line 382: Mismatched closing tag </div>. Expected </footer> (opened at line 295)
+  - Line 385: Unexpected closing tag </div>
+
+File: wao.html
+  - Line 184: Unexpected closing tag </a>
+  - Line 196: Mismatched closing tag </a>. Expected </div> (opened at line 191)
+  - Line 198: Mismatched closing tag </a>. Expected </div> (opened at line 191)
+  - Line 202: Unexpected closing tag </div>
+  - Line 214: Unexpected closing tag </div>
+  - Line 222: Mismatched closing tag </a>. Expected </div> (opened at line 217)
+  - Line 225: Unexpected closing tag </div>
+  - Line 233: Mismatched closing tag </a>. Expected </div> (opened at line 228)
+  - Line 235: Mismatched closing tag </a>. Expected </div> (opened at line 228)
+  - Line 237: Mismatched closing tag </a>. Expected </div> (opened at line 228)
+  - Line 240: Unexpected closing tag </div>
+  - Line 249: Unexpected closing tag </div>
+  - Line 257: Mismatched closing tag </button>. Expected </div> (opened at line 253)
+  - Line 273: Unexpected closing tag </a>
+  - Line 282: Mismatched closing tag </button>. Expected </div> (opened at line 274)
+  - Line 284: Mismatched closing tag </button>. Expected </div> (opened at line 274)
+  - Line 286: Mismatched closing tag </button>. Expected </div> (opened at line 274)
+  - Line 288: Mismatched closing tag </button>. Expected </div> (opened at line 274)
+  - Line 290: Mismatched closing tag </button>. Expected </div> (opened at line 274)
+  - Line 292: Unexpected closing tag </div>
+  - Line 296: Unexpected closing tag </div>
+  - Line 297: Unexpected closing tag </nav>
+  - Line 310: Mismatched closing tag </a>. Expected </div> (opened at line 306)
+  - Line 312: Mismatched closing tag </a>. Expected </div> (opened at line 306)
+  - Line 314: Mismatched closing tag </a>. Expected </div> (opened at line 306)
+  - Line 320: Mismatched closing tag </a>. Expected </div> (opened at line 316)
+  - Line 331: Mismatched closing tag </a>. Expected </div> (opened at line 325)
+  - Line 336: Mismatched closing tag </a>. Expected </div> (opened at line 333)
+  - Line 338: Mismatched closing tag </a>. Expected </div> (opened at line 333)
+  - Line 340: Mismatched closing tag </a>. Expected </div> (opened at line 333)
+  - Line 342: Mismatched closing tag </a>. Expected </div> (opened at line 333)
+  - Line 345: Unexpected closing tag </div>
+  - Line 455: Mismatched closing tag </a>. Expected </div> (opened at line 450)
+  - Line 478: Mismatched closing tag </span>. Expected </div> (opened at line 471)
+  - Line 482: Mismatched closing tag </a>. Expected </div> (opened at line 466)
+  - Line 512: Mismatched closing tag </a>. Expected </li> (opened at line 510)
+  - Line 523: Mismatched closing tag </a>. Expected </div> (opened at line 520)
+  - Line 526: Mismatched closing tag </a>. Expected </div> (opened at line 520)
+  - Line 529: Mismatched closing tag </a>. Expected </div> (opened at line 520)
+  - Line 532: Mismatched closing tag </a>. Expected </div> (opened at line 520)
+  - Line 540: Mismatched closing tag </div>. Expected </footer> (opened at line 460)
+
+File: news.html
+  - Line 162: Unexpected closing tag </a>
+  - Line 175: Unexpected closing tag </a>
+  - Line 177: Unexpected closing tag </a>
+  - Line 179: Unexpected closing tag </a>
+  - Line 180: Unexpected closing tag </div>
+  - Line 181: Unexpected closing tag </div>
+  - Line 193: Unexpected closing tag </div>
+  - Line 194: Unexpected closing tag </div>
+  - Line 204: Unexpected closing tag </a>
+  - Line 207: Unexpected closing tag </div>
+  - Line 208: Unexpected closing tag </div>
+  - Line 217: Unexpected closing tag </a>
+  - Line 219: Unexpected closing tag </a>
+  - Line 221: Unexpected closing tag </a>
+  - Line 223: Unexpected closing tag </div>
+  - Line 224: Unexpected closing tag </div>
+  - Line 232: Unexpected closing tag </div>
+  - Line 234: Unexpected closing tag </div>
+  - Line 239: Mismatched closing tag </button>. Expected </div> (opened at line 235)
+  - Line 246: Unexpected closing tag </div>
+  - Line 250: Unexpected closing tag </div>
+  - Line 251: Unexpected closing tag </nav>
+  - Line 263: Unexpected closing tag </div>
+  - Line 289: Mismatched closing tag </p>. Expected </div> (opened at line 277)
+  - Line 291: Mismatched closing tag </div>. Expected </main> (opened at line 266)
+  - Line 312: Mismatched closing tag </h2>. Expected </div> (opened at line 310)
+  - Line 321: Mismatched closing tag </span>. Expected </div> (opened at line 314)
+  - Line 325: Mismatched closing tag </a>. Expected </div> (opened at line 309)
+  - Line 338: Mismatched closing tag </a>. Expected </li> (opened at line 337)
+  - Line 340: Mismatched closing tag </a>. Expected </li> (opened at line 339)
+  - Line 342: Mismatched closing tag </a>. Expected </li> (opened at line 341)
+  - Line 358: Mismatched closing tag </a>. Expected </li> (opened at line 356)
+  - Line 365: Mismatched closing tag </h3>. Expected </div> (opened at line 363)
+  - Line 369: Mismatched closing tag </a>. Expected </div> (opened at line 366)
+  - Line 372: Mismatched closing tag </a>. Expected </div> (opened at line 366)
+  - Line 375: Mismatched closing tag </a>. Expected </div> (opened at line 366)
+  - Line 379: Mismatched closing tag </a>. Expected </div> (opened at line 366)
+  - Line 387: Mismatched closing tag </div>. Expected </footer> (opened at line 303)
+  - Line 398: Unexpected closing tag </div>
+
+File: blue-africa-summit.html
+  - Line 132: Mismatched closing tag </a>. Expected </div> (opened at line 122)
+  - Line 145: Mismatched closing tag </a>. Expected </div> (opened at line 122)
+  - Line 147: Mismatched closing tag </a>. Expected </div> (opened at line 122)
+  - Line 149: Mismatched closing tag </a>. Expected </div> (opened at line 122)
+  - Line 151: Unexpected closing tag </div>
+  - Line 163: Unexpected closing tag </div>
+  - Line 164: Unexpected closing tag </div>
+  - Line 174: Unexpected closing tag </a>
+  - Line 177: Unexpected closing tag </div>
+  - Line 178: Unexpected closing tag </div>
+  - Line 187: Unexpected closing tag </a>
+  - Line 189: Unexpected closing tag </a>
+  - Line 191: Unexpected closing tag </a>
+  - Line 193: Unexpected closing tag </div>
+  - Line 194: Unexpected closing tag </div>
+  - Line 202: Unexpected closing tag </div>
+  - Line 204: Unexpected closing tag </div>
+  - Line 212: Mismatched closing tag </button>. Expected </div> (opened at line 208)
+  - Line 229: Unexpected closing tag </a>
+  - Line 238: Mismatched closing tag </button>. Expected </div> (opened at line 230)
+  - Line 240: Mismatched closing tag </button>. Expected </div> (opened at line 230)
+  - Line 242: Mismatched closing tag </button>. Expected </div> (opened at line 230)
+  - Line 244: Mismatched closing tag </button>. Expected </div> (opened at line 230)
+  - Line 246: Mismatched closing tag </button>. Expected </div> (opened at line 230)
+  - Line 248: Unexpected closing tag </div>
+  - Line 252: Unexpected closing tag </div>
+  - Line 253: Unexpected closing tag </nav>
+  - Line 265: Unexpected closing tag </div>
+  - Line 308: Mismatched closing tag </h3>. Expected </div> (opened at line 305)
+  - Line 319: Mismatched closing tag </p>. Expected </div> (opened at line 316)
+  - Line 333: Mismatched closing tag </p>. Expected </div> (opened at line 330)
+  - Line 409: Mismatched closing tag </a>. Expected </div> (opened at line 404)
+  - Line 414: Unexpected closing tag </section>
+  - Line 426: Mismatched closing tag </h2>. Expected </div> (opened at line 424)
+  - Line 431: Mismatched closing tag </span>. Expected </div> (opened at line 428)
+  - Line 436: Mismatched closing tag </span>. Expected </div> (opened at line 428)
+  - Line 440: Mismatched closing tag </a>. Expected </div> (opened at line 423)
+  - Line 453: Mismatched closing tag </a>. Expected </li> (opened at line 452)
+  - Line 455: Mismatched closing tag </a>. Expected </li> (opened at line 454)
+  - Line 457: Mismatched closing tag </a>. Expected </li> (opened at line 456)
+  - Line 459: Mismatched closing tag </a>. Expected </li> (opened at line 458)
+  - Line 467: Mismatched closing tag </h3>. Expected </div> (opened at line 464)
+  - Line 475: Mismatched closing tag </a>. Expected </li> (opened at line 473)
+  - Line 482: Mismatched closing tag </h3>. Expected </div> (opened at line 480)
+  - Line 486: Mismatched closing tag </a>. Expected </div> (opened at line 483)
+  - Line 489: Mismatched closing tag </a>. Expected </div> (opened at line 483)
+  - Line 492: Mismatched closing tag </a>. Expected </div> (opened at line 483)
+  - Line 496: Mismatched closing tag </a>. Expected </div> (opened at line 483)
+  - Line 504: Mismatched closing tag </div>. Expected </footer> (opened at line 417)
+  - Line 515: Unexpected closing tag </div>
+
+File: grande-maree.html
+  - Line 123: Unexpected closing tag </a>
+  - Line 135: Mismatched closing tag </a>. Expected </div> (opened at line 130)
+  - Line 137: Mismatched closing tag </a>. Expected </div> (opened at line 130)
+  - Line 141: Unexpected closing tag </div>
+  - Line 153: Unexpected closing tag </div>
+  - Line 161: Mismatched closing tag </a>. Expected </div> (opened at line 156)
+  - Line 164: Unexpected closing tag </div>
+  - Line 172: Mismatched closing tag </a>. Expected </div> (opened at line 167)
+  - Line 174: Mismatched closing tag </a>. Expected </div> (opened at line 167)
+  - Line 176: Mismatched closing tag </a>. Expected </div> (opened at line 167)
+  - Line 179: Unexpected closing tag </div>
+  - Line 188: Unexpected closing tag </div>
+  - Line 196: Mismatched closing tag </button>. Expected </div> (opened at line 192)
+  - Line 205: Unexpected closing tag </nav>
+  - Line 218: Unexpected closing tag </div>
+  - Line 339: Mismatched closing tag </span>. Expected </div> (opened at line 332)
+  - Line 343: Mismatched closing tag </a>. Expected </div> (opened at line 327)
+  - Line 375: Mismatched closing tag </a>. Expected </li> (opened at line 373)
+  - Line 386: Mismatched closing tag </a>. Expected </div> (opened at line 383)
+  - Line 389: Mismatched closing tag </a>. Expected </div> (opened at line 383)
+  - Line 392: Mismatched closing tag </a>. Expected </div> (opened at line 383)
+  - Line 395: Mismatched closing tag </a>. Expected </div> (opened at line 383)
+  - Line 403: Mismatched closing tag </div>. Expected </footer> (opened at line 321)
+  - Line 432: Unexpected closing tag </button>
+
+File: partenaires.html
+  - Line 131: Mismatched closing tag </a>. Expected </div> (opened at line 119)
+  - Line 144: Mismatched closing tag </a>. Expected </div> (opened at line 119)
+  - Line 146: Mismatched closing tag </a>. Expected </div> (opened at line 119)
+  - Line 149: Mismatched closing tag </a>. Expected </div> (opened at line 119)
+  - Line 151: Unexpected closing tag </div>
+  - Line 165: Unexpected closing tag </div>
+  - Line 166: Unexpected closing tag </div>
+  - Line 176: Unexpected closing tag </a>
+  - Line 180: Unexpected closing tag </div>
+  - Line 181: Unexpected closing tag </div>
+  - Line 190: Unexpected closing tag </a>
+  - Line 192: Unexpected closing tag </a>
+  - Line 194: Unexpected closing tag </a>
+  - Line 196: Unexpected closing tag </div>
+  - Line 197: Unexpected closing tag </div>
+  - Line 205: Unexpected closing tag </div>
+  - Line 207: Unexpected closing tag </div>
+  - Line 215: Mismatched closing tag </button>. Expected </div> (opened at line 211)
+  - Line 232: Unexpected closing tag </a>
+  - Line 241: Mismatched closing tag </button>. Expected </div> (opened at line 233)
+  - Line 243: Mismatched closing tag </button>. Expected </div> (opened at line 233)
+  - Line 245: Mismatched closing tag </button>. Expected </div> (opened at line 233)
+  - Line 247: Mismatched closing tag </button>. Expected </div> (opened at line 233)
+  - Line 249: Mismatched closing tag </button>. Expected </div> (opened at line 233)
+  - Line 251: Unexpected closing tag </div>
+  - Line 255: Unexpected closing tag </div>
+  - Line 256: Unexpected closing tag </nav>
+  - Line 268: Mismatched closing tag </a>. Expected </div> (opened at line 265)
+  - Line 271: Mismatched closing tag </a>. Expected </div> (opened at line 265)
+  - Line 274: Mismatched closing tag </a>. Expected </div> (opened at line 265)
+  - Line 289: Mismatched closing tag </a>. Expected </div> (opened at line 283)
+  - Line 296: Mismatched closing tag </a>. Expected </div> (opened at line 291)
+  - Line 301: Unexpected closing tag </a>
+  - Line 302: Unexpected closing tag </div>
+  - Line 312: Mismatched closing tag </h1>. Expected </div> (opened at line 309)
+  - Line 326: Mismatched closing tag </h2>. Expected </div> (opened at line 322)
+  - Line 335: Mismatched closing tag </a>. Expected </div> (opened at line 329)
+  - Line 345: Mismatched closing tag </h2>. Expected </div> (opened at line 341)
+  - Line 354: Mismatched closing tag </a>. Expected </div> (opened at line 348)
+  - Line 360: Mismatched closing tag </a>. Expected </div> (opened at line 348)
+  - Line 370: Mismatched closing tag </h2>. Expected </div> (opened at line 366)
+  - Line 379: Mismatched closing tag </a>. Expected </div> (opened at line 373)
+  - Line 388: Mismatched closing tag </h2>. Expected </div> (opened at line 385)
+  - Line 398: Mismatched closing tag </a>. Expected </div> (opened at line 391)
+  - Line 405: Mismatched closing tag </a>. Expected </div> (opened at line 391)
+  - Line 412: Mismatched closing tag </a>. Expected </div> (opened at line 391)
+  - Line 429: Mismatched closing tag </h2>. Expected </div> (opened at line 427)
+  - Line 434: Mismatched closing tag </span>. Expected </div> (opened at line 431)
+  - Line 439: Mismatched closing tag </span>. Expected </div> (opened at line 431)
+  - Line 443: Mismatched closing tag </a>. Expected </div> (opened at line 426)
+  - Line 456: Mismatched closing tag </a>. Expected </li> (opened at line 455)
+  - Line 458: Mismatched closing tag </a>. Expected </li> (opened at line 457)
+  - Line 460: Mismatched closing tag </a>. Expected </li> (opened at line 459)
+  - Line 462: Mismatched closing tag </a>. Expected </li> (opened at line 461)
+  - Line 470: Mismatched closing tag </h3>. Expected </div> (opened at line 467)
+  - Line 478: Mismatched closing tag </a>. Expected </li> (opened at line 476)
+  - Line 485: Mismatched closing tag </h3>. Expected </div> (opened at line 483)
+  - Line 489: Mismatched closing tag </a>. Expected </div> (opened at line 486)
+  - Line 492: Mismatched closing tag </a>. Expected </div> (opened at line 486)
+  - Line 495: Mismatched closing tag </a>. Expected </div> (opened at line 486)
+  - Line 499: Mismatched closing tag </a>. Expected </div> (opened at line 486)
+  - Line 507: Mismatched closing tag </div>. Expected </footer> (opened at line 420)
+  - Line 518: Unexpected closing tag </div>
+
+File: missions.html
+  - Line 311: Mismatched closing tag </a>. Expected </div> (opened at line 300)
+  - Line 324: Mismatched closing tag </a>. Expected </div> (opened at line 300)
+  - Line 326: Mismatched closing tag </a>. Expected </div> (opened at line 300)
+  - Line 328: Mismatched closing tag </a>. Expected </div> (opened at line 300)
+  - Line 330: Unexpected closing tag </div>
+  - Line 342: Unexpected closing tag </div>
+  - Line 343: Unexpected closing tag </div>
+  - Line 353: Unexpected closing tag </a>
+  - Line 356: Unexpected closing tag </div>
+  - Line 357: Unexpected closing tag </div>
+  - Line 366: Unexpected closing tag </a>
+  - Line 368: Unexpected closing tag </a>
+  - Line 370: Unexpected closing tag </a>
+  - Line 372: Unexpected closing tag </div>
+  - Line 373: Unexpected closing tag </div>
+  - Line 381: Unexpected closing tag </div>
+  - Line 383: Unexpected closing tag </div>
+  - Line 384: Unexpected closing tag </div>
+  - Line 395: Mismatched closing tag </button>. Expected </div> (opened at line 387)
+  - Line 397: Mismatched closing tag </button>. Expected </div> (opened at line 387)
+  - Line 399: Mismatched closing tag </button>. Expected </div> (opened at line 387)
+  - Line 401: Mismatched closing tag </button>. Expected </div> (opened at line 387)
+  - Line 403: Mismatched closing tag </button>. Expected </div> (opened at line 387)
+  - Line 415: Unexpected closing tag </a>
+  - Line 421: Mismatched closing tag </button>. Expected </div> (opened at line 417)
+  - Line 428: Unexpected closing tag </div>
+  - Line 432: Unexpected closing tag </div>
+  - Line 433: Unexpected closing tag </nav>
+  - Line 457: Mismatched closing tag </a>. Expected </div> (opened at line 451)
+  - Line 463: Mismatched closing tag </a>. Expected </div> (opened at line 459)
+  - Line 472: Mismatched closing tag </a>. Expected </div> (opened at line 467)
+  - Line 477: Unexpected closing tag </a>
+  - Line 478: Unexpected closing tag </div>
+  - Line 515: Mismatched closing tag </h2>. Expected </div> (opened at line 513)
+  - Line 524: Mismatched closing tag </span>. Expected </div> (opened at line 517)
+  - Line 528: Mismatched closing tag </a>. Expected </div> (opened at line 512)
+  - Line 541: Mismatched closing tag </a>. Expected </li> (opened at line 540)
+  - Line 543: Mismatched closing tag </a>. Expected </li> (opened at line 542)
+  - Line 545: Mismatched closing tag </a>. Expected </li> (opened at line 544)
+  - Line 561: Mismatched closing tag </a>. Expected </li> (opened at line 559)
+  - Line 568: Mismatched closing tag </h3>. Expected </div> (opened at line 566)
+  - Line 572: Mismatched closing tag </a>. Expected </div> (opened at line 569)
+  - Line 575: Mismatched closing tag </a>. Expected </div> (opened at line 569)
+  - Line 578: Mismatched closing tag </a>. Expected </div> (opened at line 569)
+  - Line 582: Mismatched closing tag </a>. Expected </div> (opened at line 569)
+  - Line 590: Mismatched closing tag </div>. Expected </footer> (opened at line 506)
+  - Line 601: Unexpected closing tag </div>

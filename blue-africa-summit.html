@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blue Africa Summit - BlueHope</title>
+    <meta name="description"
+        content="Le Pacte pour une Afrique bleue durable place l’océan au cœur de l’avenir africain." />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Playfair Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/loader.css">
+    <link rel="stylesheet" href="assets/css/glassy-search.css">
+    <link rel="stylesheet" href="assets/css/glassy-menu.css">
+    <link rel="stylesheet" href="assets/css/blur-text.css">
+
+    <link rel="stylesheet" href="assets/css/animated-button.css">
+    <style>
+        /* Smooth scrolling for in-page anchors */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Police arabe */
+        .font-arabic {
+            font-family: 'Amiri', serif;
+        }
+
+        /* Animation Rainbow pour le bouton KIDS */
+        @keyframes colorCycle {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .animate-rainbow {
+            animation: colorCycle 8s linear infinite;
+        }
+
+        /* Page transition overlay */
+        .page-transition {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 60;
+            pointer-events: none;
+        }
+
+        .page-transition.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Scroll-to-top button (top-centered minimal design + levitation) */
+        .scroll-top {
+            position: fixed;
+            top: 8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            border: 2px solid rgba(255, 255, 255, 1);
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 200ms ease, transform 200ms ease, background-color 150ms ease;
+        }
+
+        .scroll-top:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-top svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+        }
+
+        /* Levitation animation */
+        .levitate {
+            animation: levitate 3s ease-in-out infinite;
+        }
+
+        @keyframes levitate {
+            0% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(5px);
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-white bg-slate-900">
+
+    <div id="app">
+        <div class="page-transition show" id="page-transition"></div>
+
+        <!-- CSS for Sidebar Menu -->
+        <link rel="stylesheet" href="assets/css/sidebar-menu.css">
+
+        <!-- HEADER FIXE (LEFT TRIGGER) -->
+        <header class="nav-trigger-container">
+            <!-- Logo REMOVED -->
+            <!-- Home Button -->
+            <a href="index.html" class="home-btn" title="Retour à l'accueil">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+            </a>
+
+            <div class="menu-btn" id="menuToggle">
+                <span>MENU</span>
+                <div class="btn-icon">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- BACKDROP & DRAWER -->
+        <div class="menu-backdrop" id="menuBackdrop"></div>
+
+        <div class="menu-drawer" id="menuDrawer">
+            <!-- Close Button inside drawer -->
+            <div class="menu-close-area" id="menuCloseBtn">Close <i class="fas fa-times"></i></div>
+
+            <div class="menu-content">
+                <ul class="main-nav-list">
+
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">
+                            ACCUEIL
+                            <span class="nav-num">01</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="about.html">À propos</a></li>
+                            <li><a href="missions.html">Nos missions</a></li>
+                            <li><a href="partenaires.html">Nos partenaires</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            INITIATIVE
+                            <span class="nav-num">02</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="wao.html">Women Actions for the Ocean</a></li>
+                            <li><a href="pacte-afrique.html">Le Pacte pour une Afrique Bleue Durable</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            ÉVÉNEMENTS
+                            <span class="nav-num">03</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="blue-africa-summit.html">Blue Africa Summit</a></li>
+                            <li><a href="grande-maree.html">La Grande Marée</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            ACTU & MEDIA
+                            <span class="nav-num">04</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="news.html">News</a></li>
+                            <li><a href="#">Photos</a></li>
+                            <li><a href="videos.html">Vidéos</a></li>
+                            <li><a href="documents.html">Documents</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">
+                            CONTACT
+                            <span class="nav-num">05</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Script for Sidebar Menu -->
+        <script src="assets/js/sidebar-menu.js"></script>
+
+        <!-- SECTION 1: HERO HEADER -->
+        <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+            <!-- Background Image -->
+            <img src="./cover bas .png" alt="Blue Africa Summit Cover"
+                class="absolute inset-0 w-full h-full object-cover z-0">
+
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black/50 z-10"></div>
+
+            <!-- Content -->
+            <div class="relative z-20 text-center px-4">
+                <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight animate-title"
+                    data-i18n="bas_title">
+                    Blue Africa Summit
+                </h1>
+            </div>
+            <!-- Bottom Gradient Fade to White -->
+            <div
+                class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-white z-10 pointer-events-none">
+            </div>
+        </section>
+
+        <!-- SECTION 2: À PROPOS & INFOS PRATIQUES -->
+        <section class="bg-white py-16">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="grid md:grid-cols-3 gap-12">
+
+                    <!-- COLONNE GAUCHE (2/3) -->
+                    <div class="md:col-span-2">
+                        <h2 class="text-3xl font-bold text-blue-900 mb-6" data-i18n="bas_about_title">À propos de
+                            l’événement</h2>
+                        <p class="text-gray-700 leading-relaxed text-lg" data-i18n="bas_about_text">
+                            Le Pacte pour une Afrique bleue durable place l’océan au cœur de l’avenir africain. Né du
+                            Blue Africa Summit, il fédère experts, décideurs et société civile pour tracer une stratégie
+                            maritime ambitieuse et durable. Son objectif est de transformer les richesses maritimes en
+                            leviers de développement, d’innovation et de résilience pour les communautés côtières et
+                            pour l’ensemble du continent. Cette vision sera au cœur de la troisième édition du Blue
+                            Africa Summit à Tanger, les 9 et 10 octobre 2025.
+                        </p>
+                    </div>
+
+                    <!-- COLONNE DROITE (1/3) - Infos Pratiques -->
+                    <div class="md:col-span-1">
+                        <div class="bg-slate-50 p-8 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="text-xl font-semibold text-blue-900 mb-6 border-b border-slate-200 pb-2"
+                                data-i18n="bas_info_title">Infos
+                                Pratiques</h3>
+
+                            <div class="space-y-6">
+                                <!-- Lieu -->
+                                <div class="flex items-start gap-4">
+                                    <div class="p-2 bg-blue-100 rounded-lg text-blue-600 shrink-0">
+                                        <i data-lucide="map-pin" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1"
+                                            data-i18n="bas_location_label">Lieu
+                                        </p>
+                                        <p class="text-gray-900 font-medium" data-i18n="bas_location_value">Hôtel Idou
+                                            Malabata,<br>Tanger, Maroc</p>
+                                    </div>
+                                </div>
+
+                                <!-- Date -->
+                                <div class="flex items-start gap-4">
+                                    <div class="p-2 bg-blue-100 rounded-lg text-blue-600 shrink-0">
+                                        <i data-lucide="calendar" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1"
+                                            data-i18n="bas_date_label">Date
+                                        </p>
+                                        <p class="text-gray-900 font-medium" data-i18n="bas_date_value">Le 9 et 10
+                                            octobre 2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: NOTRE VISION (Parallaxe) -->
+        <!-- SECTION 3: NOTRE VISION (Parallaxe) -->
+        <section class="relative min-h-[700px] flex items-center bg-fixed bg-cover bg-center"
+            style="background-image: url('./DSC_5829-scaled.png.jpg');">
+            <!-- Fallback for mobile where bg-fixed might be disabled/janky, handled by bg-cover -->
+
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-blue-900/80 z-10"></div>
+            <!-- Top Gradient Fade from White -->
+            <div
+                class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none">
+            </div>
+            <!-- Bottom Gradient Fade to Slate-900 (Footer) -->
+            <div
+                class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-900 to-transparent z-10 pointer-events-none">
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-20 container mx-auto px-6 md:px-12 py-20">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+
+                    <!-- COLONNE GAUCHE (Texte) -->
+                    <div class="text-left text-white">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-8" data-i18n="bas_vision_title">Notre vision</h2>
+                        <div class="text-lg md:text-xl text-gray-200 leading-relaxed space-y-6">
+                            <p data-i18n="bas_vision_text_1">
+                                "Connecter pleinement l'Afrique aux autres continents à travers ses ports, détroits et
+                                canaux
+                                maritimes, représentant ainsi un réseau dynamique reliant l'océan Indien, le canal de
+                                Mozambique, la mer Rouge, le golfe Persique, la Méditerranée et l'océan Atlantique.
+                            </p>
+                            <p data-i18n="bas_vision_text_2">
+                                Cette vision soutient que la croissance africaine, y compris celle des pays enclavés,
+                                dépend
+                                largement des échanges internationaux, qui se font à plus de 90% par voie maritime.
+                                D'autres
+                                partenaires sont impliqués dans la promotion d'une gestion responsable des océans."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- COLONNE DROITE (Photos) -->
+                    <div class="relative h-[600px] w-full hidden md:block">
+                        <!-- Image 1 (Top Left) -->
+                        <img src="./DSC_5888-scaled.jpg" alt="Vision 1"
+                            class="absolute top-0 left-10 w-64 h-80 object-cover rounded-lg shadow-lg -rotate-6 z-10 hover:z-50 hover:scale-105 transition-all duration-300">
+
+                        <!-- Image 2 (Top Right) -->
+                        <img src="./DSC_6195-scaled.jpg" alt="Vision 2"
+                            class="absolute top-20 right-10 w-60 h-72 object-cover rounded-lg shadow-lg rotate-3 z-20 hover:z-50 hover:scale-105 transition-all duration-300">
+
+                        <!-- Image 3 (Middle Left) -->
+                        <img src="./fedra.png" alt="Vision 3"
+                            class="absolute top-40 left-20 w-72 h-96 object-cover rounded-lg shadow-xl -rotate-2 z-30 hover:z-50 hover:scale-105 transition-all duration-300">
+
+                        <!-- Image 4 (Bottom Left) -->
+                        <img src="./ryl.png" alt="Vision 4"
+                            class="absolute bottom-10 left-5 w-56 h-64 object-cover rounded-lg shadow-lg rotate-12 z-40 hover:z-50 hover:scale-105 transition-all duration-300">
+
+                        <!-- Image 5 (Bottom Right) -->
+                        <!-- Image 5 (Bottom Right) -->
+                        <img src="./ird.png" alt="Vision 5"
+                            class="absolute bottom-20 right-20 w-64 h-80 object-cover rounded-lg shadow-xl -rotate-4 z-50 border-4 border-white/20 hover:z-50 hover:scale-105 transition-all duration-300">
+                    </div>
+
+                    <!-- Button "Voir plus" (Below photos) -->
+                    <div class="md:col-start-2 text-center -mt-10 relative z-50 hidden md:block">
+                        <a href="https://www.blueafricasummit.com/gallery/blue-africa-summit-2025" target="_blank"
+                            class="inline-block px-8 py-3 border border-white text-white font-semibold rounded-full hover:bg-white hover:text-blue-900 transition-colors duration-300 shadow-lg backdrop-blur-sm bg-white/10"
+                            data-i18n="bas_see_more_photos">
+                            Voir plus de photos
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer (Reused from index.html structure, simplified for this page but matching style) -->
+        <footer class="relative bg-slate-900 text-white py-16 overflow-hidden">
+            <!-- Background Image Placeholder (Dark gradient) -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-slate-900/90 z-0"></div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <!-- Top Section -->
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+                    <div>
+                        <h2 class="text-5xl md:text-7xl font-serif font-bold tracking-tight mb-2 animate-agissons"
+                            data-i18n="footer_cta_title">Agissons Ensemble</h2>
+                    </div>
+                    <div class="flex flex-col items-end gap-4">
+
+                        <a href="contact.html" class="btn-join" data-i18n="btn_join">
+                            Newsletter
+                        </a>
+                    </div>
+                </div>
+                <!-- Divider -->
+                <div class="w-full h-px bg-white/10 mb-12"></div>
+                <!-- Bottom Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-sm text-gray-400">
+                    <!-- Menu -->
+                    <div>
+                        <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_menu">
+                            Menu</h3>
+                        <ul class="space-y-4">
+                            <li><a href="index.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_home">Accueil</a></li>
+                            <li><a href="wao.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_initiative">Initiative</a></li>
+                            <li><a href="grande-maree.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_events">Nos événements</a></li>
+                            <li><a href="news.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_news">News</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Contact -->
+                    <div class="md:col-span-2">
+                        <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6"
+                            data-i18n="footer_contact">
+                            Contact</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i><span>94,
+                                    avenue Émile Zola, 75015 Paris</span></li>
+                            <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i><span>+33 7
+                                    88 69 58 94</span></li>
+                            <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i><a
+                                    href="mailto:contact@lasaisonbleue.com"
+                                    class="hover:text-white transition-colors">contact@lasaisonbleue.com</a></li>
+                        </ul>
+                    </div>
+                    <!-- Socials -->
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6"
+                                data-i18n="footer_follow">Suivez-nous</h3>
+                            <div class="flex gap-4">
+                                <!-- Instagram -->
+                                <a href="https://www.instagram.com/lasaisonbleue/?hl=fr" target="_blank"
+                                    class="social-bloom-btn" aria-label="Instagram">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="instagram"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+
+                                <!-- Facebook -->
+                                <a href="https://www.facebook.com/lasaisonbleue/?locale=fr_FR" target="_blank"
+                                    class="social-bloom-btn" aria-label="Facebook">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="facebook"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+
+                                <!-- YouTube -->
+                                <a href="https://www.youtube.com/@lasaisonbleue3150" target="_blank"
+                                    class="social-bloom-btn" aria-label="YouTube">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="youtube"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+
+                                <!-- LinkedIn -->
+                                <a href="https://www.linkedin.com/company/la-saison-bleue/posts/?feedView=all"
+                                    target="_blank" class="social-bloom-btn" aria-label="LinkedIn">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="linkedin"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mt-12 md:mt-0 text-right">
+                            <p class="text-[10px] text-gray-600" data-i18n="footer_powered">Powered by Image&Actions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll to top button -->
+        <button id="scroll-top-btn" class="scroll-top levitate" aria-label="Retour en haut" title="Retour en haut">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </button>
+
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && closeMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+            closeMenuBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+        }
+
+        // Page transition
+        (function () {
+            const transition = document.getElementById('page-transition');
+            function hideOverlay() {
+                if (!transition) return;
+                requestAnimationFrame(() => requestAnimationFrame(() => transition.classList.remove('show')));
+            }
+            function showOverlayThenNavigate(href) {
+                if (!transition) { window.location.href = href; return; }
+                transition.classList.add('show');
+                setTimeout(() => { window.location.href = href; }, 500);
+            }
+
+            document.addEventListener('DOMContentLoaded', hideOverlay);
+
+            document.addEventListener('click', (e) => {
+                const a = e.target.closest('a');
+                if (!a) return;
+                const href = a.getAttribute('href');
+                if (!href) return;
+                if (href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+                try {
+                    const url = new URL(href, window.location.href);
+                    if (url.origin !== window.location.origin) return;
+                    if (a.target && a.target === '_blank') return;
+                    if (url.href === window.location.href) return;
+                    e.preventDefault();
+                    showOverlayThenNavigate(url.href);
+                } catch (err) { }
+            });
+        })();
+
+        // Scroll-to-top button behavior
+        (function () {
+            const btn = document.getElementById('scroll-top-btn');
+            if (!btn) return;
+            const showAt = 300;
+            function toggle() {
+                if (window.scrollY > showAt) {
+                    btn.classList.add('show');
+                } else {
+                    btn.classList.remove('show');
+                }
+            }
+            window.addEventListener('scroll', toggle, { passive: true });
+            toggle();
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+    </script>
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/navbar-scroll.js"></script>
+    <script src="assets/js/blur-text.js"></script>
+    <script src="assets/js/loader.js"></script>
+</body>
+
+</html>

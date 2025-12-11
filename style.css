@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for specific visual fidelity */
+.hero-bg {
+  background-image: linear-gradient(to right, rgba(11, 28, 46, 0.85), rgba(11, 28, 46, 0.3)), url('https://images.unsplash.com/photo-1568430462989-44163eb1752f?q=80&w=2073&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.text-shadow-sm {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Styles pour le Logo */
+.logo-img {
+    height: 50px; 
+    width: auto; 
+    max-width: 100%; 
+    display: block;
+    object-fit: contain;
+}
+
+/* Animation organique "Liquide" pour le bouton */
+@keyframes organic-blob {
+  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+.btn-organic {
+  /* Forme de base statique */
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  
+  /* Animation définie mais en PAUSE par défaut (immobile) */
+  animation: organic-blob 8s ease-in-out infinite;
+  animation-play-state: paused;
+  
+  transition: all 0.3s ease;
+}
+
+/* L'animation de la forme se lance uniquement au survol */
+.btn-organic:hover {
+  animation-play-state: running;
+}
+
+/* Animation de vague intérieure */
+.wave-fill {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: top 0.6s ease-in-out;
+  border-radius: 40%;
+  transform: scale(1.5);
+  
+  /* Animation de rotation en PAUSE par défaut (immobile) */
+  animation: spin 4s linear infinite;
+  animation-play-state: paused;
+}
+
+/* Au survol du bouton (group), la vague monte et commence à tourner */
+.group:hover .wave-fill {
+  top: -10%;
+  animation-play-state: running;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg) scale(1.5); }
+  100% { transform: rotate(360deg) scale(1.5); }
+}

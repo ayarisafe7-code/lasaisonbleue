@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vidéos - BlueHope</title>
+    <meta name="description" content="Découvrez nos vidéos et reportages sur la protection des océans." />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Playfair Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/blur-text.css">
+    <link rel="stylesheet" href="assets/css/loader.css">
+    <link rel="stylesheet" href="assets/css/glassy-search.css">
+    <link rel="stylesheet" href="assets/css/glassy-menu.css">
+
+    <link rel="stylesheet" href="assets/css/animated-button.css">
+    <style>
+        /* Smooth scrolling for in-page anchors */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Police arabe */
+        .font-arabic {
+            font-family: 'Amiri', serif;
+        }
+
+        /* Animation Rainbow pour le bouton KIDS */
+        @keyframes colorCycle {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .animate-rainbow {
+            animation: colorCycle 8s linear infinite;
+        }
+
+        /* Page transition overlay */
+        .page-transition {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 60;
+            pointer-events: none;
+        }
+
+        .page-transition.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Scroll-to-top button (top-centered minimal design + levitation) */
+        .scroll-top {
+            position: fixed;
+            top: 8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            border: 2px solid rgba(255, 255, 255, 1);
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 200ms ease, transform 200ms ease, background-color 150ms ease;
+        }
+
+        .scroll-top:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-top svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+        }
+
+        /* Levitation animation */
+        .levitate {
+            animation: levitate 3s ease-in-out infinite;
+        }
+
+        @keyframes levitate {
+            0% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(5px);
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-white bg-slate-900">
+    <!-- Dynamic Background -->
+    <div id="dynamicBg" class="fixed inset-0 z-[-1] bg-cover bg-center transition-all duration-500 bg-slate-900"></div>
+    <div class="fixed inset-0 z-[-1] bg-black/70 pointer-events-none"></div>
+
+    <div id="app">
+        <div class="page-transition show" id="page-transition"></div>
+
+        <!-- CSS for Sidebar Menu -->
+        <link rel="stylesheet" href="assets/css/sidebar-menu.css">
+
+        <!-- HEADER FIXE (LEFT TRIGGER) -->
+        <header class="nav-trigger-container">
+            <!-- Logo REMOVED -->
+            <!-- Home Button -->
+            <a href="index.html" class="home-btn" title="Retour à l'accueil">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+            </a>
+
+            <div class="menu-btn" id="menuToggle">
+                <span>MENU</span>
+                <div class="btn-icon">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- BACKDROP & DRAWER -->
+        <div class="menu-backdrop" id="menuBackdrop"></div>
+
+        <div class="menu-drawer" id="menuDrawer">
+            <!-- Close Button inside drawer -->
+            <div class="menu-close-area" id="menuCloseBtn">Close <i class="fas fa-times"></i></div>
+
+            <div class="menu-content">
+                <ul class="main-nav-list">
+
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">
+                            ACCUEIL
+                            <span class="nav-num">01</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="about.html">À propos</a></li>
+                            <li><a href="missions.html">Nos missions</a></li>
+                            <li><a href="partenaires.html">Nos partenaires</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            INITIATIVE
+                            <span class="nav-num">02</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="wao.html">Women Actions for the Ocean</a></li>
+                            <li><a href="pacte-afrique.html">Le Pacte pour une Afrique Bleue Durable</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            ÉVÉNEMENTS
+                            <span class="nav-num">03</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="blue-africa-summit.html">Blue Africa Summit</a></li>
+                            <li><a href="grande-maree.html">La Grande Marée</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            ACTU & MEDIA
+                            <span class="nav-num">04</span>
+                        </a>
+                        <ul class="nav-submenu">
+                            <li><a href="news.html">News</a></li>
+                            <li><a href="#">Photos</a></li>
+                            <li><a href="videos.html">Vidéos</a></li>
+                            <li><a href="documents.html">Documents</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">
+                            CONTACT
+                            <span class="nav-num">05</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Script for Sidebar Menu -->
+        <script src="assets/js/sidebar-menu.js"></script>
+
+        <!-- Main Content -->
+        <div class="relative">
+            <main class="pt-16 pb-20"> <!-- Reduced top padding to move content up -->
+                <div class="container mx-auto px-4 py-8">
+                    <h1 class="text-5xl md:text-7xl font-bold text-center mb-12 text-white font-serif tracking-tight"
+                        data-i18n="videos_title">
+                        Vidéothèque
+                    </h1>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                        <!-- Video 1 -->
+                        <a href="watch.html?id=sda1mTVVuBk" data-key="video_1"
+                            class="group relative block rounded-xl overflow-hidden shadow-lg hover:scale-105 transition duration-300">
+                            <div class="aspect-[2/3] w-full relative">
+                                <img src="https://img.youtube.com/vi/sda1mTVVuBk/maxresdefault.jpg" alt="Video Cover"
+                                    class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <p class="text-white font-bold text-lg" data-i18n="video_1_title">DÉCOUVREZ NOTRE SPOT
+                                    POUR
+                                    UNE MER SANS PLASTIQUE</p>
+                            </div>
+                        </a>
+
+                        <!-- Video 2 -->
+                        <a href="watch.html?id=TqgyrPZ5Wnk" data-key="video_2"
+                            class="group relative block rounded-xl overflow-hidden shadow-lg hover:scale-105 transition duration-300">
+                            <div class="aspect-[2/3] w-full relative">
+                                <img src="https://img.youtube.com/vi/TqgyrPZ5Wnk/maxresdefault.jpg" alt="Video Cover"
+                                    class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <p class="text-white font-bold text-lg" data-i18n="video_2_title">La mer est notre
+                                    souffle,
+                                    notre horizon, notre
+                                    avenir</p>
+                            </div>
+                        </a>
+
+                        <!-- Video 3 -->
+                        <a href="watch.html?id=ogTie8VOWPM" data-key="video_3"
+                            class="group relative block rounded-xl overflow-hidden shadow-lg hover:scale-105 transition duration-300">
+                            <div class="aspect-[2/3] w-full relative">
+                                <img src="https://img.youtube.com/vi/ogTie8VOWPM/maxresdefault.jpg" alt="Video Cover"
+                                    class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <p class="text-white font-bold text-lg" data-i18n="video_3_title">La Méditerranée :
+                                    Célébration et Urgence</p>
+                            </div>
+                        </a>
+
+                        <!-- Video 4 -->
+                        <a href="watch.html?id=eGm5OkTbI9Y" data-key="video_4"
+                            class="group relative block rounded-xl overflow-hidden shadow-lg hover:scale-105 transition duration-300">
+                            <div class="aspect-[2/3] w-full relative">
+                                <img src="https://img.youtube.com/vi/eGm5OkTbI9Y/maxresdefault.jpg" alt="Video Cover"
+                                    class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <p class="text-white font-bold text-lg" data-i18n="video_4_title">Témoignage inspirant
+                                    de
+                                    Rym Benzina (UNOC)</p>
+                            </div>
+                        </a>
+
+                        <!-- Video 5 -->
+                        <a href="watch.html?id=CgR7wuyBp3U" data-key="video_5"
+                            class="group relative block rounded-xl overflow-hidden shadow-lg hover:scale-105 transition duration-300">
+                            <div class="aspect-[2/3] w-full relative">
+                                <img src="https://img.youtube.com/vi/CgR7wuyBp3U/maxresdefault.jpg" alt="Video Cover"
+                                    class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <p class="text-white font-bold text-lg" data-i18n="video_5_title">Notre spot
+                                    publicitaire
+                                    pour la sensibilisation</p>
+                            </div>
+                        </a>
+
+                        <!-- Video 6 -->
+                        <a href="watch.html?id=7rfviK2MwIs" data-key="video_6"
+                            class="group relative block rounded-xl overflow-hidden shadow-lg hover:scale-105 transition duration-300">
+                            <div class="aspect-[2/3] w-full relative">
+                                <img src="https://img.youtube.com/vi/7rfviK2MwIs/maxresdefault.jpg" alt="Video Cover"
+                                    class="w-full h-full object-cover group-hover:opacity-90 transition-opacity">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                <p class="text-white font-bold text-lg" data-i18n="video_6_title">JOURNÉE MONDIALE DES
+                                    OCÉANS</p>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </main>
+            <!-- Bottom Gradient Fade to Slate-900 (Footer) -->
+            <div
+                class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-slate-900 to-transparent z-10 pointer-events-none">
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="relative bg-slate-900 text-white py-16 overflow-hidden">
+            <!-- Background Image Placeholder (Dark gradient) -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-slate-900/90 z-0"></div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <!-- Top Section -->
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+                    <div>
+                        <h2 class="text-5xl md:text-7xl font-serif font-bold tracking-tight mb-2 animate-agissons"
+                            data-i18n="footer_cta_title">Agissons Ensemble</h2>
+                    </div>
+                    <div class="flex flex-col items-end gap-4">
+
+                        <a href="contact.html" class="btn-join" data-i18n="btn_join">
+                            Newsletter
+                        </a>
+                    </div>
+                </div>
+                <!-- Divider -->
+                <div class="w-full h-px bg-white/10 mb-12"></div>
+                <!-- Bottom Section -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-sm text-gray-400">
+                    <!-- Menu -->
+                    <div>
+                        <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_menu">
+                            Menu</h3>
+                        <ul class="space-y-4">
+                            <li><a href="index.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_home">Accueil</a></li>
+                            <li><a href="wao.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_initiative">Initiative</a></li>
+                            <li><a href="grande-maree.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_events">Nos événements</a></li>
+                            <li><a href="news.html" class="hover:text-white transition-colors"
+                                    data-i18n="nav_news">News</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Contact -->
+                    <div class="md:col-span-2">
+                        <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6"
+                            data-i18n="footer_contact">
+                            Contact</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i><span>94,
+                                    avenue Émile Zola, 75015 Paris</span></li>
+                            <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i><span>+33 7
+                                    88 69 58 94</span></li>
+                            <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i><a
+                                    href="mailto:contact@lasaisonbleue.com"
+                                    class="hover:text-white transition-colors">contact@lasaisonbleue.com</a></li>
+                        </ul>
+                    </div>
+                    <!-- Socials -->
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6"
+                                data-i18n="footer_follow">Suivez-nous</h3>
+                            <div class="flex gap-4">
+                                <!-- Instagram -->
+                                <a href="https://www.instagram.com/lasaisonbleue/?hl=fr" target="_blank"
+                                    class="social-bloom-btn" aria-label="Instagram">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="instagram"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+
+                                <!-- Facebook -->
+                                <a href="https://www.facebook.com/lasaisonbleue/?locale=fr_FR" target="_blank"
+                                    class="social-bloom-btn" aria-label="Facebook">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="facebook"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+
+                                <!-- YouTube -->
+                                <a href="https://www.youtube.com/@lasaisonbleue3150" target="_blank"
+                                    class="social-bloom-btn" aria-label="YouTube">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="youtube"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+
+                                <!-- LinkedIn -->
+                                <a href="https://www.linkedin.com/company/la-saison-bleue/posts/?feedView=all"
+                                    target="_blank" class="social-bloom-btn" aria-label="LinkedIn">
+                                    <div class="bloom-container">
+                                        <div class="button-container-main">
+                                            <div class="button-inner">
+                                                <div class="back"></div>
+                                                <div class="front">
+                                                    <i data-lucide="linkedin"></i>
+                                                </div>
+                                            </div>
+                                            <div class="button-glass"></div>
+                                        </div>
+                                        <div class="bloom bloom1"></div>
+                                        <div class="bloom bloom2"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mt-12 md:mt-0 text-right">
+                            <p class="text-[10px] text-gray-600" data-i18n="footer_powered">Powered by Image&Actions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scroll to top button -->
+        <button id="scroll-top-btn" class="scroll-top levitate" aria-label="Retour en haut" title="Retour en haut">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </button>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && closeMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+            closeMenuBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+        }
+
+        // Smooth page transition
+        (function () {
+            const transition = document.getElementById('page-transition');
+            function hideOverlay() {
+                if (!transition) return;
+                requestAnimationFrame(() => requestAnimationFrame(() => transition.classList.remove('show')));
+            }
+            function showOverlayThenNavigate(href) {
+                if (!transition) { window.location.href = href; return; }
+                transition.classList.add('show');
+                setTimeout(() => { window.location.href = href; }, 500);
+            }
+
+            document.addEventListener('DOMContentLoaded', hideOverlay);
+
+            document.addEventListener('click', (e) => {
+                const a = e.target.closest('a');
+                if (!a) return;
+                const href = a.getAttribute('href');
+                if (!href) return;
+                if (href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+                try {
+                    const url = new URL(href, window.location.href);
+                    if (url.origin !== window.location.origin) return;
+                    if (a.target && a.target === '_blank') return;
+                    if (url.href === window.location.href) return;
+                    e.preventDefault();
+                    showOverlayThenNavigate(url.href);
+                } catch (err) { }
+            });
+        })();
+
+        // Scroll-to-top button behavior
+        (function () {
+            const btn = document.getElementById('scroll-top-btn');
+            if (!btn) return;
+            const showAt = 300;
+            function toggle() {
+                if (window.scrollY > showAt) {
+                    btn.classList.add('show');
+                } else {
+                    btn.classList.remove('show');
+                }
+            }
+            window.addEventListener('scroll', toggle, { passive: true });
+            toggle();
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+
+        // Dynamic Background on Hover
+        (function () {
+            const bg = document.getElementById('dynamicBg');
+            const cards = document.querySelectorAll('.group'); // The video cards have 'group' class
+
+            if (!bg || !cards.length) return;
+
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const img = card.querySelector('img');
+                    if (img && img.src) {
+                        bg.style.backgroundImage = `url('${img.src}')`;
+                    }
+                });
+            });
+        })();
+
+        // Video Search Logic REMOVED
+    </script>
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/navbar-scroll.js"></script>
+    <script src="assets/js/blur-text.js"></script>
+    <script src="assets/js/loader.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueHope - Sauvons les Baleines</title>
+  <meta name="description" content="Rejoignez le combat pour protéger nos océans." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Playfair Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/glassy-search.css">
+  <link rel="stylesheet" href="assets/css/glassy-menu.css">
+  <link rel="stylesheet" href="assets/css/animated-button.css">
+  <link rel="stylesheet" href="assets/css/loader.css">
+  <link rel="stylesheet" href="assets/css/gradual-blur.css">
+  <link rel="stylesheet" href="assets/css/morph-text.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+
+  <style>
+    /* Smooth scrolling for in-page anchors */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Police arabe */
+    .font-arabic {
+      font-family: 'Amiri', serif;
+    }
+
+    /* --- MISE À JOUR : FOND VIDÉO --- */
+    .hero-bg {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Vidéos en fond : couvrent toute la zone et restent derrière le contenu */
+    .bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+
+    .bg-video--visible {
+      opacity: 1;
+    }
+
+    /* Superposition sombre pour lisibilité du texte */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.35);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    /* Animation des cercles */
+    @keyframes ripple {
+      0% {
+        transform: scale(0.8);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+
+    .animate-ripple-1 {
+      animation: ripple 3s infinite linear;
+    }
+
+    .animate-ripple-2 {
+      animation: ripple 3s infinite linear 1.5s;
+    }
+
+    /* Animation Rainbow pour le bouton KIDS */
+    @keyframes colorCycle {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
+
+    .animate-rainbow {
+      animation: colorCycle 8s linear infinite;
+    }
+
+    /* Bouton Contact Organique */
+    .btn-organic {
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Text Stroke Effect */
+    .stroke-text {
+      -webkit-text-stroke: 2px rgba(255, 255, 255, 1.0);
+      color: transparent;
+    }
+
+    .wave-fill {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.2);
+      transition: top 0.5s ease-in-out;
+      border-radius: 40% 40% 0 0;
+      z-index: -1;
+    }
+
+    .btn-organic:hover .wave-fill {
+      top: 0;
+    }
+
+    /* Page transition overlay */
+    .page-transition {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 60;
+      pointer-events: none;
+    }
+
+    .page-transition.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Scroll-to-top button (top-centered minimal design + levitation) */
+    .scroll-top {
+      position: fixed;
+      top: 8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      width: 3rem;
+      /* w-12 */
+      height: 3rem;
+      /* h-12 */
+      border-radius: 9999px;
+      border: 2px solid rgba(255, 255, 255, 1);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease, transform 200ms ease, background-color 150ms ease;
+    }
+
+    .scroll-top:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .scroll-top svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+    }
+
+    /* Levitation animation */
+    .levitate {
+      animation: levitate 3s ease-in-out infinite;
+    }
+
+    @keyframes levitate {
+      0% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(5px);
+      }
+
+      100% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
+    /* Wiggle Animation for KIDS button */
+    @keyframes wiggle {
+
+      0%,
+      100% {
+        transform: rotate(-3deg);
+      }
+
+      50% {
+        transform: rotate(3deg);
+      }
+    }
+
+    .hover-wiggle:hover {
+      animation: wiggle 0.3s ease-in-out infinite;
+    }
+
+    /* Marquee Animation */
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .animate-scroll {
+      display: flex;
+      width: max-content;
+      animation: scroll 40s linear infinite;
+    }
+
+    .animate-scroll:hover {
+      animation-play-state: paused;
+    }
+
+    /* Text Switch Animation */
+    @keyframes pulse-text-1 {
+
+      0%,
+      45% {
+        transform: scale(1.2);
+        opacity: 1;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      }
+
+      50%,
+      95% {
+        transform: scale(0.9);
+        opacity: 0.7;
+        text-shadow: none;
+      }
+
+      100% {
+        transform: scale(1.2);
+        opacity: 1;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      }
+    }
+
+    @keyframes pulse-text-2 {
+
+      0%,
+      45% {
+        transform: scale(0.9);
+        opacity: 0.7;
+        text-shadow: none;
+      }
+
+      50%,
+      95% {
+        transform: scale(1.2);
+        opacity: 1;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      }
+
+      100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+        text-shadow: none;
+      }
+    }
+
+    .animate-pulse-text-1 {
+      animation: pulse-text-1 10s infinite ease-in-out;
+      transform-origin: center;
+    }
+
+    .animate-pulse-text-2 {
+      animation: pulse-text-2 10s infinite ease-in-out;
+      transform-origin: center;
+    }
+
+    /* Gradient Border Animation */
+    @keyframes borderRotate {
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .animate-border-gradient {
+      position: relative;
+      background: linear-gradient(to right, #0f172a, #0f172a);
+      padding: 1px;
+      /* Border width */
+      border-radius: 1rem;
+      /* Match rounded-2xl */
+      overflow: hidden;
+    }
+
+    .animate-border-gradient::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      z-index: -1;
+      background: linear-gradient(60deg,
+          rgba(37, 253, 233, 0.1),
+          rgba(96, 165, 250, 0.5),
+          rgba(37, 253, 233, 0.1),
+          rgba(96, 165, 250, 0.5));
+      background-size: 300% 300%;
+      animation: borderRotate 4s ease infinite;
+      border-radius: inherit;
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased text-white bg-slate-900 overflow-x-hidden">
+
+  <div id="app"></div>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="assets/js/liquid-ether.js"></script>
+  <script src="assets/js/navbar-scroll.js"></script>
+
+  <script>
+    document.querySelector('#app').innerHTML = `
+          <div class="page-transition show" id="page-transition"></div>
+          <div class="relative min-h-screen w-full overflow-hidden hero-bg">
+            <!-- Background videos stacked for crossfade transition -->
+            <video id="bg-video-a" class="bg-video bg-video--visible" autoplay muted loop playsinline preload="auto" poster="./bal.png">
+              <!-- Optimized 720p sources -->
+              <source src="./bg-video-720.webm" type="video/webm">
+              <source src="./bg-video-720.mp4" type="video/mp4">
+              <!-- fallback to original if necessary -->
+              <source src="./AdobeStock_686650638.mov" type="video/quicktime">
+            </video>
+
+            <video id="bg-video-b" class="bg-video" autoplay muted loop playsinline preload="auto" poster="./bal.png">
+              <!-- Secondary video (optimized 720p) -->
+              <source src="./vid-b-720.mp4" type="video/mp4">
+            </video>
+
+            <video id="bg-video-c" class="bg-video" autoplay muted loop playsinline preload="auto" poster="./bal.png">
+              <!-- Tertiary video (optimized 720p) -->
+              <source src="./vid-c-720.mp4" type="video/mp4">
+            </video>
+
+            <div class="hero-overlay"></div>
+            
+            <nav id="mainNav" class="navbar-container relative z-50 flex items-center justify-between px-6 py-4">
+              
+              <!-- LOGO (Left) -->
+              <a href="index.html" class="block z-50 hover:opacity-80 transition-opacity duration-300 cursor-pointer flex flex-col items-center gap-0 relative shrink-0" title="Actualiser la page">
+                <img src="./logo-las-blanc-sans-map.png" alt="La Saison Bleue" class="h-12 w-auto object-contain">
+              </a>
+
+              <!-- DYNAMIC ZONE (Center) -->
+              <div class="nav-dynamic-zone flex-grow flex items-center justify-center relative">
+                
+                <!-- 1. MAIN MENU (Visible by default) -->
+                <div id="nav-menu" class="hidden md:flex items-center justify-center space-x-8 text-sm font-medium text-gray-200 w-auto">
+                    <!-- Accueil dropdown -->
+                    <div class="group relative z-50">
+                      <div class="relative inline-flex h-10 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                        <div class="absolute inset-0 rounded-full p-[2px] pointer-events-none" style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;">
+                            <span class="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#38bdf8_50%,#ffffff_100%)]"></span>
+                        </div>
+                        <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white/5 px-6 py-1 text-sm font-medium text-white backdrop-blur-md transition group-hover:bg-white/10">
+                          <span data-i18n="nav_home">Accueil</span>
+                        </span>
+                      </div>
+                      <div class="glassy-menu">
+                        <ul class="list">
+                          <a href="about.html" class="element">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            <span class="label">À propos</span>
+                          </a>
+                          <a href="missions.html" class="element">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <span class="label">Nos missions</span>
+                          </a>
+                          <a href="partenaires.html" class="element">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <span class="label">Nos partenaires</span>
+                          </a>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <!-- Initiative dropdown -->
+                    <div class="group relative z-50">
+                      <div class="relative inline-flex h-10 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                        <div class="absolute inset-0 rounded-full p-[2px] pointer-events-none" style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;">
+                            <span class="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#38bdf8_50%,#ffffff_100%)]"></span>
+                        </div>
+                        <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white/5 px-6 py-1 text-sm font-medium text-white backdrop-blur-md transition group-hover:bg-white/10">
+                          <span data-i18n="nav_initiative">Initiative</span>
+                        </span>
+                      </div>
+                      <div class="glassy-menu">
+                        <ul class="list">
+                          <a href="wao.html" class="element">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                            <span class="label">Women Actions for the Ocean</span>
+                          </a>
+                          
+                          <a href="pacte-afrique.html" class="element">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                            <span class="label">Le Pacte pour une Afrique Bleue Durable</span>
+                          </a>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <!-- Nos événements dropdown -->
+                    <div class="group relative z-50">
+                      <div class="relative inline-flex h-10 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                        <div class="absolute inset-0 rounded-full p-[2px] pointer-events-none" style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;">
+                            <span class="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#38bdf8_50%,#ffffff_100%)]"></span>
+                        </div>
+                        <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white/5 px-6 py-1 text-sm font-medium text-white backdrop-blur-md transition group-hover:bg-white/10">
+                          <span data-i18n="nav_events">Nos événements</span>
+                        </span>
+                      </div>
+                      <div class="glassy-menu">
+                        <ul class="list">
+                          <a href="blue-africa-summit.html" class="element">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            <span class="label">Blue Africa Summit</span>
+                          </a>
+                          <a href="grande-maree.html" class="element">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M2 12l5-5"/><path d="M2 12l5 5"/></svg>
+                            <span class="label">La Grande Marée</span>
+                          </a>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <!-- Actu & Media dropdown -->
+                    <div class="group relative z-50">
+                      <div class="relative inline-flex h-10 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                        <div class="absolute inset-0 rounded-full p-[2px] pointer-events-none" style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;">
+                            <span class="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#38bdf8_50%,#ffffff_100%)]"></span>
+                        </div>
+                        <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white/5 px-6 py-1 text-sm font-medium text-white backdrop-blur-md transition group-hover:bg-white/10">
+                          <span data-i18n="nav_news_main">Actu & Media</span>
+                        </span>
+                      </div>
+                      <div class="glassy-menu">
+                        <ul class="list">
+                          <a href="news.html" class="element">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V7m2 13a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                            <span class="label">News</span>
+                          </a>
+                          <a href="#" class="element">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                            <span class="label">Photos</span>
+                          </a>
+                          <a href="videos.html" class="element">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                            <span class="label">Vidéos</span>
+                          </a>
+                          <a href="documents.html" class="element">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            <span class="label">Documents</span>
+                          </a>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <!-- Contact Link -->
+                    <a href="contact.html" class="relative inline-flex h-10 overflow-hidden rounded-full p-[2px] group focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+                      <div class="absolute inset-0 rounded-full p-[2px] pointer-events-none" style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude;">
+                          <span class="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0f172a_0%,#2dd4bf_25%,#ffffff_50%,#38bdf8_75%,#0f172a_100%)]"></span>
+                      </div>
+                      <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white/5 px-6 py-1 text-sm font-medium text-white backdrop-blur-md transition group-hover:bg-white/10">
+                        <span data-i18n="btn_contact">Contact</span>
+                      </span>
+                    </a>
+                </div>
+
+                <!-- 2. NEON SEARCH BAR (Hidden by default) -->
+                <div id="neon-search-wrapper" class="neon-search-wrapper hidden">
+                    <div id="poda">
+                        <input type="text" id="search-input-field" class="input" placeholder="Search Here...">
+                        <div class="search-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+              
+              <!-- STATIC ZONE (Right) -->
+              <div class="nav-static-zone flex items-center gap-4 relative z-50 shrink-0">
+                
+                <!-- Glassy Search Button (Trigger) -->
+                <button id="trigger-search" class="search-btn-glassy" aria-label="Search">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </button>
+
+                <!-- WAO / Sign In Gooey Button -->
+                <a href="acces.html" class="c-button c-button--gooey">
+                  <span class="c-button__text">
+                    <span class="text-initial">Sign In</span>
+                    <span class="text-hover">WAO</span>
+                  </span>
+                  <div class="c-button__blobs">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white hover:text-blue-200 transition-colors">
+                  <i data-lucide="menu" class="w-8 h-8"></i>
+                </button>
+              </div>
+            </nav>
+
+            <!-- Mobile Menu Overlay -->
+            <div id="mobile-menu" class="fixed inset-0 bg-slate-900/95 z-50 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center space-y-6 md:hidden overflow-y-auto py-10 backdrop-blur-sm">
+              <button id="close-menu-btn" class="absolute top-6 right-6 text-white hover:text-blue-200 transition-colors">
+                <i data-lucide="x" class="w-8 h-8"></i>
+              </button>
+
+              <div class="w-full px-8 text-center space-y-8">
+                <!-- Accueil group -->
+                <div class="space-y-3">
+                  <div class="text-xl font-bold text-blue-200 uppercase tracking-widest mb-2" data-i18n="nav_home">Accueil</div>
+                  <a href="about.html" class="block text-lg font-medium text-white hover:text-blue-300 transition-colors" data-i18n="nav_about">À propos</a>
+                  <a href="missions.html" class="block text-lg font-medium text-white hover:text-blue-300 transition-colors" data-i18n="nav_missions">Nos missions</a>
+                  <a href="partenaires.html" class="block text-lg font-medium text-white hover:text-blue-300 transition-colors" data-i18n="nav_partners">Nos partenaires</a>
+                </div>
+
+                <!-- Initiative group -->
+                <div class="space-y-3">
+                  <div class="text-xl font-bold text-blue-200 uppercase tracking-widest mb-2" data-i18n="nav_initiative">Initiative</div>
+                  <a href="wao.html" class="block text-lg font-medium text-white hover:text-blue-300 transition-colors" data-i18n="nav_wao">Women Actions for the Ocean</a>
+                  <a href="pacte-afrique.html" class="block text-lg font-medium text-white hover:text-blue-300 transition-colors" data-i18n="nav_pacte">Le Pacte pour une Afrique Bleue Durable</a>
+                </div>
+
+                <!-- Nos événements group -->
+                <div class="space-y-3">
+                  <div class="text-xl font-bold text-blue-200 uppercase tracking-widest mb-2" data-i18n="nav_events">Nos événements</div>
+                  <a href="blue-africa-summit.html" class="block text-lg font-medium text-white hover:text-blue-300 transition-colors" data-i18n="nav_bas">Blue Africa Summit</a>
+                  <a href="grande-maree.html" class="block text-lg font-medium text-white hover:text-blue-300 transition-colors" data-i18n="nav_gm">La Grande Marée</a>
+                </div>
+
+                <!-- Actu & Media group -->
+                <div class="space-y-3">
+                  <div class="text-xl font-bold text-blue-200 uppercase tracking-widest mb-2" data-i18n="nav_news_main">Actu & Media</div>
+                  <a href="news.html" class="block text-lg font-medium text-white hover:text-blue-300 transition-colors" data-i18n="nav_news">News</a>
+                  <a href="videos.html" class="block text-lg font-medium text-white hover:text-blue-300 transition-colors" data-i18n="nav_videos">Vidéos</a>
+                </div>
+              </div>
+
+              <a href="contact.html" class="px-8 py-3 border border-white text-white font-bold tracking-widest mt-8 rounded-full hover:bg-white hover:text-slate-900 transition-all duration-300" data-i18n="btn_contact">CONTACT</a>
+            </div>
+
+            <main class="relative z-10 h-screen w-full pt-20 flex flex-col md:block">
+              <!-- Gradient Overlay for smooth transition to next section -->
+              <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-slate-900 z-0 pointer-events-none"></div>
+              
+              <!-- Search bar: centered glassmorphism input just under the nav and above the main title -->
+              <!-- Search area + tags grouped for hover-reveal (named group 'search') -->
+                <div class="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-10 pointer-events-none">
+                <div class="text-center pointer-events-auto w-full">
+
+                    <div id="morph-container">
+                        <span id="text1"></span>
+                        <span id="text2"></span>
+                    </div>
+                    <p id="dynamicQuote" class="mt-6 text-xl md:text-2xl font-serif italic text-blue-200/80 transition-opacity duration-1000 ease-in-out opacity-100 min-h-[3rem]">
+                        « La force est en elle, l'avenir est en toi. Protège ta mer. »
+                    </p>
+                </div>
+              </div>
+
+              <div class="absolute bottom-0 left-0 w-full h-1/2 md:h-full md:top-0 md:right-0 flex justify-center items-center md:justify-end md:pr-16 z-20 pointer-events-none">
+                <div class="pointer-events-auto relative w-64 h-64 md:w-72 md:h-72 flex items-center justify-center group/donate">
+                  
+                  <div class="absolute w-40 h-40 md:w-48 md:h-48 border border-white/10 rounded-full transition-all duration-700 group-hover/donate:border-white/30 group-hover/donate:scale-105"></div>
+                  <div class="absolute w-56 h-56 md:w-64 md:h-64 border border-dashed border-white/10 rounded-full transition-all duration-700 group-hover/donate:border-white/20 group-hover/donate:rotate-12"></div>
+                  <div class="absolute w-32 h-32 border border-dashed border-white/20 rounded-full animate-ripple-1"></div>
+
+                  <div class="relative z-10 w-28 h-28 rounded-full border-2 border-white/50 flex flex-col items-center justify-center text-center backdrop-blur-md bg-white/5 group-hover/donate:bg-white/10 group-hover/donate:border-white transition-all duration-500 cursor-pointer">
+                    <span class="text-base font-bold tracking-widest group-hover/donate:scale-110 transition-transform duration-300" data-i18n="btn_donate">DONS</span>
+                  </div>
+                </div>
+              </div>
+            </main>
+            <!-- Partners Carousel (Moved below Hero) - Content Removed, Background Kept -->
+            <div class="relative w-full z-30 py-12 bg-slate-900">
+              <!-- Content removed as requested -->
+            </div>
+            <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none"></div>
+          </div>
+
+
+
+          <!-- Nos missions & Partenaires Section -->
+          <section id="missions-partenaires-section" class="py-16 bg-transparent relative z-20">
+            <div class="container mx-auto px-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Card 2: Nos partenaires -->
+                <div id="card-about" class="reveal-card relative w-full aspect-[4/3] rounded-2xl shadow-lg overflow-hidden group opacity-0 translate-y-10 transition-all duration-700 delay-200">
+                  <!-- Background Image -->
+                  <img src="./AdobeStock_1778290935.jpeg" alt="Nos partenaires" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  
+                  <!-- Dark Overlay -->
+                  <div class="absolute inset-0 bg-black/60 transition-opacity duration-300 group-hover:bg-black/50"></div>
+                  
+                  <!-- Content -->
+                  <div class="relative p-8 h-full flex flex-col justify-center items-center text-center text-white">
+                    <div class="w-16 h-16 mx-auto bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-6 text-white">
+                      <i data-lucide="info" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold mb-4" data-i18n="about_title">À propos</h3>
+                    <p class="text-gray-200 mb-8" data-i18n="about_text">La Saison Bleue, oeuvre pour la protection et la valorisation de l’environnement marin à travers des actions de sensibilisation, de coopérations et d'interconnexions internationales.</p>
+                    <a href="about.html" class="learn-more">
+                      <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-text">Lire plus</span>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Card 1: Nos missions -->
+                <div id="card-missions" class="reveal-card relative w-full aspect-[4/3] rounded-2xl shadow-lg overflow-hidden group opacity-0 translate-y-10 transition-all duration-700">
+                  <!-- Background Image -->
+                  <img src="./AdobeStock_1543335255.jpeg" alt="Nos missions" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  
+                  <!-- Dark Overlay -->
+                  <div class="absolute inset-0 bg-black/60 transition-opacity duration-300 group-hover:bg-black/50"></div>
+                  
+                  <!-- Content -->
+                  <div class="relative p-8 h-full flex flex-col justify-center items-center text-center text-white">
+                    <div class="w-16 h-16 mx-auto bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-6 text-white">
+                      <i data-lucide="target" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold mb-4" data-i18n="missions_title">Nos missions</h3>
+                    <p class="text-gray-200 mb-8" data-i18n="missions_text">Nous œuvrons pour la préservation marine, l'éducation environnementale et le développement durable des communautés côtières.</p>
+                    <a href="missions.html" class="learn-more">
+                      <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-text">Lire plus</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Stats Section (Restored) -->
+          <section id="stats-section" class="py-10 md:py-24 relative z-20" style="background-image: linear-gradient(rgba(2,6,23,0.45), rgba(2,6,23,0.35)), url('./AdobeStock_1372252180.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+            <!-- Top Gradient Fade -->
+            <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-slate-900 to-transparent z-0 pointer-events-none"></div>
+            <!-- Bottom Gradient Fade -->
+            <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-900 to-transparent z-0 pointer-events-none"></div>
+
+            <div class="container mx-auto px-6 relative z-10">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="text-center group">
+                  
+                  <i data-lucide="users" class="w-12 h-12 text-cyan-400 mx-auto mb-2"></i>
+                  <div class="relative flex items-center justify-center h-24 md:h-48 mb-2">
+                    <span class="absolute text-8xl md:text-[10rem] font-extrabold text-transparent stroke-text opacity-15 select-none group-hover:opacity-30 transition-opacity duration-300">31k</span>
+                    <div class="relative z-10 text-6xl md:text-7xl font-extrabold text-cyan-400"><span class="counter" data-target="31000">0</span></div>
+                  </div>
+                  <p class="text-white text-lg md:text-xl uppercase tracking-widest font-bold" data-i18n="stats_participants">Participants</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="text-center group">
+                  
+                  <i data-lucide="mic" class="w-12 h-12 text-cyan-400 mx-auto mb-2"></i>
+                  <div class="relative flex items-center justify-center h-24 md:h-48 mb-2">
+                    <span class="absolute text-8xl md:text-[10rem] font-extrabold text-transparent stroke-text opacity-15 select-none group-hover:opacity-30 transition-opacity duration-300">150</span>
+                    <div class="relative z-10 text-6xl md:text-7xl font-extrabold text-cyan-400"><span class="counter" data-target="150">0</span></div>
+                  </div>
+                  <p class="text-white text-lg md:text-xl uppercase tracking-widest font-bold" data-i18n="stats_speakers">Intervenants</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="text-center group">
+                  
+                  <i data-lucide="calendar" class="w-12 h-12 text-cyan-400 mx-auto mb-2"></i>
+                  <div class="relative flex items-center justify-center h-24 md:h-48 mb-2">
+                    <span class="absolute text-8xl md:text-[10rem] font-extrabold text-transparent stroke-text opacity-15 select-none group-hover:opacity-30 transition-opacity duration-300">1k</span>
+                    <div class="relative z-10 text-6xl md:text-7xl font-extrabold text-cyan-400"><span class="counter" data-target="1000">0</span></div>
+                  </div>
+                  <p class="text-white text-lg md:text-xl uppercase tracking-widest font-bold" data-i18n="stats_events">Engagements</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+
+          <!-- Premium Footer -->
+          <footer class="relative bg-slate-900 text-white py-10 md:py-16 overflow-hidden">
+            <!-- Background Image Placeholder (Dark gradient) -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-slate-900/90 z-0"></div>
+            
+            <div class="container mx-auto px-6 relative z-10">
+              <!-- KIDS Button -->
+
+
+              <!-- Top Section -->
+              <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+                <div>
+                  <h2 class="text-5xl md:text-7xl font-serif font-bold tracking-tight mb-2 animate-agissons" data-i18n="footer_cta_title">Agissons Ensemble</h2>
+                </div>
+                <div class="flex flex-col items-end gap-4">
+
+                  <a href="contact.html" class="btn-join" data-i18n="btn_join">
+                      Newsletter
+                  </a>
+                </div>
+              </div>
+              <!-- Divider -->
+              <div class="w-full h-px bg-white/10 mb-12"></div>
+              <!-- Bottom Section -->
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-sm text-gray-400">
+                <!-- Menu -->
+                <div>
+                  <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_menu">Menu</h3>
+                  <ul class="space-y-4">
+                    <li><a href="index.html" class="hover:text-white transition-colors" data-i18n="nav_home">Accueil</a></li>
+                    <li><a href="wao.html" class="hover:text-white transition-colors" data-i18n="nav_initiative">Initiative</a></li>
+                    <li><a href="grande-maree.html" class="hover:text-white transition-colors" data-i18n="nav_events">Nos événements</a></li>
+                    <li><a href="news.html" class="hover:text-white transition-colors" data-i18n="nav_news">News</a></li>
+                  </ul>
+                </div>
+                <!-- Contact -->
+                <div class="md:col-span-2">
+                  <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_contact">Contact</h3>
+                  <ul class="space-y-4">
+                    <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i><span>94, avenue Émile Zola, 75015 Paris</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i><span>+33 7 88 69 58 94</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i><a href="mailto:contact@lasaisonbleue.com" class="hover:text-white transition-colors">contact@lasaisonbleue.com</a></li>
+                  </ul>
+                </div>
+                <!-- Socials -->
+                <div class="flex flex-col justify-between">
+                  <div>
+                      <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_follow">Suivez-nous</h3>
+                      <div class="flex gap-4">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/lasaisonbleue/?hl=fr" target="_blank" class="social-bloom-btn" aria-label="Instagram">
+                          <div class="bloom-container">
+                            <div class="button-container-main">
+                              <div class="button-inner">
+                                <div class="back"></div>
+                                <div class="front">
+                                  <i data-lucide="instagram"></i>
+                                </div>
+                              </div>
+                              <div class="button-glass"></div>
+                            </div>
+                            <div class="bloom bloom1"></div>
+                            <div class="bloom bloom2"></div>
+                          </div>
+                        </a>
+                        
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/lasaisonbleue/?locale=fr_FR" target="_blank" class="social-bloom-btn" aria-label="Facebook">
+                          <div class="bloom-container">
+                            <div class="button-container-main">
+                              <div class="button-inner">
+                                <div class="back"></div>
+                                <div class="front">
+                                  <i data-lucide="facebook"></i>
+                                </div>
+                              </div>
+                              <div class="button-glass"></div>
+                            </div>
+                            <div class="bloom bloom1"></div>
+                            <div class="bloom bloom2"></div>
+                          </div>
+                        </a>
+
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/@lasaisonbleue3150" target="_blank" class="social-bloom-btn" aria-label="YouTube">
+                          <div class="bloom-container">
+                            <div class="button-container-main">
+                              <div class="button-inner">
+                                <div class="back"></div>
+                                <div class="front">
+                                  <i data-lucide="youtube"></i>
+                                </div>
+                              </div>
+                              <div class="button-glass"></div>
+                            </div>
+                            <div class="bloom bloom1"></div>
+                            <div class="bloom bloom2"></div>
+                          </div>
+                        </a>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/company/la-saison-bleue/posts/?feedView=all" target="_blank" class="social-bloom-btn" aria-label="LinkedIn">
+                          <div class="bloom-container">
+                            <div class="button-container-main">
+                              <div class="button-inner">
+                                <div class="back"></div>
+                                <div class="front">
+                                  <i data-lucide="linkedin"></i>
+                                </div>
+                              </div>
+                              <div class="button-glass"></div>
+                            </div>
+                            <div class="bloom bloom1"></div>
+                            <div class="bloom bloom2"></div>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                  <div class="mt-12 md:mt-0 text-right"><p class="text-[10px] text-gray-600" data-i18n="footer_powered">Powered by Image&Actions</p></div>
+                </div>
+              </div>
+            </div>
+          </footer>
+
+          <!-- Scroll to top button (top center) -->
+          <button id="scroll-top-btn" class="scroll-top levitate" aria-label="Retour en haut" title="Retour en haut">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          </button>
+        `;
+
+    // Script pour faire fonctionner les icônes, le menu et les compteurs
+    lucide.createIcons();
+
+    // Crossfade automatique — gère un nombre arbitraire de vidéos empilées
+    (function () {
+      const vids = Array.from(document.querySelectorAll('.bg-video'));
+      if (vids.length < 2) return;
+
+      const fadeDuration = 1.2; // seconds (matches CSS transition)
+      let activeIndex = 0;
+      let transitioning = false;
+
+      // Initialize: mute, try play, set initial visibility
+      vids.forEach((v, i) => {
+        v.muted = true;
+        v.loop = true;
+        try { v.playsInline = true; } catch (e) { }
+        try { v.preload = 'auto'; } catch (e) { }
+        v.classList.remove('bg-video--visible');
+        v.play().catch(() => { });
+      });
+
+      vids[activeIndex].classList.add('bg-video--visible');
+
+      function crossfadeTo(nextIndex) {
+        if (transitioning || nextIndex === activeIndex) return;
+        transitioning = true;
+        const from = vids[activeIndex];
+        const to = vids[nextIndex];
+        try { to.currentTime = 0; } catch (e) { }
+        to.classList.add('bg-video--visible');
+        to.play().catch(() => { });
+
+        setTimeout(() => {
+          from.classList.remove('bg-video--visible');
+          try { from.pause(); } catch (e) { }
+          activeIndex = nextIndex;
+          transitioning = false;
+        }, (fadeDuration * 1000) + 100);
+      }
+
+      function scheduleFor(v, idx) {
+        if (!v.duration || transitioning) return;
+        const remaining = v.duration - v.currentTime;
+        if (remaining <= (fadeDuration + 0.05)) {
+          const next = (idx + 1) % vids.length;
+          crossfadeTo(next);
+        }
+      }
+
+      vids.forEach((v, i) => {
+        v.addEventListener('timeupdate', () => scheduleFor(v, i));
+        v.addEventListener('ended', () => { if (!transitioning) crossfadeTo((i + 1) % vids.length); });
+      });
+    })();
+
+
+
+    const contactBtn = document.getElementById('contact-btn');
+    const waveSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-sea-waves-1195.mp3');
+    waveSound.volume = 0.3;
+
+    if (contactBtn) {
+      contactBtn.addEventListener('mouseenter', () => {
+        waveSound.currentTime = 0;
+        waveSound.play().catch(e => console.log("Audio autoplay blocked", e));
+      });
+    }
+
+    const statsSection = document.getElementById('stats-section');
+    const counters = document.querySelectorAll('.counter');
+    let hasAnimated = false;
+
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const duration = 2000;
+        const increment = target / (duration / 16);
+
+        let current = 0;
+        const updateCounter = () => {
+          current += increment;
+          if (current < target) {
+            counter.innerText = Math.ceil(current).toLocaleString('fr-FR');
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.innerText = target.toLocaleString('fr-FR');
+          }
+        };
+        updateCounter();
+      });
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimated) {
+          animateCounters();
+          hasAnimated = true;
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (statsSection) observer.observe(statsSection);
+
+    // Reveal cards on scroll
+    const revealCards = document.querySelectorAll('.reveal-card');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-10');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealCards.forEach(card => revealObserver.observe(card));
+
+
+
+    // Smooth page transition: fade overlay out on load, fade in on internal link clicks
+    (function () {
+      const transition = document.getElementById('page-transition');
+      function hideOverlay() {
+        if (!transition) return;
+        // remove 'show' to fade out
+        requestAnimationFrame(() => requestAnimationFrame(() => transition.classList.remove('show')));
+      }
+      function showOverlayThenNavigate(href) {
+        if (!transition) { window.location.href = href; return; }
+        transition.classList.add('show');
+        setTimeout(() => { window.location.href = href; }, 500);
+      }
+
+      document.addEventListener('DOMContentLoaded', hideOverlay);
+
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a');
+        if (!a) return;
+        const href = a.getAttribute('href');
+        if (!href) return;
+        // ignore anchors, javascript links, mailto, tel
+        if (href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        // ignore external links
+        try {
+          const url = new URL(href, window.location.href);
+          if (url.origin !== window.location.origin) return;
+          if (a.target && a.target === '_blank') return;
+          if (url.href === window.location.href) return;
+          e.preventDefault();
+          showOverlayThenNavigate(url.href);
+        } catch (err) {
+          // invalid URL, ignore
+        }
+      });
+    })();
+
+    // Scroll-to-top button behavior (top-centered)
+    (function () {
+      const btn = document.getElementById('scroll-top-btn');
+      if (!btn) return;
+      const showAt = 300;
+      function toggle() {
+        if (window.scrollY > showAt) {
+          btn.classList.add('show');
+        } else {
+          btn.classList.remove('show');
+        }
+      }
+      window.addEventListener('scroll', toggle, { passive: true });
+      // initialize visibility
+      toggle();
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+    // Slogan Animation Logic
+
+
+
+    // Dynamic Quote Animation Script
+    const quoteElement = document.getElementById('dynamicQuote');
+    const quoteKeys = [
+      "quote_1", "quote_2", "quote_3", "quote_4", "quote_5", "quote_6",
+      "quote_7", "quote_8", "quote_9", "quote_10", "quote_11", "quote_12"
+    ];
+
+    let quoteIndex = 0;
+
+    if (quoteElement) {
+      // Initialize with first quote
+      const initialLang = localStorage.getItem('preferredLanguage') || 'fr';
+      if (typeof translations !== 'undefined' && translations[initialLang]) {
+        quoteElement.innerText = translations[initialLang][quoteKeys[0]];
+      }
+
+      setInterval(() => {
+        // 1. Disparition (Fade out)
+        quoteElement.classList.replace('opacity-100', 'opacity-0');
+
+        setTimeout(() => {
+          // 2. Changement du texte
+          quoteIndex = (quoteIndex + 1) % quoteKeys.length;
+          const key = quoteKeys[quoteIndex];
+          const lang = localStorage.getItem('preferredLanguage') || 'fr';
+
+          if (typeof translations !== 'undefined' && translations[lang] && translations[lang][key]) {
+            quoteElement.innerText = translations[lang][key];
+          }
+
+          // 3. Réapparition (Fade in)
+          quoteElement.classList.replace('opacity-0', 'opacity-100');
+        }, 1000); // Attend 1s (le temps que l'opacité tombe à 0)
+
+      }, 5000); // Change de phrase toutes les 5 secondes
+    }
+    // Title Focus Animation Script
+    setInterval(() => {
+      const t1 = document.getElementById('focusTitle1');
+      const t2 = document.getElementById('focusTitle2');
+
+      if (t1 && t2) {
+        if (t1.classList.contains('scale-110')) {
+          // Switch Focus to Title 2
+          t1.classList.replace('scale-110', 'scale-90');
+          t1.classList.replace('opacity-100', 'opacity-60');
+
+          t2.classList.replace('scale-90', 'scale-110');
+          t2.classList.replace('opacity-60', 'opacity-100');
+        } else {
+          // Switch Focus to Title 1
+          t1.classList.replace('scale-90', 'scale-110');
+          t1.classList.replace('opacity-60', 'opacity-100');
+
+          t2.classList.replace('scale-110', 'scale-90');
+          t2.classList.replace('opacity-100', 'opacity-60');
+        }
+      }
+    }, 5000);
+
+    // Mobile Menu Toggle Script
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu && closeMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('translate-x-full');
+      });
+
+      closeMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+      });
+
+      // Close menu when clicking a link
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('translate-x-full');
+        });
+      });
+    }
+  </script>
+
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/navbar-scroll.js"></script>
+  <script src="assets/js/shape-blur.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const config = {
+        variation: 0,
+        pixelRatioProp: window.devicePixelRatio || 1,
+        shapeSize: 2.1,
+        roundness: 0.2,
+        borderSize: 0.05,
+        circleSize: 0.5,
+        circleEdge: 1
+      };
+
+      const cardMissions = document.getElementById('card-missions');
+      if (cardMissions) {
+        new ShapeBlur(cardMissions, config);
+      }
+
+      const cardAbout = document.getElementById('card-about');
+      if (cardAbout) {
+        new ShapeBlur(cardAbout, config);
+      }
+    });
+  </script>
+
+  <script>
+    // Initialize Liquid Ether Animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const missionsCard = document.getElementById('card-missions');
+      const aboutCard = document.getElementById('card-about');
+
+      if (missionsCard) {
+        new LiquidEther(missionsCard, {
+          colors: ['#60A5FA', '#25FDE9', '#ffffff'], // Blue, Cyan, White
+          mouseForce: 25,
+          viscous: 20,
+          autoDemo: true
+        });
+      }
+
+      if (aboutCard) {
+        new LiquidEther(aboutCard, {
+          colors: ['#60A5FA', '#25FDE9', '#ffffff'],
+          mouseForce: 25,
+          viscous: 20,
+          autoDemo: true
+        });
+      }
+    });
+  </script>
+  <script src="assets/js/gradual-blur.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Top Blur (under navbar)
+      new GradualBlur({
+        position: 'top',
+        height: '8rem', // Slightly larger for header area
+        strength: 2,
+        divCount: 8,
+        zIndex: 40 // Below navbar (z-50) but above content
+      });
+
+      // Bottom Blur
+      new GradualBlur({
+        position: 'bottom',
+        height: '6rem',
+        strength: 2,
+        divCount: 8,
+        zIndex: 50
+      });
+    });
+  </script>
+  <script src="assets/js/loader.js"></script>
+  <!-- SVG Filters for Morphing Text -->
+  <svg id="filters">
+    <defs>
+      <filter id="threshold">
+        <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 255 -140" />
+      </filter>
+    </defs>
+  </svg>
+  <script src="assets/js/morph-text.js"></script>
+  <script type="module" src="https://unpkg.com/rough-notation?module"></script>
+  <script type="module">
+    import { annotate } from 'https://unpkg.com/rough-notation?module';
+
+    const config = {
+      type: 'highlight',
+      color: '#87CEEB', /* Bleu Ciel */
+      animationDuration: 800,
+      padding: 8, /* Un peu plus de marge pour le texte agrandi */
+      multiline: true,
+      iterations: 2 /* Effet "crayonné" plus visible */
+    };
+
+    // Wait slightly to ensure elements are in the DOM (in case of dynamic injection delay)
+    // Although module scripts are deferred, a small safety check or delay often helps with dynamic frameworks.
+    setTimeout(() => {
+      const e1 = document.querySelector('#hl-1'); // Protégeons
+      const e2 = document.querySelector('#hl-2'); // Promouvons
+
+      if (e1 && e2) {
+        const a1 = annotate(e1, config);
+        const a2 = annotate(e2, config);
+
+        // Déclenchement uniquement quand le titre est visible à l'écran
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                a1.show();
+                setTimeout(() => a2.show(), 400);
+              }, 200);
+              observer.disconnect(); // On ne joue l'anim qu'une seule fois
+            }
+          });
+        }, { threshold: 0.5 });
+
+        const mainTitle = document.querySelector('.main-title');
+        if (mainTitle) {
+          observer.observe(mainTitle);
+        }
+      }
+    }, 100);
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('Search Script Loaded');
+      const triggerBtn = document.getElementById('trigger-search');
+      const navMenu = document.getElementById('nav-menu');
+      const searchWrapper = document.getElementById('neon-search-wrapper');
+      const searchInput = document.getElementById('search-input-field');
+
+      function showSearch() {
+        if (!searchWrapper || !navMenu) return;
+
+        // 1. Hide Menu immediately
+        navMenu.style.display = 'none';
+
+        // 2. Prep Search Wrapper
+        searchWrapper.style.display = 'flex';
+        // Force reflow
+        searchWrapper.offsetHeight;
+
+        // 3. Fade In
+        searchWrapper.classList.add('visible');
+
+        if (searchInput) setTimeout(() => searchInput.focus(), 50);
+      }
+
+      function hideSearch() {
+        if (!searchWrapper || !navMenu) return;
+
+        // 1. Fade Out
+        searchWrapper.classList.remove('visible');
+
+        // 2. Wait for transition, then hide display and show menu
+        setTimeout(() => {
+          searchWrapper.style.display = 'none';
+          navMenu.style.display = 'flex';
+        }, 200); // Match CSS transition duration
+      }
+
+      if (triggerBtn) {
+        triggerBtn.addEventListener('click', function (e) {
+          console.log('Search Trigger Clicked');
+          e.stopPropagation();
+          if (searchWrapper && searchWrapper.classList.contains('visible')) return;
+          showSearch();
+        });
+      }
+
+      document.addEventListener('click', function (e) {
+        const poda = document.getElementById('poda');
+        const isClickInsideSearch = poda && poda.contains(e.target);
+        const isClickOnTrigger = triggerBtn && triggerBtn.contains(e.target);
+
+        if (searchWrapper && searchWrapper.classList.contains('visible') && !isClickInsideSearch && !isClickOnTrigger) {
+          console.log('Closing search');
+          hideSearch();
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && searchWrapper && searchWrapper.classList.contains('visible')) {
+          hideSearch();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

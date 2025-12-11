@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — La Saison Bleue</title>
+  <meta name="description" content="Contact — La Saison Bleue" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/glassy-search.css">
+  <link rel="stylesheet" href="assets/css/loader.css">
+  <link rel="stylesheet" href="assets/css/glassy-menu.css">
+  <link rel="stylesheet" href="assets/css/animated-button.css">
+
+  <style>
+    :root {
+      --glass-bg: rgba(15, 23, 42, 0.45);
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    /* Animation Rainbow pour le bouton KIDS */
+    @keyframes colorCycle {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
+
+    .animate-rainbow {
+      animation: colorCycle 8s linear infinite;
+    }
+
+    /* Fullscreen cover background with overlay */
+    .contact-hero {
+      min-height: 100vh;
+      background-image: url('./AdobeStock_1447151152.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.6);
+      pointer-events: none;
+    }
+
+    /* Form input styles */
+    .input-glass {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(148, 163, 184, 0.08);
+      color: #fff;
+    }
+
+    .input-glass::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Right card glass */
+    .info-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(6px);
+      border-left: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Scroll-to-top button (top-centered minimal design + levitation) */
+    .scroll-top {
+      position: fixed;
+      top: 8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      border: 2px solid rgba(255, 255, 255, 1);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease, transform 200ms ease, background-color 150ms ease;
+    }
+
+    .scroll-top:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .scroll-top svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+    }
+
+    /* Levitation animation */
+    .levitate {
+      animation: levitate 3s ease-in-out infinite;
+    }
+
+    @keyframes levitate {
+      0% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(5px);
+      }
+
+      100% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+  </style>
+</head>
+
+<body class="antialiased text-white">
+
+  <!-- Fullscreen cover -->
+  <header class="contact-hero flex items-center justify-center">
+    <!-- nav (transparent over background) -->
+    <!-- CSS for Sidebar Menu -->
+    <link rel="stylesheet" href="assets/css/sidebar-menu.css">
+
+    <!-- HEADER FIXE (LEFT TRIGGER) -->
+    <header class="nav-trigger-container">
+      <!-- Logo REMOVED -->
+      <!-- Home Button -->
+      <a href="index.html" class="home-btn" title="Retour à l'accueil">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      </a>
+
+      <div class="menu-btn" id="menuToggle">
+        <span>MENU</span>
+        <div class="btn-icon">
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- BACKDROP & DRAWER -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+
+    <div class="menu-drawer" id="menuDrawer">
+      <!-- Close Button inside drawer -->
+      <div class="menu-close-area" id="menuCloseBtn">Close <i class="fas fa-times"></i></div>
+
+      <div class="menu-content">
+        <ul class="main-nav-list">
+
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">
+              ACCUEIL
+              <span class="nav-num">01</span>
+            </a>
+            <ul class="nav-submenu">
+              <li><a href="about.html">À propos</a></li>
+              <li><a href="missions.html">Nos missions</a></li>
+              <li><a href="partenaires.html">Nos partenaires</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              INITIATIVE
+              <span class="nav-num">02</span>
+            </a>
+            <ul class="nav-submenu">
+              <li><a href="wao.html">Women Actions for the Ocean</a></li>
+              <li><a href="pacte-afrique.html">Le Pacte pour une Afrique Bleue Durable</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              ÉVÉNEMENTS
+              <span class="nav-num">03</span>
+            </a>
+            <ul class="nav-submenu">
+              <li><a href="blue-africa-summit.html">Blue Africa Summit</a></li>
+              <li><a href="grande-maree.html">La Grande Marée</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              ACTU & MEDIA
+              <span class="nav-num">04</span>
+            </a>
+            <ul class="nav-submenu">
+              <li><a href="news.html">News</a></li>
+              <li><a href="#">Photos</a></li>
+              <li><a href="videos.html">Vidéos</a></li>
+              <li><a href="documents.html">Documents</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">
+              CONTACT
+              <span class="nav-num">05</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Script for Sidebar Menu -->
+    <script src="assets/js/sidebar-menu.js"></script>
+
+    <div class="relative z-30 w-full">
+      <div class="max-w-6xl mx-auto px-6 py-24">
+        <!-- Centered container vertically -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <!-- Left: form (span 7/12 ~ 58%) -->
+          <div class="md:col-span-7">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6" data-i18n="contact_title">Nous contacter</h1>
+            <form id="contact-form" class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input name="nom" placeholder="Nom" class="input-glass rounded-md px-4 py-3 w-full"
+                  data-i18n-placeholder="contact_name" />
+                <input name="prenom" placeholder="Prénom" class="input-glass rounded-md px-4 py-3 w-full"
+                  data-i18n-placeholder="contact_firstname" />
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input name="telephone" placeholder="Téléphone" class="input-glass rounded-md px-4 py-3 w-full"
+                  data-i18n-placeholder="contact_phone" />
+                <input name="email" type="email" placeholder="E-mail" class="input-glass rounded-md px-4 py-3 w-full"
+                  data-i18n-placeholder="contact_email" />
+              </div>
+
+              <div>
+                <textarea name="message" rows="6" placeholder="Votre message..."
+                  class="input-glass rounded-md px-4 py-3 w-full resize-none"
+                  data-i18n-placeholder="contact_message"></textarea>
+              </div>
+
+              <!-- Submit button placed directly below the message, full width -->
+              <div>
+                <button type="submit"
+                  class="w-full bg-red-700 hover:bg-red-800 text-white font-semibold px-6 py-3 rounded-md"
+                  data-i18n="contact_submit">Envoyer</button>
+              </div>
+
+              <!-- Legal / privacy text full width under the button -->
+              <div>
+                <p class="text-xs text-gray-400 mt-2" data-i18n="contact_privacy">En soumettant ce formulaire, vous
+                  acceptez que vos données soient
+                  utilisées pour répondre à votre demande. Consultez notre politique de confidentialité.</p>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right: info card (span 5/12 ~ 42%) -->
+          <aside class="md:col-span-5">
+            <div class="info-card rounded-xl p-8 shadow-lg">
+              <h3 class="text-xl font-bold text-white mb-4">LA SAISON BLEUE</h3>
+              <div class="space-y-3 text-slate-200">
+                <div>
+                  <div class="text-sm font-semibold text-blue-300 uppercase" data-i18n="contact_address">Adresse</div>
+                  <div class="text-white/90">94 avenue Émile Zola, 75015 Paris</div>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold text-blue-300 uppercase" data-i18n="contact_phone_label">Téléphone
+                  </div>
+                  <div class="text-white/90">+216 55 428 322</div>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold text-blue-300 uppercase" data-i18n="contact_email_label">E-mail
+                  </div>
+                  <div class="text-white/90">contact@lasaisonbleue.com</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Footer minimal -->
+  <footer class="relative bg-slate-900 text-white py-16 overflow-hidden">
+    <!-- Background Image Placeholder (Dark gradient) -->
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-slate-900/90 z-0"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <!-- Top Section -->
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+        <div>
+          <h2 class="text-5xl md:text-7xl font-serif font-bold tracking-tight mb-2 animate-agissons"
+            data-i18n="footer_cta_title">
+            Agissons Ensemble</h2>
+        </div>
+        <div class="flex flex-col items-end gap-4">
+
+          <a href="contact.html" class="btn-join" data-i18n="btn_join">
+            Newsletter
+          </a>
+        </div>
+      </div>
+      <!-- Divider -->
+      <div class="w-full h-px bg-white/10 mb-12"></div>
+      <!-- Bottom Section -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-sm text-gray-400">
+        <!-- Menu -->
+        <div>
+          <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_menu">Menu</h3>
+          <ul class="space-y-4">
+            <li><a href="index.html" class="hover:text-white transition-colors" data-i18n="nav_home">Accueil</a></li>
+            <li><a href="wao.html" class="hover:text-white transition-colors" data-i18n="nav_initiative">Initiative</a>
+            </li>
+            <li><a href="grande-maree.html" class="hover:text-white transition-colors" data-i18n="nav_events">Nos
+                événements</a></li>
+            <li><a href="news.html" class="hover:text-white transition-colors" data-i18n="nav_news">News</a></li>
+          </ul>
+        </div>
+        <!-- Contact -->
+        <div class="md:col-span-2">
+          <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_contact">Contact
+          </h3>
+          <ul class="space-y-4">
+            <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i><span>94, avenue Émile
+                Zola, 75015 Paris</span></li>
+            <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i><span>+33 7 88 69 58
+                94</span></li>
+            <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i><a
+                href="mailto:contact@lasaisonbleue.com"
+                class="hover:text-white transition-colors">contact@lasaisonbleue.com</a></li>
+          </ul>
+        </div>
+        <!-- Socials -->
+        <div class="flex flex-col justify-between">
+          <div>
+            <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_follow">
+              Suivez-nous</h3>
+            <div class="flex gap-4">
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/lasaisonbleue/?hl=fr" target="_blank" class="social-bloom-btn"
+                aria-label="Instagram">
+                <div class="bloom-container">
+                  <div class="button-container-main">
+                    <div class="button-inner">
+                      <div class="back"></div>
+                      <div class="front">
+                        <i data-lucide="instagram"></i>
+                      </div>
+                    </div>
+                    <div class="button-glass"></div>
+                  </div>
+                  <div class="bloom bloom1"></div>
+                  <div class="bloom bloom2"></div>
+                </div>
+              </a>
+
+              <!-- Facebook -->
+              <a href="https://www.facebook.com/lasaisonbleue/?locale=fr_FR" target="_blank" class="social-bloom-btn"
+                aria-label="Facebook">
+                <div class="bloom-container">
+                  <div class="button-container-main">
+                    <div class="button-inner">
+                      <div class="back"></div>
+                      <div class="front">
+                        <i data-lucide="facebook"></i>
+                      </div>
+                    </div>
+                    <div class="button-glass"></div>
+                  </div>
+                  <div class="bloom bloom1"></div>
+                  <div class="bloom bloom2"></div>
+                </div>
+              </a>
+
+              <!-- YouTube -->
+              <a href="https://www.youtube.com/@lasaisonbleue3150" target="_blank" class="social-bloom-btn"
+                aria-label="YouTube">
+                <div class="bloom-container">
+                  <div class="button-container-main">
+                    <div class="button-inner">
+                      <div class="back"></div>
+                      <div class="front">
+                        <i data-lucide="youtube"></i>
+                      </div>
+                    </div>
+                    <div class="button-glass"></div>
+                  </div>
+                  <div class="bloom bloom1"></div>
+                  <div class="bloom bloom2"></div>
+                </div>
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/company/la-saison-bleue/posts/?feedView=all" target="_blank"
+                class="social-bloom-btn" aria-label="LinkedIn">
+                <div class="bloom-container">
+                  <div class="button-container-main">
+                    <div class="button-inner">
+                      <div class="back"></div>
+                      <div class="front">
+                        <i data-lucide="linkedin"></i>
+                      </div>
+                    </div>
+                    <div class="button-glass"></div>
+                  </div>
+                  <div class="bloom bloom1"></div>
+                  <div class="bloom bloom2"></div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="mt-12 md:mt-0 text-right">
+            <p class="text-[10px] text-gray-600" data-i18n="footer_powered">Powered by Image&Actions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top button (top center) -->
+  <button id="scroll-top-btn" class="scroll-top levitate" aria-label="Retour en haut" title="Retour en haut">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="assets/js/i18n.js"></script>
+  <script>
+    lucide.createIcons();
+    // contact form handler (simulation)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const lang = localStorage.getItem('preferredLanguage') || 'fr';
+        const msg = (typeof translations !== 'undefined' && translations[lang]) ? translations[lang]['contact_success_alert'] : "Merci, votre message a été envoyé (simulation).";
+        alert(msg);
+        contactForm.reset();
+      });
+    }
+
+    // Scroll-to-top button behavior (top-centered)
+    (function () {
+      const btn = document.getElementById('scroll-top-btn');
+      if (!btn) return;
+      const showAt = 300;
+      function toggle() {
+        if (window.scrollY > showAt) btn.classList.add('show'); else btn.classList.remove('show');
+      }
+      window.addEventListener('scroll', toggle, { passive: true });
+      toggle();
+      btn.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    })();
+  </script>
+
+  <script src="assets/js/search.js"></script>
+  <script src="assets/js/navbar-scroll.js"></script>
+  <script src="assets/js/blur-text.js"></script>
+  <script src="assets/js/loader.js"></script>
+</body>
+
+</html>
