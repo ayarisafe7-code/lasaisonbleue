@@ -1,0 +1,310 @@
+/* Bouton Lire Plus Animation */
+a.learn-more {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  width: 12rem;
+  height: auto;
+}
+
+a.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #2dd4bf;
+  /* Turquoise */
+  border-radius: 1.625rem;
+}
+
+a.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+a.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+a.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+a.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+a.learn-more:hover .circle {
+  width: 100%;
+}
+
+a.learn-more:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+a.learn-more:hover .button-text {
+  color: #fff;
+}
+
+/* Bouton Rejoindre - Style de base */
+.btn-join {
+  position: relative;
+  padding: 12px 35px;
+  /* Un peu plus large pour le texte */
+  border-radius: 7px;
+  border: 1px solid #2dd4bf;
+  /* Bordure Turquoise */
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+  background: transparent;
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 0 0 0 transparent;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  text-decoration: none;
+  /* Important pour le lien */
+  display: inline-block;
+}
+
+/* État Hover : Fond Turquoise + Lueur */
+.btn-join:hover {
+  background: #2dd4bf;
+  color: #0f172a;
+  /* Texte foncé pour le contraste sur fond clair */
+  box-shadow: 0 0 30px 5px rgba(45, 212, 191, 0.5);
+  /* Ombre lumineuse turquoise */
+  transition: all 0.2s ease-out;
+}
+
+/* Animation de la barre de lumière (Shine) */
+.btn-join::before {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 86%;
+  position: absolute;
+  top: 7%;
+  left: 0%;
+  opacity: 0;
+  background: #fff;
+  box-shadow: 0 0 50px 30px #fff;
+  transform: skewX(-20deg);
+}
+
+.btn-join:hover::before {
+  animation: sh02 0.5s 0s linear;
+}
+
+@keyframes sh02 {
+  from {
+    opacity: 0;
+    left: 0%;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+/* --- Social Bloom Button --- */
+.social-bloom-btn {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  position: relative;
+  border-radius: 15%;
+  /* Slightly rounded square or use 50% for circle */
+  text-decoration: none;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.bloom-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 50%;
+  /* Circle shape */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container-main {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.button-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.front svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+}
+
+.button-glass {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-15deg);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Bloom Effect */
+.bloom {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+.bloom1 {
+  top: -5px;
+  left: -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  background: #2dd4bf;
+  /* Turquoise glow */
+}
+
+.bloom2 {
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+/* Hover States */
+.social-bloom-btn:hover .button-container-main {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(45, 212, 191, 0.3);
+  border-color: rgba(45, 212, 191, 0.5);
+}
+
+.social-bloom-btn:hover .back {
+  opacity: 1;
+}
+
+.social-bloom-btn:hover .bloom {
+  opacity: 0.6;
+}
+
+.social-bloom-btn:hover .front {
+  transform: scale(1.1);
+  color: #fff;
+}
+
+/* Fix for "Voir plus de vidéos" button text overflow */
+a.learn-more.btn-video-fix {
+  width: auto;
+  min-width: 18rem;
+  padding-right: 1.5rem;
+  white-space: nowrap;
+}
+
+a.learn-more.btn-video-fix .button-text {
+  font-size: 0.85rem;
+  padding: 0.75rem 1rem 0.75rem 0;
+  margin-left: 3.5rem;
+}

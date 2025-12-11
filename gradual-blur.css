@@ -1,0 +1,20 @@
+.gradual-blur {
+    pointer-events: none;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.gradual-blur>div {
+    /* Ensure child layers inherit necessary properties if needed, 
+       but mostly handled by inline styles in JS */
+    will-change: backdrop-filter;
+}
+
+/* Fallback for browsers not supporting backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+    .gradual-blur>div {
+        background: rgba(255, 255, 255, 0.8);
+        /* Or theme color */
+        opacity: 0.1;
+    }
+}

@@ -1,0 +1,256 @@
+/* --- EXTERNAL SIDEBAR MENU CSS --- */
+
+/* --- HEADER FIXE (TRIGGER ONLY) --- */
+.nav-trigger-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px;
+    /* More padding as per design */
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    /* Added gap for spacing */
+    /* Left aligned */
+    align-items: center;
+    z-index: 9999;
+    pointer-events: none;
+    background: transparent;
+}
+
+/* ... */
+
+/* --- HOME BUTTON (Return to Index) --- */
+.home-btn {
+    pointer-events: auto;
+    color: white;
+    cursor: pointer;
+    /* margin-left removed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    mix-blend-mode: difference;
+    /* Match Menu behavior */
+}
+
+/* Logo Removed as per request */
+.logo {
+    display: none;
+}
+
+.menu-btn {
+    pointer-events: auto;
+    color: white;
+    mix-blend-mode: difference;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+}
+
+.btn-icon .line {
+    width: 24px;
+    height: 2px;
+    background: white;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.menu-btn:hover .btn-icon .line:first-child {
+    transform: translateY(2px);
+}
+
+.menu-btn:hover .btn-icon .line:last-child {
+    transform: translateY(-2px);
+}
+
+/* --- BACKDROP (Darkens the site) --- */
+.menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+    /* Higher than Neon Button (9999) */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+    backdrop-filter: blur(4px);
+}
+
+.menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* --- SIDEBAR DRAWER (White, Right Side) --- */
+.menu-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    /* Aligned Right */
+    width: 50%;
+    /* Approx half screen or 600px */
+    max-width: 600px;
+    min-width: 400px;
+    height: 100vh;
+    background-color: #ffffff;
+    z-index: 10001;
+    /* Highest Priority */
+    padding: 80px 60px;
+
+    /* Hidden State (Slide out to right) */
+    transform: translateX(100%);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Active State */
+.menu-drawer.active {
+    transform: translateX(0);
+}
+
+.menu-close-area {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    color: #000;
+    /* Black for white bg */
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.3s;
+}
+
+.menu-close-area:hover {
+    opacity: 0.6;
+}
+
+.main-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Styles des Liens Principaux (Black on White) */
+.nav-item {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.nav-link {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 4rem;
+    /* Big Typography */
+    font-weight: 700;
+    color: #000000;
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.3s;
+    position: relative;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+    .menu-drawer {
+        width: 100%;
+        min-width: 100%;
+        padding: 40px;
+    }
+
+    .nav-link {
+        font-size: 3rem;
+    }
+}
+
+.nav-link:hover {
+    color: #555;
+    /* Dark Grey hover */
+}
+
+.nav-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    color: #6366f1;
+    /* Purple/Blue accent like reference */
+    vertical-align: top;
+    position: absolute;
+    top: 0;
+    right: -30px;
+    /* Superscript style */
+    font-weight: 500;
+}
+
+/* --- SUBMENU (Simple Reveal below) --- */
+.nav-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    overflow: hidden;
+    max-height: 0;
+    /* Hidden */
+    transition: max-height 0.5s ease;
+}
+
+.nav-submenu li a {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: #666;
+    text-decoration: none;
+    padding: 5px 0;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.nav-submenu li a:hover {
+    color: #000;
+    transform: translateX(5px);
+}
+
+/* Hover Reveal */
+.nav-item:hover .nav-submenu {
+    max-height: 500px;
+    /* Increased to prevent cutting off items */
+    transition: max-height 0.5s ease-in-out;
+}
+
+/* --- HOME BUTTON (Return to Index) --- */
+.home-btn {
+    pointer-events: auto;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    mix-blend-mode: difference;
+    /* Match Menu behavior */
+}
+
+.home-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.home-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2;
+}

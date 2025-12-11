@@ -1,0 +1,73 @@
+/* --- NEON SEARCH BAR STYLES --- */
+.neon-search-wrapper {
+    width: 100%;
+    display: none;
+    /* Controlled by JS via inline styles usually, but defaults to none */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.neon-search-wrapper.visible {
+    opacity: 1;
+}
+
+#poda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    /* Match input behavior */
+}
+
+.input {
+    background-color: #1e293b !important;
+    /* Darker background */
+    width: 100% !important;
+    /* Full width always */
+    max-width: 900px !important;
+    /* Fixed max width matching menu */
+    height: 48px;
+    padding: 0 25px;
+    border-radius: 9999px !important;
+    border: 3px solid #38bdf8 !important;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.6) !important;
+    transition: all 0.3s ease;
+}
+
+.input:focus {
+    /* Same width as default to avoid jumping/growing */
+    width: 100% !important;
+    max-width: 900px !important;
+    background-color: #0f172a !important;
+    /* Even darker on focus */
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.9), inset 0 0 10px rgba(56, 189, 248, 0.3) !important;
+    border-color: #7dd3fc !important;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    pointer-events: none;
+}
+
+/* Optional: Additional decorations if needed */
+.glow,
+.darkBorderBg,
+.white,
+.border,
+.input-mask,
+.blue-mask,
+.filterBorder {
+    /* Styles for the complex Uiverse animation if restoring full complexity */
+    /* For now, keeping it clean as Glassy/Neon */
+    display: none;
+    /* Unless we restore the full CSS block which was huge. 
+       Given the user's screenshot showed a simple search bar, this clean version is safer. */
+}

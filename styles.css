@@ -1,0 +1,1523 @@
+/* Custom Styles for BlueHope */
+
+/* Le titre complet : Plus grand, Gras et Italique */
+.main-title {
+    font-family: inherit;
+    font-size: 3rem;
+    /* Agrandissement global du texte */
+    font-weight: 800;
+    /* Très gras (Bold) */
+    font-style: italic;
+    /* Italique */
+    text-align: center;
+    color: #FFFFFF;
+    /* Texte blanc */
+    margin-top: 50px;
+    line-height: 1.4;
+}
+
+/* Les mots à surligner : Encore plus grands que le reste */
+.highlight-sky {
+    position: relative;
+    z-index: 10;
+    white-space: nowrap;
+    font-size: 1.15em;
+    /* 15% plus grand que le reste du titre */
+    display: inline-block;
+}
+
+/* --- NOUVEAU BOUTON STYLE SKETCH (ROSE) --- */
+
+/* Définition des couleurs pour le style Rose */
+/* Définition des couleurs pour le style Rose */
+.type--Rose {
+    --line_color: #ffffff;
+    /* Texte BLANC pour être visible sur le fond sombre */
+    --back_color: #ffecf6;
+    /* ROSE PASTEL (identique à type--A) */
+}
+
+/* Structure du bouton */
+.button {
+    position: relative;
+    z-index: 0;
+    width: 240px;
+    height: 56px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--line_color);
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.button__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-transform: uppercase;
+}
+
+/* Lignes et contours */
+.button::before,
+.button::after,
+.button__text::before,
+.button__text::after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--line_color);
+    transition: all 0.5s ease;
+}
+
+.button::before {
+    top: 0;
+    left: 54px;
+    width: calc(100% - 56px * 2 - 16px);
+}
+
+.button::after {
+    top: 0;
+    right: 54px;
+    width: 8px;
+}
+
+.button__text::before {
+    bottom: 0;
+    right: 54px;
+    width: calc(100% - 56px * 2 - 16px);
+}
+
+.button__text::after {
+    bottom: 0;
+    left: 54px;
+    width: 8px;
+}
+
+/* --- GOOEY BUTTON STYLE --- */
+/* --- GOOEY BUTTON STYLE (GLASSY / NEON REDESIGN) --- */
+.c-button {
+    color: #fff;
+    /* White text initially */
+    font-weight: 700;
+    font-size: 13px;
+    /* Smaller font */
+    text-decoration: none;
+    padding: 0.6em 1.2em;
+    /* Reduced padding */
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    /* Glassy Style */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    /* Pill Shape */
+
+    transition: all 0.3s ease;
+    overflow: hidden;
+    outline: none;
+    min-width: 90px;
+    /* Smaller width */
+    text-align: center;
+}
+
+/* Glassy Search Button */
+.search-btn-glassy {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    /* Proportional square/circle */
+    height: 40px;
+    border-radius: 50%;
+    /* Circle */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+    /* Spacing from Sign In button */
+}
+
+.search-btn-glassy:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+}
+
+.search-btn-glassy svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.5;
+}
+
+/* Gestion du texte WAO vs Sign In */
+.c-button__text {
+    position: relative;
+    z-index: 2;
+    display: block;
+    height: 20px;
+}
+
+.text-initial,
+.text-hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+/* État initial : Sign In (Visible, White) */
+.text-initial {
+    opacity: 1;
+    color: #fff;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* État Hover : WAO (Caché initially) */
+.text-hover {
+    opacity: 0;
+    transform: translate(-50%, 50%) scale(0.5);
+    color: #fff;
+    /* NEON EFFECT */
+    text-shadow: 0 0 5px #fff, 0 0 10px #38bdf8, 0 0 20px #38bdf8;
+}
+
+/* Au survol : Sign In disparaît */
+.c-button:hover .text-initial {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+/* Au survol : WAO apparaît avec Neon Glow */
+.c-button:hover .text-hover {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Animation Blobs/Liquide */
+.c-button__blobs {
+    height: 100%;
+    filter: url(#goo);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    border-radius: 50px;
+    /* Match button radius */
+}
+
+.c-button__blobs div {
+    background: linear-gradient(to bottom, #38bdf8, #2dd4bf);
+    /* Sky Blue to Teal Gradient */
+    width: 32%;
+    height: 100%;
+    border-radius: 100%;
+    position: absolute;
+    transform: scale(1.4) translateY(125%) translateZ(0);
+    transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.c-button__blobs div:nth-child(1) {
+    left: -5%;
+}
+
+.c-button__blobs div:nth-child(2) {
+    left: 30%;
+    transition-delay: 60ms;
+}
+
+.c-button__blobs div:nth-child(3) {
+    left: 66%;
+    transition-delay: 25ms;
+}
+
+.c-button:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    /* Slightly brighter border on hover */
+}
+
+.c-button:hover .c-button__blobs div {
+    transform: scale(1.4) translateY(0) translateZ(0);
+}
+
+.button__line {
+    position: absolute;
+    top: 0;
+    width: 56px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.button__line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150%;
+    height: 100%;
+    border-radius: 300px;
+    border: solid 3px var(--line_color);
+}
+
+.button__line:nth-child(1),
+.button__line:nth-child(1)::before {
+    left: 0;
+}
+
+.button__line:nth-child(2),
+.button__line:nth-child(2)::before {
+    right: 0;
+}
+
+/* Animation Hover */
+.button:hover {
+    letter-spacing: 6px;
+}
+
+.button:hover::before,
+.button:hover .button__text::before {
+    width: 8px;
+}
+
+.button:hover::after,
+.button:hover .button__text::after {
+    width: calc(100% - 56px * 2 - 16px);
+}
+
+/* Animation "Drow" (Gribouillage) */
+.button__drow1,
+.button__drow2 {
+    position: absolute;
+    z-index: -1;
+    border-radius: 16px;
+    transform-origin: 16px 16px;
+    background: var(--back_color);
+}
+
+.button__drow1 {
+    top: -16px;
+    left: 40px;
+    width: 32px;
+    height: 0;
+    transform: rotate(30deg);
+}
+
+.button__drow2 {
+    top: 44px;
+    left: 77px;
+    width: 32px;
+    height: 0;
+    transform: rotate(-127deg);
+}
+
+.button__drow1::before,
+.button__drow1::after,
+.button__drow2::before,
+.button__drow2::after {
+    content: "";
+    position: absolute;
+    background: var(--back_color);
+}
+
+.button__drow1::before {
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 32px;
+    border-radius: 16px;
+    transform-origin: 16px 16px;
+    transform: rotate(-60deg);
+}
+
+.button__drow1::after {
+    top: -10px;
+    left: 45px;
+    width: 0;
+    height: 32px;
+    border-radius: 16px;
+    transform-origin: 16px 16px;
+    transform: rotate(69deg);
+}
+
+.button__drow2::before {
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 32px;
+    border-radius: 16px;
+    transform-origin: 16px 16px;
+    transform: rotate(-146deg);
+}
+
+.button__drow2::after {
+    bottom: 26px;
+    left: -40px;
+    width: 0;
+    height: 32px;
+    border-radius: 16px;
+    transform-origin: 16px 16px;
+    transform: rotate(-262deg);
+}
+
+.button:hover .button__drow1 {
+    animation: drow1 ease-in 0.06s forwards;
+}
+
+.button:hover .button__drow1::before {
+    animation: drow2 linear 0.08s 0.06s forwards;
+}
+
+.button:hover .button__drow1::after {
+    animation: drow3 linear 0.03s 0.14s forwards;
+}
+
+.button:hover .button__drow2 {
+    animation: drow4 linear 0.06s 0.2s forwards;
+}
+
+.button:hover .button__drow2::before {
+    animation: drow3 linear 0.03s 0.26s forwards;
+}
+
+.button:hover .button__drow2::after {
+    animation: drow5 linear 0.06s 0.32s forwards;
+}
+
+@keyframes drow1 {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 100px;
+    }
+}
+
+@keyframes drow2 {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    11% {
+        opacity: 1;
+    }
+
+    100% {
+        width: 120px;
+    }
+}
+
+@keyframes drow3 {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 80px;
+    }
+}
+
+@keyframes drow4 {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 120px;
+    }
+}
+
+@keyframes drow5 {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 124px;
+    }
+}
+
+/* --- WAO ACCESS FORMS (acces.html) --- */
+.wao-access-section {
+    /* No longer needed as section, but classes used in form-wrapper */
+}
+
+.container-wao {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.form-wrapper {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.wao-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.wao-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #888;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    color: #0b1120;
+    border-bottom: 3px solid #2dd4bf;
+    font-weight: bold;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #0b1120;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #2dd4bf;
+    color: #0b1120;
+}
+
+.file-upload-wrapper input[type="file"] {
+    display: none;
+}
+
+.file-label {
+    display: block;
+    padding: 15px;
+    background: #f0f4f8;
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    color: #555;
+}
+
+.error-msg {
+    color: red;
+    display: none;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.row-inputs {
+    display: flex;
+    gap: 20px;
+}
+
+@media(max-width: 600px) {
+    .row-inputs {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* --- STYLE DASHBOARD --- */
+.dashboard-body {
+    background-color: #f3f4f6;
+    font-family: 'Poppins', sans-serif;
+}
+
+.dash-header {
+    background: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.dash-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.logout-btn {
+    color: #dc2626;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+/* Cartes Statistiques */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-info h3 {
+    font-size: 2rem;
+    margin: 0;
+    color: #0b1120;
+}
+
+.stat-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.blue {
+    background: #3b82f6;
+}
+
+.green {
+    background: #10b981;
+}
+
+.purple {
+    background: #8b5cf6;
+}
+
+.orange {
+    background: #f59e0b;
+}
+
+/* Filtres */
+.filter-section {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-controls {
+    display: flex;
+    gap: 15px;
+}
+
+.filter-select,
+.search-input {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* Grille Membres */
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.member-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+}
+
+.member-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.member-avatar {
+    width: 70px;
+    height: 70px;
+    background: #e0f2fe;
+    color: #0284c7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0 auto 15px;
+}
+
+.member-country {
+    color: #64748b;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.member-project {
+    background: #f8fafc;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin: 15px 0;
+    color: #334155;
+}
+
+.contact-btn {
+    background: #0b1120;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    background: #2dd4bf;
+    color: #0b1120;
+}
+
+/* --- NOUVEAU STYLE DES CARTES MEMBRES (Rose Edition) --- */
+
+.members-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.card {
+    width: 250px;
+    /* J'ai élargi un peu pour que les noms longs rentrent */
+    height: 300px;
+    border-radius: 20px;
+    background: #f5f5f5;
+    position: relative;
+    padding: 1.8rem;
+    border: 2px solid #c3c6ce;
+    transition: 0.5s ease-out;
+    overflow: visible;
+}
+
+.card-details {
+    color: black;
+    height: 100%;
+    gap: .5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-button {
+    transform: translate(-50%, 125%);
+    width: 70%;
+    border-radius: 1rem;
+    border: none;
+
+    /* --- CHANGEMENT DE COULEUR ICI (ROSE) --- */
+    background-color: #e11d48;
+    /* Rose Vif */
+
+    color: #fff;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+}
+
+.text-body {
+    color: rgb(134, 134, 134);
+    line-height: 1.4;
+}
+
+/*Text*/
+.text-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #0b1120;
+}
+
+/*Hover Effects*/
+.card:hover {
+    /* --- BORDURE ROSE AU SURVOL --- */
+    border-color: #e11d48;
+    box-shadow: 0 4px 18px 0 rgba(225, 29, 72, 0.25);
+    /* Ombre rosée */
+}
+
+.card:hover .card-button {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+
+
+}
+
+/* Section globale */
+.wao-text-section {
+    padding: 60px 0;
+    width: 100%;
+    /* Tu peux ajouter une image de fond ici si tu veux remplir la partie gauche vide */
+    background-color: #ffffff;
+}
+
+/* La boite de texte style "Reference Photo" (Beige/Crème) */
+.wao-content-box {
+    background-color: #fcfbf7;
+    /* Beige très clair / Crème comme la référence */
+    padding: 50px;
+    border-radius: 8px;
+    /* Coins un peu moins arrondis pour un look plus "bloc" expert */
+
+    /* Logique pour mettre à droite */
+    margin-left: auto;
+    /* Pousse le bloc vers la droite */
+    margin-right: 0;
+    max-width: 100%;
+    /* S'adapte à la colonne de la grille */
+
+    color: #1f2937;
+    /* Gris très foncé pour le contraste */
+    line-height: 1.8;
+    box-shadow: none;
+    /* Souvent les design "flat" beige n'ont pas d'ombre portée marquée, ou très légère */
+}
+
+/* Style des petits titres */
+.wao-content-box h3 {
+    font-weight: 800;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+/* --- BLUR TEXT REVEAL EFFECT --- */
+.blur-in-expand {
+    animation: blurIn 0.8s ease-out forwards;
+    opacity: 0;
+    /* Start hidden */
+    filter: blur(10px);
+}
+
+@keyframes blurIn {
+    0% {
+        opacity: 0;
+        filter: blur(20px);
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
+}
+
+/* --- STACK GALLERY STYLES --- */
+.card-stack {
+    position: relative;
+    width: 320px;
+    /* Largeur de la carte */
+    height: 400px;
+    /* Hauteur de la carte */
+    margin: 0 auto;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border: 4px solid white;
+    background: #fff;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s;
+    /* Centrage de l'image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    /* Empêche le drag de l'image seule */
+}
+
+/* --- CONFIGURATION DU BOUTON FLOTTANT CIRCULAIRE --- */
+
+/* 1. Positionnement Fixe & Forme */
+.button.button-float {
+    position: fixed;
+    left: 30px;
+    /* Marge gauche */
+    top: 50%;
+    /* Centré verticalement */
+    transform: translateY(-50%);
+    z-index: 9999;
+    /* Toujours au-dessus */
+
+    width: 80px;
+    /* Taille du cercle */
+    height: 80px;
+    border-radius: 50%;
+    /* Rend le bouton rond */
+    margin: 0;
+    /* Annule les marges existantes */
+    background: var(--back_color);
+    /* Fond Rose Pastel */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. Adaptation des bordures pour le Cercle */
+/* On cache les traits rectangulaires du design original */
+.button.button-float::before,
+.button.button-float::after,
+.button.button-float .button__text::before,
+.button.button-float .button__text::after {
+    display: none;
+}
+
+/* On adapte les lignes courbes pour faire le tour du cercle */
+.button.button-float .button__line {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    border-radius: 50%;
+}
+
+.button.button-float .button__line::before {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid var(--line_color);
+    box-sizing: border-box;
+    left: 0;
+}
+
+/* 3. Ajustement du Texte et des Gribouillages */
+.button.button-float .button__text {
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+/* Ajustement des "drows" (gribouillis) pour qu'ils partent du centre */
+.button.button-float .button__drow1 {
+    left: 25px;
+    top: -10px;
+}
+
+.button.button-float .button__drow2 {
+    left: 45px;
+    top: 60px;
+}
+
+/* Animation Hover spécifique pour le cercle */
+.button.button-float:hover {
+    transform: translateY(-50%) scale(1.1);
+    /* Grossit légèrement */
+    letter-spacing: 2px;
+    /* Espacement texte plus doux */
+}
+
+/* --- BOUTON FLOTTANT NÉON (ROSE) --- */
+#btn-wao-neon {
+    /* Positionnement Fixe (Float) */
+    position: fixed;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+
+    /* Forme Cercle */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+
+    /* Flexbox pour centrer le texte "WAO" */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    /* Style de base (Inactif) */
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #ffffff80;
+    /* Blanc transparent */
+    background: rgba(0, 0, 0, 0.3);
+    /* Fond sombre léger pour lisibilité */
+    border: 1px solid #ffffff80;
+    box-shadow: transparent;
+    transition: 0.5s ease;
+    user-select: none;
+    backdrop-filter: blur(5px);
+    /* Petit effet de flou moderne */
+}
+
+/* Effet Hover (Au survol) - ROSE NÉON */
+#btn-wao-neon:hover {
+    color: #ffffff;
+    background: #ff0055;
+    /* Rose Néon */
+    border: 1px solid #ff0055;
+
+    /* Glow Effect Rose */
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+    box-shadow: 0 0 5px #ff0055,
+        0 0 20px #ff0055,
+        0 0 50px #ff0055,
+        0 0 100px #ff0055;
+
+    transform: translateY(-50%) scale(1.1);
+    /* Petit agrandissement */
+}
+
+/* --- FINAL FIXED MENU OVERLAY STYLES --- */
+
+/* Header Fixe */
+.nav-trigger-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    pointer-events: none;
+    /* Laisse cliquer le site en dessous */
+}
+
+.logo,
+.menu-btn {
+    pointer-events: auto;
+    color: white;
+    mix-blend-mode: difference;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-icon .line {
+    width: 30px;
+    height: 2px;
+    background: white;
+    margin: 6px 0;
+}
+
+/* Overlay Principal */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0b1120;
+    /* Bleu Nuit Profond */
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* ÉTAT INITIAL : CACHÉ */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+/* Classe active ajoutée par JS */
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-close-area {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.menu-content {
+    width: 100%;
+    max-width: 800px;
+}
+
+.main-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Styles des Liens Principaux */
+.nav-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-link {
+    display: block;
+    font-size: 4rem;
+    /* Très gros comme dans la vidéo */
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+    padding: 20px 0;
+    transition: color 0.3s;
+    line-height: 1;
+}
+
+.nav-link:hover {
+    color: #e11d48;
+    /* Rose au survol */
+}
+
+.nav-num {
+    font-size: 1.2rem;
+    color: #e11d48;
+    vertical-align: top;
+    margin-right: 15px;
+    font-weight: 400;
+}
+
+/* --- MAGIE DU SOUS-MENU (HOVER REVEAL) --- */
+.nav-submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    max-height: 0;
+    /* Hauteur 0 par défaut = Caché */
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+    /* Animation fluide */
+    padding-left: 80px;
+}
+
+.nav-submenu li a {
+    display: block;
+    font-size: 1.5rem;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 5px 0;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.nav-submenu li a:hover {
+    color: white;
+    transform: translateX(10px);
+}
+
+/* AU SURVOL DU PARENT (.nav-item), ON OUVRE LE SOUS-MENU */
+.nav-item:hover .nav-submenu {
+    max-height: 300px;
+    /* Valeur suffisante pour tout afficher */
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .nav-link {
+        font-size: 2.5rem;
+    }
+
+    .nav-submenu {
+        padding-left: 0;
+    }
+}
+
+/* --- GLASSMORPHISM LOGIN CARD (acces.html) --- */
+
+/* Variables pour le style Glassy */
+.glass-login-container {
+    --form-width: 380px;
+    /* Aspect ratio un peu plus grand pour accommoder le texte */
+    --aspect-ratio: 1.45;
+
+    /* Couleurs Glassy */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --input-bg: rgba(0, 0, 0, 0.2);
+    --button-bg: rgba(255, 255, 255, 0.2);
+    --button-hover: rgba(255, 255, 255, 0.4);
+    --text-color: #ffffff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    /* Fond coloré derrière pour bien voir l'effet de verre */
+    background: radial-gradient(circle at 50% 50%, #1a1a2e, #16213e, #0f3460);
+    border-radius: 24px;
+    width: var(--form-width);
+    height: calc(var(--form-width) * var(--aspect-ratio));
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    /* Centering */
+    box-sizing: border-box;
+}
+
+/* Animation de fond (Glow effect) */
+.glass-login-container::before {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: conic-gradient(from 180deg,
+            transparent 60%,
+            #00d4ff 80%,
+            transparent 100%);
+    animation: spin 6s linear infinite;
+    z-index: 1;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.login-box {
+    background: var(--glass-bg);
+    border-radius: 20px;
+    padding: 30px 25px;
+    width: calc(100% - 6px);
+    /* Petit espace pour voir la bordure animée */
+    height: calc(100% - 6px);
+    position: absolute;
+    z-index: 2;
+
+    /* L'EFFET GLASSY CLÉ */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+    justify-content: center;
+}
+
+/* Icone Logo simple */
+.logo {
+    align-self: center;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.user-icon {
+    width: 30px;
+    color: #fff;
+}
+
+.header {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-color);
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    background: var(--input-bg);
+    color: white;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.input:focus {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Styles communs des boutons (maintenant des liens <a>) */
+.button-glassy {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    /* Enlever le soulignement du lien */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    transition: 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+/* Bouton Sign In */
+.sign-in {
+    background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+    box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+}
+
+.sign-in:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+}
+
+/* Bouton Request Access */
+.google-sign-in {
+    background: var(--button-bg);
+    border: 1px solid var(--glass-border);
+}
+
+.google-sign-in:hover {
+    background: var(--button-hover);
+}
+
+.icon {
+    height: 20px;
+    width: 20px;
+}
+
+/* Footer Consentement */
+.footer-consent {
+    margin-top: 5px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+    /* Ensure container is positioned */
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    height: 14px;
+    width: 14px;
+    min-width: 14px;
+    /* Empêche l'écrasement */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+    margin-top: 2px;
+    position: relative;
+    display: inline-block;
+    /* Fix for rendering */
+}
+
+.checkbox-container:hover input~.checkmark {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.checkbox-container input:checked~.checkmark {
+    background-color: #00d2ff;
+    border-color: #00d2ff;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked~.checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 4px;
+    top: 1px;
+    width: 3px;
+    height: 7px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Wrapper for Side-by-Side Layout */
+.login-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    /* Space between card and image */
+    flex-wrap: wrap;
+    /* Responsive wrap */
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.login-image-container {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-side-image {
+    /* Match height of the login box (450px * 1.45 ≈ 652px) */
+    height: 652px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    /* Ensure text remains visible */
+    border-radius: 20px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Adjust Glass Container for Flex Layout */
+.glass-login-container {
+    /* Previously margin: 0 auto; which fights with flex gap */
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .login-page-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+.consent-text {
+    text-align: left;
+}

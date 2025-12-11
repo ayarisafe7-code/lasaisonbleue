@@ -1,0 +1,28 @@
+.sparkle-text {
+    position: relative;
+    display: inline-block;
+}
+
+.sparkle-star {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    animation: sparkle-anim 800ms linear forwards;
+}
+
+@keyframes sparkle-anim {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1) rotate(90deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0) rotate(180deg);
+        opacity: 0;
+    }
+}

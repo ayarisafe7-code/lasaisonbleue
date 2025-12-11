@@ -1,0 +1,60 @@
+/* Loader Overlay */
+#lsb-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#lsb-loader.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* SVG Text Animation */
+.lsb-text {
+    font-family: 'Arial Black', 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 8rem;
+    fill: none;
+    stroke-width: 2px;
+    stroke-dasharray: 400;
+    /* Adjust based on path length */
+    stroke-dashoffset: 400;
+    animation: drawStroke 2s linear infinite alternate;
+}
+
+/* Apply gradients */
+.lsb-text:nth-child(1) {
+    stroke: url(#grad1);
+}
+
+.lsb-text:nth-child(2) {
+    stroke: url(#grad2);
+    animation-delay: 1s;
+    /* Offset for interesting effect */
+}
+
+@keyframes drawStroke {
+    0% {
+        stroke-dashoffset: 400;
+        fill-opacity: 0;
+    }
+
+    50% {
+        stroke-dashoffset: 0;
+        fill-opacity: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        fill-opacity: 1;
+        /* Optional: fill at the end */
+    }
+}

@@ -1,0 +1,56 @@
+/* Conteneur Principal pour Missions */
+.missions-card {
+    position: relative;
+    width: 100%;
+    /* S'adapte au contenu */
+    max-width: 100%;
+    /* Largeur max */
+    border-radius: 16px;
+    z-index: 1;
+    overflow: hidden;
+    padding: 3px;
+    /* Espace pour voir le contour */
+    background: rgba(255, 255, 255, 0.1);
+    /* Fond subtil */
+}
+
+/* Le Blob (La lumière Bleu Ciel PLUS CLAIRE qui tourne) */
+.missions-blob {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    /* Très large pour couvrir les bords */
+    height: 150%;
+    border-radius: 50%;
+    background-color: #bae6fd;
+    /* COULEUR BLEU CIEL PLUS CLAIRE (Sky-200) */
+    opacity: 1;
+    filter: blur(40px);
+    /* Flou pour l'effet glow */
+    animation: blob-bounce 10s infinite linear;
+    /* Rotation plus douce */
+}
+
+/* Le contenu texte (La vitre par dessus) */
+.missions-bg {
+    position: relative;
+    z-index: 2;
+    background: #ffffff;
+    /* Fond blanc opaque */
+    border-radius: 14px;
+    padding: 2rem;
+    /* Espace interne pour le texte */
+    height: 100%;
+}
+
+@keyframes blob-bounce {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
