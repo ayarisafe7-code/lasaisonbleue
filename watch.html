@@ -352,11 +352,11 @@
         </footer>
 
     </div>
-
-    <script src="i18n.js"></script>
+<script src="i18n.js"></script>
     <script>
         lucide.createIcons();
 
+        // --- GESTION DU MENU MOBILE ---
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const closeMenuBtn = document.getElementById('close-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -366,89 +366,54 @@
             closeMenuBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
         }
 
-        // Smooth page transition
+        // --- GESTION DE LA TRANSITION DE PAGE (CORRIGÉE) ---
         (function () {
             const transition = document.getElementById('page-transition');
+            
             function hideOverlay() {
                 if (!transition) return;
-                requestAnimationFrame(() => requestAnimationFrame(() => transition.classList.remove('show')));
-            }
-            function showOverlayThenNavigate(href) {
-                if (!transition) { window.location.href = href; return; }
-                transition.classList.add('show');
-                setTimeout(() => { window.location.href = href; }, 500);
+                // On enlève la classe 'show' pour rendre la page visible
+                requestAnimationFrame(() => transition.classList.remove('show'));
             }
 
+            // 1. Essayer de cacher dès que le DOM est prêt
             document.addEventListener('DOMContentLoaded', hideOverlay);
+            
+            // 2. FORCE DE SÉCURITÉ : Si Tailwind CDN est trop lent, on affiche quand même la page après 500ms
+            setTimeout(hideOverlay, 500);
 
+            // Gestion des clics sur les liens pour l'effet de transition
             document.addEventListener('click', (e) => {
                 const a = e.target.closest('a');
                 if (!a) return;
                 const href = a.getAttribute('href');
-                if (!href) return;
-                if (href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+                if (!href || href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+                
                 try {
                     const url = new URL(href, window.location.href);
-                    if (url.origin !== window.location.origin) return;
-                    if (a.target && a.target === '_blank') return;
-                    if (url.href === window.location.href) return;
+                    if (url.origin !== window.location.origin) return; // Liens externes
+                    if (a.target === '_blank') return;
+                    if (url.href === window.location.href) return; // Même page
+                    
                     e.preventDefault();
-                    showOverlayThenNavigate(url.href);
-                } catch (err) { }
+                    transition.classList.add('show');
+                    // Petit délai pour laisser l'animation se jouer avant de changer de page
+                    setTimeout(() => { window.location.href = href; }, 300);
+                } catch (err) { 
+                    // En cas d'erreur d'URL, on laisse le navigateur gérer normalement
+                }
             });
         })();
 
-        // Video Logic
+        // --- LOGIQUE VIDÉO ---
         (function () {
             const videos = {
-                'sda1mTVVuBk': {
-                    titleKey: "video_1_title",
-                    descKey: "video_1_desc",
-                    year: '2025',
-                    duration: '1 min',
-                    director: "Rym Ben Zina",
-                    editor: "Seif Ayari"
-                },
-                'TqgyrPZ5Wnk': {
-                    titleKey: "video_2_title",
-                    descKey: "video_2_desc",
-                    year: '2025',
-                    duration: '2 min',
-                    director: "Rym Ben Zina",
-                    editor: "Seif Ayari"
-                },
-                'ogTie8VOWPM': {
-                    titleKey: "video_3_title",
-                    descKey: "video_3_desc",
-                    year: '2024',
-                    duration: '1:40 min',
-                    director: "Rym Ben Zina",
-                    editor: "Seif Ayari"
-                },
-                'eGm5OkTbI9Y': {
-                    titleKey: "video_4_title",
-                    descKey: "video_4_desc",
-                    year: '2023',
-                    duration: '5 min',
-                    director: "Rym Ben Zina",
-                    editor: "Seif Ayari"
-                },
-                'CgR7wuyBp3U': {
-                    titleKey: "video_5_title",
-                    descKey: "video_5_desc",
-                    year: '2024',
-                    duration: '0:36 min',
-                    director: "Rym Ben Zina",
-                    editor: "Seif Ayari"
-                },
-                '7rfviK2MwIs': {
-                    titleKey: "video_6_title",
-                    descKey: "video_6_desc",
-                    year: '2024',
-                    duration: '2:03 min',
-                    director: "Rym Ben Zina",
-                    editor: "Seif Ayari"
-                }
+                'sda1mTVVuBk': { titleKey: "video_1_title", descKey: "video_1_desc", year: '2025', duration: '1 min', director: "Rym Ben Zina", editor: "Seif Ayari" },
+                'TqgyrPZ5Wnk': { titleKey: "video_2_title", descKey: "video_2_desc", year: '2025', duration: '2 min', director: "Rym Ben Zina", editor: "Seif Ayari" },
+                'ogTie8VOWPM': { titleKey: "video_3_title", descKey: "video_3_desc", year: '2024', duration: '1:40 min', director: "Rym Ben Zina", editor: "Seif Ayari" },
+                'eGm5OkTbI9Y': { titleKey: "video_4_title", descKey: "video_4_desc", year: '2023', duration: '5 min', director: "Rym Ben Zina", editor: "Seif Ayari" },
+                'CgR7wuyBp3U': { titleKey: "video_5_title", descKey: "video_5_desc", year: '2024', duration: '0:36 min', director: "Rym Ben Zina", editor: "Seif Ayari" },
+                '7rfviK2MwIs': { titleKey: "video_6_title", descKey: "video_6_desc", year: '2024', duration: '2:03 min', director: "Rym Ben Zina", editor: "Seif Ayari" }
             };
 
             const params = new URLSearchParams(window.location.search);
@@ -461,37 +426,56 @@
             const metaYear = document.getElementById('meta-year');
             const metaDuration = document.getElementById('meta-duration');
 
-            if (videoId && videos[videoId]) {
-                const video = videos[videoId];
-                player.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
-
-                const lang = localStorage.getItem('language') || 'fr';
-
-                if (typeof translations !== 'undefined' && translations[lang]) {
-                    titleEl.textContent = translations[lang][video.titleKey] || video.titleKey;
-                    descEl.textContent = translations[lang][video.descKey] || video.descKey;
-                    document.title = `${translations[lang][video.titleKey]} - BlueHope`;
-                }
-
-                if (creditsEl) {
-                    creditsEl.innerHTML = `
-                        <p><span class="text-white font-semibold">Directed by :</span> ${video.director}</p>
-                        <p><span class="text-white font-semibold">Edited and Scripted by :</span> ${video.editor}</p>
-                    `;
-                }
-
-                if (metaYear) metaYear.textContent = video.year;
-                if (metaDuration) metaDuration.textContent = video.duration;
-
-            } else {
-                titleEl.textContent = "Vidéo non trouvée";
-                descEl.textContent = "Désolé, la vidéo demandée n'existe pas ou a été supprimée.";
+            // Vérification simple pour éviter les erreurs si l'ID est manquant
+            if (!videoId || !videos[videoId]) {
+                if(titleEl) titleEl.textContent = "Vidéo non sélectionnée";
+                if(descEl) descEl.textContent = "Veuillez sélectionner une vidéo depuis la page précédente.";
+                return;
             }
+
+            const video = videos[videoId];
+            
+            // Chargement de la vidéo Youtube
+            if(player) player.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+
+            // Gestion Langue & Textes
+            const lang = localStorage.getItem('language') || 'fr';
+            
+            let finalTitle = video.titleKey;
+            let finalDesc = video.descKey;
+
+            // On vérifie si i18n est bien chargé
+            if (typeof translations !== 'undefined' && translations[lang]) {
+                finalTitle = translations[lang][video.titleKey] || video.titleKey;
+                finalDesc = translations[lang][video.descKey] || video.descKey;
+            } else {
+                console.warn("Fichier i18n.js non chargé ou langue introuvable. Affichage des clés brutes.");
+            }
+
+            if(titleEl) titleEl.textContent = finalTitle;
+            if(descEl) descEl.textContent = finalDesc;
+            
+            // Mise à jour du titre de l'onglet
+            document.title = `${finalTitle} - BlueHope`;
+
+            // Crédits
+            if (creditsEl) {
+                creditsEl.innerHTML = `
+                    <p><span class="text-white font-semibold">Directed by :</span> ${video.director}</p>
+                    <p><span class="text-white font-semibold">Edited and Scripted by :</span> ${video.editor}</p>
+                `;
+            }
+
+            // Métadonnées
+            if (metaYear) metaYear.textContent = video.year;
+            if (metaDuration) metaDuration.textContent = video.duration;
         })();
     </script>
     <script src="navbar-scroll.js"></script>
     <script src="blur-text.js"></script>
     <script src="loader.js"></script>
+</body>
+    
 </body>
 
 </html>
