@@ -16,14 +16,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Playfair Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
-        
     <link rel="stylesheet" href="glassy-search.css">
     <link rel="stylesheet" href="glassy-menu.css">
     <link rel="stylesheet" href="loader.css">
     <link rel="stylesheet" href="sparkle.css">
     <link rel="stylesheet" href="blur-text.css">
-    <link rel="stylesheet" href="animated-button.css">
-    
+    <link rel="stylesheet" href=animated-button.css">
     <style>
         /* Copié depuis index.html pour conserver la même typographie/visuel */
         .font-arabic {
@@ -69,4 +67,840 @@
         .counter-card {
             background: white;
             border-radius: 0.75rem;
-            padding
+            padding: 1.75rem;
+        }
+
+        /* Page transition overlay (match index.html) */
+        .page-transition {
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            background: #020617;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 300ms ease;
+        }
+
+        .page-transition.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Title entrance animation */
+        .title-entrance {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: titleFadeUp 700ms cubic-bezier(.2, .9, .3, 1) forwards;
+        }
+
+        @keyframes titleFadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll reveal base */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            will-change: opacity, transform;
+            transition: opacity 700ms cubic-bezier(.2, .9, .3, 1), transform 700ms cubic-bezier(.2, .9, .3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Slightly faster reveal for stats cards */
+        .reveal.stat-card {
+            transition-duration: 600ms;
+        }
+
+        /* Scroll-to-top button (top-centered minimal design + levitation) */
+        .scroll-top {
+            position: fixed;
+            top: 8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            border: 2px solid rgba(255, 255, 255, 1);
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 200ms ease, transform 200ms ease, background-color 150ms ease;
+        }
+
+        .scroll-top:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-top svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+        }
+
+        /* Levitation animation */
+        .levitate {
+            animation: levitate 3s ease-in-out infinite;
+        }
+
+        @keyframes levitate {
+            0% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(5px);
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-white bg-slate-900">
+
+    <!-- Page transition overlay (initially visible, removed on load) -->
+    <div id="page-transition" class="page-transition show"></div>
+
+
+    <!-- CSS for Sidebar Menu -->
+    <link rel="stylesheet" href="sidebar-menu.css">
+
+    <!-- HEADER FIXE (LEFT TRIGGER) -->
+    <header class="nav-trigger-container">
+        <!-- Logo REMOVED -->
+        <!-- Home Button -->
+        <a href="index.html" class="home-btn" title="Retour à l'accueil">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+        </a>
+
+        <div class="menu-btn" id="menuToggle">
+            <span>MENU</span>
+            <div class="btn-icon">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BACKDROP & DRAWER -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+
+    <div class="menu-drawer" id="menuDrawer">
+        <!-- Close Button inside drawer -->
+        <div class="menu-close-area" id="menuCloseBtn">Close <i class="fas fa-times"></i></div>
+
+        <div class="menu-content">
+            <ul class="main-nav-list">
+
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        ACCUEIL
+                        <span class="nav-num">01</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="missions.html">Nos missions</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        INITIATIVE
+                        <span class="nav-num">02</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="wao.html">Women Actions for the Ocean</a></li>
+                        <li><a href="pacte-afrique.html">Le Pacte pour une Afrique Bleue Durable</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        ÉVÉNEMENTS
+                        <span class="nav-num">03</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="blue-africa-summit.html">Blue Africa Summit</a></li>
+                        <li><a href="grande-maree.html">La Grande Marée</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        ACTU & MEDIA
+                        <span class="nav-num">04</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="#">Photos</a></li> <!-- No Photos page found yet -->
+                        <li><a href="videos.html">Vidéos</a></li>
+                        <li><a href="documents.html">Documents</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">
+                        CONTACT
+                        <span class="nav-num">05</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- SCRIPT (Updated for Drawer) -->
+    <script src="sidebar-menu.js"></script>
+
+
+    <!-- Hero -->
+    <!-- Hero -->
+    <section class="relative h-[60vh] min-h-[500px] w-full overflow-hidden flex items-center justify-center">
+        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-10"
+            style="object-position: 50% 35%;">
+            <source src="./Design_sans_titre_compressed.mp4" type="video/mp4">
+        </video>
+        <!-- Overlay for better text readability -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0b1c2e]/60 to-[#0b1c2e]/35 z-0"></div>
+        <!-- Bottom Gradient Fade -->
+        <div
+            class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-slate-900 z-0 pointer-events-none">
+        </div>
+
+        <div class="relative z-10 text-center px-6">
+
+
+        </div>
+    </section>
+
+    <!-- Article -->
+    <main class="container mx-auto px-6 py-16">
+        <section class="wao-text-section" style="background-color: #ffffff; width: 100%; padding: 60px 0;">
+            <!-- Grid Layout for split screen design -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch">
+                <!-- gap-0 for no space between white and beige if needed, or keeping it distinct -->
+
+                <!-- Left Column: Header (White Background) - Align Top -->
+                <div class="relative p-12 flex flex-col justify-start"
+                    style="background-color: #ffffff; padding-top: 80px;">
+                    <!-- Inline Style Fallback for Blur Animation to bypass cache issues -->
+                    <style>
+                        @keyframes blurInInline {
+                            0% {
+                                opacity: 0;
+                                filter: blur(20px);
+                                transform: scale(0.9);
+                            }
+
+                            100% {
+                                opacity: 1;
+                                filter: blur(0);
+                                transform: scale(1);
+                            }
+                        }
+
+                        .blur-in-expand-inline {
+                            animation: blurInInline 0.8s ease-out forwards;
+                            opacity: 0;
+                        }
+                    </style>
+
+                    <div style="max-width: 500px; margin-left: auto; margin-right: 0;">
+                        <!-- Align text block to the right edge of the left column for visual balance -->
+                        <span
+                            style="display: block; font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; color: #6b7280; margin-bottom: 20px; font-weight: 600;">
+                            Your impact begins today
+                        </span>
+                        <!-- Added class blur-in-expand-inline -->
+                        <h2 class="blur-in-expand-inline"
+                            style="font-size: 4.5rem; line-height: 1.1; font-weight: 800; color: #000000; margin: 0;">
+                            From Vision to Action:<br>Women Protecting Our Seas
+                        </h2>
+
+                        <!-- STACK GALLERY SECTION -->
+                        <!-- Inline CSS for Stack Gallery to ensure it loads immediately -->
+                        <style>
+                            .card-stack {
+                                position: relative;
+                                width: 360px;
+                                height: 460px;
+                                margin: 0 auto;
+                                perspective: 1000px;
+                                cursor: pointer;
+                            }
+
+                            .card-item {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 20px;
+                                overflow: hidden;
+                                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                                border: 4px solid white;
+                                background: #fff;
+                                transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+
+                            .card-item img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                pointer-events: none;
+                            }
+                        </style>
+
+                        <div class="stack-section-container"
+                            style="display: flex; justify-content: center; padding: 60px 0; overflow: visible;">
+                            <div class="card-stack" id="waoStack">
+                                <div class="card-item"><img
+                                        src="assets/waofemme/505432540_1145425747618405_6060037760188224203_n.jpg"
+                                        alt="Woman Action 3"></div>
+                                <div class="card-item"><img src="./DSC_5829-scaled.png"
+                                        alt="Women Actions for the Ocean Event"></div>
+                                <div class="card-item"><img
+                                        src="assets/waofemme/505248443_1145425760951737_2080303725801888872_n.jpg"
+                                        alt="Woman Action 1"></div>
+                                <div class="card-item"><img
+                                        src="assets/waofemme/505335607_1145425667618413_6513283272066628497_n.jpg"
+                                        alt="Woman Action 2"></div>
+                                <div class="card-item"><img
+                                        src="assets/waofemme/505577724_1145425687618411_6058316380577536515_n.jpg"
+                                        alt="Woman Action 4"></div>
+                                <div class="card-item"><img
+                                        src="assets/waofemme/505710194_1145426410951672_1647953182361824183_n.jpg"
+                                        alt="Woman Action 5"></div>
+                                <div class="card-item"><img
+                                        src="assets/waofemme/505781430_1145425767618403_314557103891790005_n.jpg"
+                                        alt="Woman Action 6"></div>
+                                <div class="card-item"><img
+                                        src="assets/waofemme/505830870_1145425757618404_1874090265663324580_n.jpg"
+                                        alt="Woman Action 7"></div>
+                            </div>
+                        </div>
+                        <!-- END STACK GALLERY -->
+
+                    </div>
+                </div>
+
+                <!-- Right Column: Content Box (Beige Background) - Align Top -->
+                <div class="relative p-12 flex flex-col justify-start"
+                    style="background-color: #fcfbf7; padding-top: 80px;">
+                    <!-- Inline Style to FORCE Justify Alignment (Bypass Cache) -->
+                    <style>
+                        .wao-content-box p {
+                            text-align: justify !important;
+                            text-justify: inter-word !important;
+                        }
+                    </style>
+                    <div class="wao-content-box reveal" style="max-width: 600px; color: #1f2937; line-height: 1.8;">
+
+                        <!-- NEW ADDED TITLE -->
+                        <h3
+                            style="font-size: 1.8rem; font-weight: 800; color: #000000; margin-bottom: 25px; line-height: 1.3;">
+                            100% of Women are Engaged to Ocean Protection.
+                        </h3>
+
+                        <p style="margin-bottom: 20px; font-weight: 600;">L’initiative Women Actions for the Ocean (WAO)
+                            est née dans le cadre de la 3ᵉ Conférence des Nations Unies sur l’Océan (UNOC3),
+                            co-organisée par la France et le Costa Rica, qui se tiendra à Nice le 8 juin 2025, Journée
+                            Mondiale de l’Océan.</p>
+
+                        <p style="margin-bottom: 20px;">Elle s’inscrit dans la continuité des actions engagées par les
+                            Women Ocean Guardians, notamment lors de la conférence “Immersed in Change” au Costa Rica.
+                            Women Actions for the Ocean vise à mettre en lumière le rôle fondamental des femmes engagées
+                            à travers le monde pour la protection, la restauration et la durabilité de l’Océan.</p>
+
+                        <p style="margin-bottom: 20px;">Chercheuses, entrepreneures, décideuses, actrices de terrain ou
+                            leaders communautaires : toutes contribueront à présenter des solutions concrètes,
+                            innovantes et inspirantes face au changement climatique et à l’érosion de la biodiversité
+                            marine.</p>
+
+                        <p>WAO se veut un espace d’expression et de dialogue, valorisant l’engagement féminin dans
+                            l’économie bleue, la gouvernance océanique et la résilience des écosystèmes. Leurs
+                            témoignages viendront enrichir les discussions de l’UNOC3 et renforcer la visibilité des
+                            actions locales au niveau international.</p>
+
+                        <h3
+                            style="color: #0284c7; font-weight: 800; margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">
+                            Une plateforme dédiée pour partager projets et témoignages</h3>
+
+                        <p>Afin de prolonger cette dynamique au-delà de l’UNOC3, une plateforme digitale Women Actions
+                            for the Ocean a été créée. Elle permet à toutes les femmes souhaitant partager leur
+                            parcours, projet, initiative ou engagement pour l’Océan de déposer leur témoignage et de
+                            rejoindre une communauté internationale dédiée à l’impact et à la coopération.</p>
+
+                        <h3
+                            style="color: #0284c7; font-weight: 800; margin-top: 30px; margin-bottom: 15px; font-size: 1.3rem;">
+                            Prochain rendez-vous : un Side-Event à Paris en mars 2026</h3>
+
+                        <p>Dans la continuité de cette initiative mondiale, La Saison Bleue organisera un side-event
+                            Women Actions for the Ocean lors du Festival La Grande Marée, qui aura lieu à Paris du 20 au
+                            22 mars 2026. Cet événement prolongera l’élan du WAO, donnera la parole à de nouvelles voix
+                            féminines de la Méditerranée et d’ailleurs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats section -->
+        <section class="mt-12">
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 reveal-stats-trigger">
+                <div class="counter-card text-center stat-card visible">
+                    <div class="text-4xl font-bold text-blue-800 mb-2"><span class="counter" data-target="100">0</span>+
+                    </div>
+                    <p class="text-gray-600 font-medium" data-i18n="wao_stats_women">Femmes participantes autour du
+                        monde</p>
+                </div>
+                <div class="counter-card text-center stat-card visible">
+                    <div class="text-4xl font-bold text-blue-800 mb-2"><span class="counter" data-target="70">0</span>+
+                    </div>
+                    <p class="text-gray-600 font-medium" data-i18n="wao_stats_projects">Projets partagés</p>
+                </div>
+                <div class="counter-card text-center stat-card visible">
+                    <div class="text-4xl font-bold text-blue-800 mb-2"><span class="counter" data-target="100">0</span>+
+                    </div>
+                    <p class="text-gray-600 font-medium" data-i18n="wao_stats_initiatives">Initiatives portées</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Videos Section -->
+    <section class="video-section-bg py-16 relative w-full"
+        style="background: linear-gradient(to bottom, #0f172a 0%, rgba(15, 23, 42, 0.4) 15%, rgba(11, 28, 46, 0.6) 50%, rgba(15, 23, 42, 0.4) 85%, #0f172a 100%), url('covervideowao.webp') no-repeat center center; background-size: cover;">
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-3xl font-bold text-center text-white mb-12 animate-title" data-i18n="wao_videos_title">Nos
+                Actions
+                en Vidéo</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Video 1 -->
+                <div class="aspect-video rounded-xl shadow-lg overflow-hidden">
+                    <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/5cBYKKaWOoI?rel=0"
+                        title="Video 1" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <!-- Video 2 -->
+                <div class="aspect-video rounded-xl shadow-lg overflow-hidden">
+                    <iframe class="w-full h-full"
+                        src="https://www.youtube-nocookie.com/embed/itWfpSUrAZ0?start=604&rel=0" title="Video 2"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <!-- Video 3 -->
+                <div class="aspect-video rounded-xl shadow-lg overflow-hidden">
+                    <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/XwhzI2Q1aDo?rel=0"
+                        title="Video 3" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <div class="flex justify-center mt-12">
+                <a href="https://www.youtube.com/@WomenActionsForTheOcean" target="_blank"
+                    class="learn-more btn-video-fix">
+                    <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text" data-i18n="wao_see_more_videos">Voir plus de vidéos</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Simple footer -->
+    <footer class="relative bg-slate-900 text-white py-16 overflow-hidden">
+        <!-- Background Image Placeholder (Dark gradient) -->
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-slate-900/90 z-0"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Top Section -->
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+                <div>
+                    <h2 class="text-5xl md:text-7xl font-serif font-bold tracking-tight mb-2 animate-agissons"
+                        data-i18n="footer_cta_title">
+                        Agissons Ensemble</h2>
+                </div>
+                <div class="flex flex-col items-end gap-4">
+
+                    <a href="contact.html" class="btn-join">
+                        Newsletter
+                    </a>
+                </div>
+            </div>
+            <!-- Divider -->
+            <div class="w-full h-px bg-white/10 mb-12"></div>
+            <!-- Bottom Section -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-sm text-gray-400">
+                <!-- Menu -->
+                <div>
+                    <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_menu">Menu
+                    </h3>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="hover:text-white transition-colors"
+                                data-i18n="nav_home">Accueil</a></li>
+                        <li><a href="wao.html" class="hover:text-white transition-colors"
+                                data-i18n="nav_initiative">Initiative</a>
+                        </li>
+                        <li><a href="grande-maree.html" class="hover:text-white transition-colors"
+                                data-i18n="nav_events">Nos
+                                événements</a></li>
+                        <li><a href="news.html" class="hover:text-white transition-colors" data-i18n="nav_news">News</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Contact -->
+                <div class="md:col-span-2">
+                    <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_contact">
+                        Contact
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i><span>94,
+                                avenue Émile
+                                Zola, 75015 Paris</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i><span>+33 7 88 69
+                                58
+                                94</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i><a
+                                href="mailto:contact@lasaisonbleue.com"
+                                class="hover:text-white transition-colors">contact@lasaisonbleue.com</a></li>
+                    </ul>
+                </div>
+                <!-- Socials -->
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6"
+                            data-i18n="footer_follow">
+                            Suivez-nous</h3>
+                        <div class="flex gap-4">
+                            <!-- Instagram -->
+                            <a href="https://www.instagram.com/lasaisonbleue/?hl=fr" target="_blank"
+                                class="social-bloom-btn" aria-label="Instagram">
+                                <div class="bloom-container">
+                                    <div class="button-container-main">
+                                        <div class="button-inner">
+                                            <div class="back"></div>
+                                            <div class="front">
+                                                <i data-lucide="instagram"></i>
+                                            </div>
+                                        </div>
+                                        <div class="button-glass"></div>
+                                    </div>
+                                    <div class="bloom bloom1"></div>
+                                    <div class="bloom bloom2"></div>
+                                </div>
+                            </a>
+
+                            <!-- Facebook -->
+                            <a href="https://www.facebook.com/lasaisonbleue/?locale=fr_FR" target="_blank"
+                                class="social-bloom-btn" aria-label="Facebook">
+                                <div class="bloom-container">
+                                    <div class="button-container-main">
+                                        <div class="button-inner">
+                                            <div class="back"></div>
+                                            <div class="front">
+                                                <i data-lucide="facebook"></i>
+                                            </div>
+                                        </div>
+                                        <div class="button-glass"></div>
+                                    </div>
+                                    <div class="bloom bloom1"></div>
+                                    <div class="bloom bloom2"></div>
+                                </div>
+                            </a>
+
+                            <!-- YouTube -->
+                            <a href="https://www.youtube.com/@lasaisonbleue3150" target="_blank"
+                                class="social-bloom-btn" aria-label="YouTube">
+                                <div class="bloom-container">
+                                    <div class="button-container-main">
+                                        <div class="button-inner">
+                                            <div class="back"></div>
+                                            <div class="front">
+                                                <i data-lucide="youtube"></i>
+                                            </div>
+                                        </div>
+                                        <div class="button-glass"></div>
+                                    </div>
+                                    <div class="bloom bloom1"></div>
+                                    <div class="bloom bloom2"></div>
+                                </div>
+                            </a>
+
+                            <!-- LinkedIn -->
+                            <a href="https://www.linkedin.com/company/la-saison-bleue/posts/?feedView=all"
+                                target="_blank" class="social-bloom-btn" aria-label="LinkedIn">
+                                <div class="bloom-container">
+                                    <div class="button-container-main">
+                                        <div class="button-inner">
+                                            <div class="back"></div>
+                                            <div class="front">
+                                                <i data-lucide="linkedin"></i>
+                                            </div>
+                                        </div>
+                                        <div class="button-glass"></div>
+                                    </div>
+                                    <div class="bloom bloom1"></div>
+                                    <div class="bloom bloom2"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-12 md:mt-0 text-right">
+                        <p class="text-[10px] text-gray-600" data-i18n="footer_powered">Powered by Image&Actions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button (top center) -->
+    <button id="scroll-top-btn" class="scroll-top levitate" aria-label="Retour en haut" title="Retour en haut">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <script>
+        // Icons + mobile menu logic (copié de index.html)
+        lucide.createIcons();
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && closeMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+            closeMenuBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+        }
+
+        // Count up animation (adapted to add '+' sign)
+        const counters = document.querySelectorAll('.counter');
+        let hasAnimated = false;
+        function animateCounters() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current).toLocaleString('fr-FR');
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target.toLocaleString('fr-FR');
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        const statsSection = document.querySelector('section.mt-12');
+        if (statsSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        animateCounters();
+                        hasAnimated = true;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            observer.observe(statsSection);
+        }
+
+        // Also trigger counters on load if the stats are already visible (page may be short)
+        document.addEventListener('DOMContentLoaded', () => {
+            if (hasAnimated) return;
+            const rect = statsSection && statsSection.getBoundingClientRect();
+            if (rect && rect.top < window.innerHeight) {
+                animateCounters();
+                hasAnimated = true;
+            }
+        });
+
+        // Scroll reveal: add 'visible' when elements enter viewport. Use stagger for stats cards.
+        (function () {
+            const revealObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const el = entry.target;
+                    // If this is the stats trigger container, reveal children with a stagger
+                    if (el.classList && el.classList.contains('reveal-stats-trigger')) {
+                        const cards = el.querySelectorAll('.reveal.stat-card');
+                        cards.forEach((card, i) => {
+                            setTimeout(() => card.classList.add('visible'), i * 120);
+                        });
+                        obs.unobserve(el);
+                        return;
+                    }
+                    el.classList.add('visible');
+                    obs.unobserve(el);
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        })();
+
+        // Page transition: fade overlay on load and intercept internal links
+        (function () {
+            const overlay = document.getElementById('page-transition');
+            if (!overlay) return;
+
+            document.addEventListener('DOMContentLoaded', () => {
+                requestAnimationFrame(() => overlay.classList.remove('show'));
+            });
+
+            function isSameOrigin(href) {
+                try {
+                    const url = new URL(href, location.href);
+                    return url.origin === location.origin;
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            document.addEventListener('click', (e) => {
+                const a = e.target.closest && e.target.closest('a');
+                if (!a) return;
+                if (a.target === '_blank' || a.hasAttribute('download')) return;
+                const href = a.getAttribute('href');
+                if (!href || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+                // allow anchors that are only hashes to behave normally
+                if (href.startsWith('#')) return;
+
+                const absoluteHref = a.href;
+                if (isSameOrigin(absoluteHref)) {
+                    e.preventDefault();
+                    overlay.classList.add('show');
+                    setTimeout(() => { window.location.href = absoluteHref; }, 300);
+                }
+            }, { passive: true });
+        })();
+
+        // Scroll-to-top button behavior (top-centered)
+        (function () {
+            const btn = document.getElementById('scroll-top-btn');
+            if (!btn) return;
+            const showAt = 300;
+            function toggle() {
+                if (window.scrollY > showAt) btn.classList.add('show'); else btn.classList.remove('show');
+            }
+            window.addEventListener('scroll', toggle, { passive: true });
+            toggle();
+            btn.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        })();
+    </script>
+    <script src="i18n.js"></script>
+    <script src="search.js"></script>
+    <script src="navbar-scroll.js"></script>
+    <script src="blur-text.js"></script>
+    <script src="loader.js"></script>
+    <script src="sparkle.js"></script>
+    <!-- Main Script (including Stack Gallery) -->
+    <script src="script.js"></script>
+    <!-- Neon Glow Button WAO (Inline CSS to bypass cache) -->
+    <style>
+        /* --- BOUTON FLOTTANT NÉON (ROSE) --- */
+        #btn-wao-neon {
+            /* Positionnement Fixe (Float) */
+            position: fixed;
+            right: 30px;
+            /* POSITION DROITE */
+            left: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 9999;
+            will-change: transform;
+            /* Optimisation performance */
+
+            /* Forme Cercle */
+            width: 100px;
+            /* Agrandissement pour le texte */
+            height: 100px;
+            border-radius: 50%;
+
+            /* Flexbox pour centrer le texte */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            text-align: center;
+            /* Pour le texte sur 2 lignes */
+            line-height: 1.2;
+
+            /* Style de base (Inactif) */
+            padding: 0;
+            text-transform: uppercase;
+            font-size: 14px;
+            /* Un peu plus petit pour tenir */
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.7);
+            /* Blanc transparent */
+            background: rgba(0, 0, 0, 0.4);
+            /* Fond sombre léger */
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: transparent;
+            transition: 0.5s ease;
+            user-select: none;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Effet Hover (Au survol) - ROSE NÉON */
+        #btn-wao-neon:hover {
+            color: #ffffff;
+            background: #ff0055;
+            /* Rose Néon */
+            border: 1px solid #ff0055;
+
+            /* Glow Effect Rose */
+            text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+            box-shadow: 0 0 5px #ff0055,
+                0 0 20px #ff0055,
+                0 0 50px #ff0055,
+                0 0 100px #ff0055;
+
+            transform: translateY(-50%) scale(1.1);
+            /* Petit agrandissement */
+        }
+    </style>
+
+    <a href="acces.html" id="btn-wao-neon">Espace<br>WAO</a>
+</body>
+
+</html>
