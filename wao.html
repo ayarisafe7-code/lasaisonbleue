@@ -16,12 +16,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Playfair Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="glassy-search.css">
-    <link rel="stylesheet" href="glassy-menu.css">
-    <link rel="stylesheet" href="loader.css">
-    <link rel="stylesheet" href="sparkle.css">
-    <link rel="stylesheet" href="blur-text.css">
-    <link rel="stylesheet" href="animated-button.css">
+    <link rel="stylesheet" href="assets/css/glassy-search.css">
+    <link rel="stylesheet" href="assets/css/glassy-menu.css">
+    <link rel="stylesheet" href="assets/css/loader.css">
+    <link rel="stylesheet" href="assets/css/sparkle.css">
+    <link rel="stylesheet" href="assets/css/blur-text.css">
+    <link rel="stylesheet" href="assets/css/animated-button.css">
     <style>
         /* Copié depuis index.html pour conserver la même typographie/visuel */
         .font-arabic {
@@ -177,17 +177,12 @@
 
 <body class="font-sans antialiased text-white bg-slate-900">
 
-    <!-- Page transition overlay (initially visible, removed on load) -->
     <div id="page-transition" class="page-transition show"></div>
 
 
-    <!-- CSS for Sidebar Menu -->
-    <link rel="stylesheet" href="sidebar-menu.css">
+    <link rel="stylesheet" href="assets/css/sidebar-menu.css">
 
-    <!-- HEADER FIXE (LEFT TRIGGER) -->
     <header class="nav-trigger-container">
-        <!-- Logo REMOVED -->
-        <!-- Home Button -->
         <a href="index.html" class="home-btn" title="Retour à l'accueil">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -205,11 +200,9 @@
         </div>
     </header>
 
-    <!-- BACKDROP & DRAWER -->
     <div class="menu-backdrop" id="menuBackdrop"></div>
 
     <div class="menu-drawer" id="menuDrawer">
-        <!-- Close Button inside drawer -->
         <div class="menu-close-area" id="menuCloseBtn">Close <i class="fas fa-times"></i></div>
 
         <div class="menu-content">
@@ -223,7 +216,7 @@
                     <ul class="nav-submenu">
                         <li><a href="about.html">À propos</a></li>
                         <li><a href="missions.html">Nos missions</a></li>
-                        <li><a href="partenaires.html">Nos partenaires</a></li>
+
                     </ul>
                 </li>
 
@@ -256,8 +249,7 @@
                     </a>
                     <ul class="nav-submenu">
                         <li><a href="news.html">News</a></li>
-                        <li><a href="#">Photos</a></li> <!-- No Photos page found yet -->
-                        <li><a href="videos.html">Vidéos</a></li>
+                        <li><a href="#">Photos</a></li> <li><a href="videos.html">Vidéos</a></li>
                         <li><a href="documents.html">Documents</a></li>
                     </ul>
                 </li>
@@ -273,20 +265,15 @@
         </div>
     </div>
 
-    <!-- SCRIPT (Updated for Drawer) -->
     <script src="sidebar-menu.js"></script>
 
 
-    <!-- Hero -->
-    <!-- Hero -->
     <section class="relative h-[60vh] min-h-[500px] w-full overflow-hidden flex items-center justify-center">
         <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover -z-10"
             style="object-position: 50% 35%;">
-            <source src="./Design sans titre.mp4" type="video/mp4">
+            <source src="./Design_sans_titre_compressed.mp4" type="video/mp4">
         </video>
-        <!-- Overlay for better text readability -->
         <div class="absolute inset-0 bg-gradient-to-r from-[#0b1c2e]/60 to-[#0b1c2e]/35 z-0"></div>
-        <!-- Bottom Gradient Fade -->
         <div
             class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-slate-900 z-0 pointer-events-none">
         </div>
@@ -297,17 +284,11 @@
         </div>
     </section>
 
-    <!-- Article -->
     <main class="container mx-auto px-6 py-16">
         <section class="wao-text-section" style="background-color: #ffffff; width: 100%; padding: 60px 0;">
-            <!-- Grid Layout for split screen design -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch">
-                <!-- gap-0 for no space between white and beige if needed, or keeping it distinct -->
-
-                <!-- Left Column: Header (White Background) - Align Top -->
                 <div class="relative p-12 flex flex-col justify-start"
                     style="background-color: #ffffff; padding-top: 80px;">
-                    <!-- Inline Style Fallback for Blur Animation to bypass cache issues -->
                     <style>
                         @keyframes blurInInline {
                             0% {
@@ -330,24 +311,20 @@
                     </style>
 
                     <div style="max-width: 500px; margin-left: auto; margin-right: 0;">
-                        <!-- Align text block to the right edge of the left column for visual balance -->
                         <span
                             style="display: block; font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; color: #6b7280; margin-bottom: 20px; font-weight: 600;">
                             Your impact begins today
                         </span>
-                        <!-- Added class blur-in-expand-inline -->
                         <h2 class="blur-in-expand-inline"
                             style="font-size: 4.5rem; line-height: 1.1; font-weight: 800; color: #000000; margin: 0;">
                             From Vision to Action:<br>Women Protecting Our Seas
                         </h2>
 
-                        <!-- STACK GALLERY SECTION -->
-                        <!-- Inline CSS for Stack Gallery to ensure it loads immediately -->
                         <style>
                             .card-stack {
                                 position: relative;
-                                width: 320px;
-                                height: 400px;
+                                width: 360px;
+                                height: 460px;
                                 margin: 0 auto;
                                 perspective: 1000px;
                                 cursor: pointer;
@@ -382,37 +359,35 @@
                             style="display: flex; justify-content: center; padding: 60px 0; overflow: visible;">
                             <div class="card-stack" id="waoStack">
                                 <div class="card-item"><img
-                                        src="505248443_1145425760951737_2080303725801888872_n.jpg"
+                                        src="assets/waofemme/505432540_1145425747618405_6060037760188224203_n.jpg"
+                                        alt="Woman Action 3"></div>
+                                <div class="card-item"><img src="./DSC_5829-scaled.png"
+                                        alt="Women Actions for the Ocean Event"></div>
+                                <div class="card-item"><img
+                                        src="assets/waofemme/505248443_1145425760951737_2080303725801888872_n.jpg"
                                         alt="Woman Action 1"></div>
                                 <div class="card-item"><img
-                                        src="505335607_1145425667618413_6513283272066628497_n.jpg"
+                                        src="assets/waofemme/505335607_1145425667618413_6513283272066628497_n.jpg"
                                         alt="Woman Action 2"></div>
                                 <div class="card-item"><img
-                                        src="505432540_1145425747618405_6060037760188224203_n.jpg"
-                                        alt="Woman Action 3"></div>
-                                <div class="card-item"><img
-                                        src="505577724_1145425687618411_6058316380577536515_n.jpg"
+                                        src="assets/waofemme/505577724_1145425687618411_6058316380577536515_n.jpg"
                                         alt="Woman Action 4"></div>
                                 <div class="card-item"><img
-                                        src="505710194_1145426410951672_1647953182361824183_n.jpg"
+                                        src="assets/waofemme/505710194_1145426410951672_1647953182361824183_n.jpg"
                                         alt="Woman Action 5"></div>
                                 <div class="card-item"><img
-                                        src="505781430_1145425767618403_314557103891790005_n.jpg"
+                                        src="assets/waofemme/505781430_1145425767618403_314557103891790005_n.jpg"
                                         alt="Woman Action 6"></div>
                                 <div class="card-item"><img
-                                        src="505830870_1145425757618404_1874090265663324580_n.jpg"
+                                        src="assets/waofemme/505830870_1145425757618404_1874090265663324580_n.jpg"
                                         alt="Woman Action 7"></div>
                             </div>
                         </div>
-                        <!-- END STACK GALLERY -->
-
-                    </div>
+                        </div>
                 </div>
 
-                <!-- Right Column: Content Box (Beige Background) - Align Top -->
                 <div class="relative p-12 flex flex-col justify-start"
                     style="background-color: #fcfbf7; padding-top: 80px;">
-                    <!-- Inline Style to FORCE Justify Alignment (Bypass Cache) -->
                     <style>
                         .wao-content-box p {
                             text-align: justify !important;
@@ -421,7 +396,6 @@
                     </style>
                     <div class="wao-content-box reveal" style="max-width: 600px; color: #1f2937; line-height: 1.8;">
 
-                        <!-- NEW ADDED TITLE -->
                         <h3
                             style="font-size: 1.8rem; font-weight: 800; color: #000000; margin-bottom: 25px; line-height: 1.3;">
                             100% of Women are Engaged to Ocean Protection.
@@ -469,7 +443,6 @@
             </div>
         </section>
 
-        <!-- Stats section -->
         <section class="mt-12">
             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 reveal-stats-trigger">
                 <div class="counter-card text-center stat-card visible">
@@ -492,7 +465,6 @@
         </section>
     </main>
 
-    <!-- Videos Section -->
     <section class="video-section-bg py-16 relative w-full"
         style="background: linear-gradient(to bottom, #0f172a 0%, rgba(15, 23, 42, 0.4) 15%, rgba(11, 28, 46, 0.6) 50%, rgba(15, 23, 42, 0.4) 85%, #0f172a 100%), url('covervideowao.webp') no-repeat center center; background-size: cover;">
         <div class="container mx-auto px-4 relative z-10">
@@ -500,32 +472,24 @@
                 Actions
                 en Vidéo</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Video 1 -->
                 <div class="aspect-video rounded-xl shadow-lg overflow-hidden">
                     <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/5cBYKKaWOoI?rel=0"
                         title="Video 1" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen> 
-                    </iframe>
+                        allowfullscreen></iframe>
                 </div>
-                <!-- Video 2 -->
                 <div class="aspect-video rounded-xl shadow-lg overflow-hidden">
                     <iframe class="w-full h-full"
                         src="https://www.youtube-nocookie.com/embed/itWfpSUrAZ0?start=604&rel=0" title="Video 2"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                        
-                        </iframe>
+                        allowfullscreen></iframe>
                 </div>
-                <!-- Video 3 -->
                 <div class="aspect-video rounded-xl shadow-lg overflow-hidden">
                     <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/XwhzI2Q1aDo?rel=0"
                         title="Video 3" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                        
-                        </iframe>
+                        allowfullscreen></iframe>
                 </div>
             </div>
             <div class="flex justify-center mt-12">
@@ -542,13 +506,10 @@
 
 
 
-    <!-- Simple footer -->
     <footer class="relative bg-slate-900 text-white py-16 overflow-hidden">
-        <!-- Background Image Placeholder (Dark gradient) -->
         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/95 to-slate-900/90 z-0"></div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <!-- Top Section -->
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
                 <div>
                     <h2 class="text-5xl md:text-7xl font-serif font-bold tracking-tight mb-2 animate-agissons"
@@ -562,11 +523,8 @@
                     </a>
                 </div>
             </div>
-            <!-- Divider -->
             <div class="w-full h-px bg-white/10 mb-12"></div>
-            <!-- Bottom Section -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-sm text-gray-400">
-                <!-- Menu -->
                 <div>
                     <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_menu">Menu
                     </h3>
@@ -583,7 +541,6 @@
                         </li>
                     </ul>
                 </div>
-                <!-- Contact -->
                 <div class="md:col-span-2">
                     <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6" data-i18n="footer_contact">
                         Contact
@@ -600,14 +557,12 @@
                                 class="hover:text-white transition-colors">contact@lasaisonbleue.com</a></li>
                     </ul>
                 </div>
-                <!-- Socials -->
                 <div class="flex flex-col justify-between">
                     <div>
                         <h3 class="text-xs font-bold text-white uppercase tracking-widest mb-6"
                             data-i18n="footer_follow">
                             Suivez-nous</h3>
                         <div class="flex gap-4">
-                            <!-- Instagram -->
                             <a href="https://www.instagram.com/lasaisonbleue/?hl=fr" target="_blank"
                                 class="social-bloom-btn" aria-label="Instagram">
                                 <div class="bloom-container">
@@ -625,7 +580,6 @@
                                 </div>
                             </a>
 
-                            <!-- Facebook -->
                             <a href="https://www.facebook.com/lasaisonbleue/?locale=fr_FR" target="_blank"
                                 class="social-bloom-btn" aria-label="Facebook">
                                 <div class="bloom-container">
@@ -643,7 +597,6 @@
                                 </div>
                             </a>
 
-                            <!-- YouTube -->
                             <a href="https://www.youtube.com/@lasaisonbleue3150" target="_blank"
                                 class="social-bloom-btn" aria-label="YouTube">
                                 <div class="bloom-container">
@@ -661,7 +614,6 @@
                                 </div>
                             </a>
 
-                            <!-- LinkedIn -->
                             <a href="https://www.linkedin.com/company/la-saison-bleue/posts/?feedView=all"
                                 target="_blank" class="social-bloom-btn" aria-label="LinkedIn">
                                 <div class="bloom-container">
@@ -688,7 +640,6 @@
         </div>
     </footer>
 
-    <!-- Scroll to top button (top center) -->
     <button id="scroll-top-btn" class="scroll-top levitate" aria-label="Retour en haut" title="Retour en haut">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -831,9 +782,7 @@
     <script src="blur-text.js"></script>
     <script src="loader.js"></script>
     <script src="sparkle.js"></script>
-    <!-- Main Script (including Stack Gallery) -->
     <script src="script.js"></script>
-    <!-- Neon Glow Button WAO (Inline CSS to bypass cache) -->
     <style>
         /* --- BOUTON FLOTTANT NÉON (ROSE) --- */
         #btn-wao-neon {
