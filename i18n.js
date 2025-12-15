@@ -196,7 +196,7 @@ const translations = {
         bas_title: "Blue Africa Summit",
         bas_subtitle: "Le sommet des dirigeants pour l'océan",
         bas_about_title: "À propos de l’événement",
-        bas_about_text: "Le Pacte pour une Afrique bleue durable place l’océan au cœur de l’avenir africain. Né du Blue Africa Summit, il fédère experts, décideurs et société civile pour tracer une stratégie maritime ambitieuse et durable. Son objectif est de transformer les richesses maritimes en leviers de développement, d’innovation et de résilience pour les communautés côtières et pour l’ensemble du continent. Cette vision sera au cœur de la troisième édition du Blue Africa Summit à Tanger, les 9 et 10 octobre 2025.",
+        bas_about_text: "Le Pacte pour une Afrique bleue durable placera l’océan au cœur de l’avenir du continent africain. Né du Blue Africa Summit, il réunira experts, décideurs et acteurs de la société civile afin de bâtir une stratégie maritime ambitieuse, inclusive et durable. Son objectif sera de transformer les richesses maritimes africaines en leviers de développement, d’innovation et de résilience au bénéfice des communautés côtières et de l’ensemble du continent. Cette vision sera au cœur de la quatrième édition du Blue Africa Summit, qui se tiendra les 26 et 27 novembre 2026 à Tanger.",
         bas_info_title: "Infos Pratiques",
         bas_location_label: "Lieu",
         bas_location_value: "Hôtel Idou Malabata, Tanger, Maroc",
