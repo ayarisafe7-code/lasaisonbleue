@@ -1,22 +1,22 @@
 /* --- EXTERNAL SIDEBAR MENU CSS --- */
 
 /* --- HEADER FIXE (TRIGGER ONLY) --- */
+/* --- HEADER FIXE (TRIGGER ONLY) --- */
 .nav-trigger-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     padding: 40px;
-    /* More padding as per design */
     display: flex;
     justify-content: flex-start;
     gap: 20px;
-    /* Added gap for spacing */
-    /* Left aligned */
     align-items: center;
     z-index: 9999;
     pointer-events: none;
     background: transparent;
+    mix-blend-mode: difference;
+    /* Apply blending to the entire container */
 }
 
 /* ... */
@@ -25,14 +25,24 @@
 .home-btn {
     pointer-events: auto;
     color: white;
+    /* Must be white for difference to work (White - White = Black) */
     cursor: pointer;
-    /* margin-left removed */
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    mix-blend-mode: difference;
-    /* Match Menu behavior */
+}
+
+.home-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.home-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2;
 }
 
 /* Logo Removed as per request */
@@ -43,7 +53,7 @@
 .menu-btn {
     pointer-events: auto;
     color: white;
-    mix-blend-mode: difference;
+    /* Must be white for difference to work */
     font-weight: 600;
     cursor: pointer;
     display: flex;
@@ -228,29 +238,4 @@
     max-height: 500px;
     /* Increased to prevent cutting off items */
     transition: max-height 0.5s ease-in-out;
-}
-
-/* --- HOME BUTTON (Return to Index) --- */
-.home-btn {
-    pointer-events: auto;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    mix-blend-mode: difference;
-    /* Match Menu behavior */
-}
-
-.home-btn:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
-}
-
-.home-btn svg {
-    width: 24px;
-    height: 24px;
-    stroke: currentColor;
-    stroke-width: 2;
 }
