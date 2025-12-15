@@ -457,24 +457,59 @@
         });
 
         // Scroll-to-top button behavior
-        (function () {
-            const btn = document.getElementById('scroll-top-btn');
-            if (!btn) return;
-            const showAt = 300;
-            function toggle() {
-                if (window.scrollY > showAt) {
-                    btn.classList.remove('translate-y-20', 'opacity-0');
-                } else {
-                    btn.classList.add('translate-y-20', 'opacity-0');
-                }
+        .scroll-top {
+            position: fixed;
+            top: 8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            border: 2px solid rgba(255, 255, 255, 1);
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 200ms ease, transform 200ms ease, background-color 150ms ease;
+        }
+
+        .scroll-top:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-top svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+        }
+
+        /* Levitation animation */
+        .levitate {
+            animation: levitate 3s ease-in-out infinite;
+        }
+
+        @keyframes levitate {
+            0% {
+                transform: translateX(-50%) translateY(-5px);
             }
-            window.addEventListener('scroll', toggle, { passive: true });
-            toggle();
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        })();
+
+            50% {
+                transform: translateX(-50%) translateY(5px);
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
 
         // Page transition logic (Simple version)
         (function () {
