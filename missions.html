@@ -457,60 +457,14 @@
         });
 
         // Scroll-to-top button behavior
-        .scroll-top {
-            position: fixed;
-            top: 8rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 50;
-            width: 3rem;
-            height: 3rem;
-            border-radius: 9999px;
-            border: 2px solid rgba(255, 255, 255, 1);
-            background: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 200ms ease, transform 200ms ease, background-color 150ms ease;
-        }
-
-        .scroll-top:hover {
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .scroll-top.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .scroll-top svg {
-            width: 18px;
-            height: 18px;
-            stroke: currentColor;
-        }
-
-        /* Levitation animation */
-        .levitate {
-            animation: levitate 3s ease-in-out infinite;
-        }
-
-        @keyframes levitate {
-            0% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-
-            50% {
-                transform: translateX(-50%) translateY(5px);
-            }
-
-            100% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
+         
+        <button id="scroll-top-btn" class="scroll-top levitate" aria-label="Retour en haut" title="Retour en haut">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+                
         // Page transition logic (Simple version)
         (function () {
             const transition = document.getElementById('page-transition');
