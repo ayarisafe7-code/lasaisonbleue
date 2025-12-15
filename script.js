@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. BACKGROUND SLIDER (Hero Section) ---
     const bgSlides = [
-        'assets/cover/1.jpg',
-        'assets/cover/2.jpg',
-        'assets/cover/3.jpg',
-        'assets/cover/4.jpg',
-        'assets/cover/5.jpg',
-        'assets/cover/6.jpeg',
-        'assets/cover/7.jpeg'
+        '1.jpg',
+        '2.jpg',
+        '3.jpg',
+        '4.jpg',
+        '5.jpg',
+        '6.jpeg',
+        '7.jpeg'
     ];
 
     const bgContainer = document.getElementById('background-slider');
@@ -44,14 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const coverBack = document.getElementById('about-cover-bg');
 
     const coverSlides = [
-        'assets/cover/1.jpg',
-        'assets/cover/2.jpg',
-        'assets/cover/3.jpg',
-        'assets/cover/4.jpg',
-        'assets/cover/5.jpg',
-        'assets/cover/6.jpeg',
-        'assets/cover/7.jpeg',
-        'assets/cover/8.jpg'
+        '1.jpg',
+        '2.jpg',
+        '3.jpg',
+        '4.jpg',
+        '5.jpg',
+        '6.jpeg',
+        '7.jpeg',
+        '8.jpg'
     ];
 
     if (coverFront && coverBack && coverSlides.length > 0) {
