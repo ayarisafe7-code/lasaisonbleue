@@ -29,6 +29,11 @@
             scroll-behavior: smooth;
         }
 
+        /* Hero Overlay */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+        }
+
         .font-arabic {
             font-family: 'Amiri', serif;
         }
@@ -152,6 +157,7 @@
                         <ul class="nav-submenu">
                             <li><a href="about.html">À propos</a></li>
                             <li><a href="missions.html">Nos missions</a></li>
+
                         </ul>
                     </li>
 
@@ -204,36 +210,34 @@
         <script src="sidebar-menu.js"></script>
 
         <!-- Main Content -->
-        <main class="pt-32 pb-20">
-            <div class="container mx-auto px-6">
+        <main>
+            <!-- Hero Section Full-Width -->
+            <div class="relative h-[70vh] flex items-center justify-center overflow-hidden mb-20 bg-slate-900">
+                <!-- Overlay -->
+                <div class="absolute inset-0 hero-overlay z-10"></div>
 
-                <!-- Header Section -->
-                <div class="text-center mb-16 relative">
-                    <div id="liquid-ether-bg" class="fixed inset-0 -z-10 opacity-60 pointer-events-none">
-                    </div>
-                    <h1
-                        class="text-4xl md:text-6xl font-bold text-slate-900 mb-4 font-serif relative z-10 animate-title">
-                        À
-                        propos
+                <!-- Slideshow Backgrounds (Preserving IDs for Script.js) -->
+                <!-- Back Image -->
+                <img id="about-cover-bg" src="assets/cover/1.jpg" alt=""
+                    class="absolute inset-0 w-full h-full object-cover z-0 opacity-80">
+                <!-- Front Image -->
+                <img id="about-cover-img" src="assets/cover/1.jpg" alt="La Saison Bleue Cover"
+                    class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 z-0 opacity-80">
+
+                <!-- Content Overlay -->
+                <div class="relative z-20 text-center px-6 max-w-5xl mx-auto">
+                    <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-8 drop-shadow-xl animate-title">
+                        À PROPOS
                     </h1>
-
-                    <!-- Cover Photo -->
-                    <div
-                        class="relative w-full max-w-5xl mx-auto mt-8 mb-8 h-64 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
-                        <!-- Background Image (Next Slide) -->
-                        <img id="about-cover-bg" src="1.jpg" alt=""
-                            class="absolute inset-0 w-full h-full object-cover">
-                        <!-- Foreground Image (Current Slide) -->
-                        <img id="about-cover-img" src="1.jpg" alt="La Saison Bleue Cover"
-                            class="relative w-full h-full object-cover transition-opacity duration-1000 z-10">
-                    </div>
-                    <!-- Underline removed -->
-                    <p class="mt-6 text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-medium">
-                        La Saison Bleue, oeuvre pour la protection et la valorisation de l’environnement marin à
-                        travers des
-                        actions de sensibilisation, de coopérations et d'interconnexions internationales.
+                    <div class="w-24 h-1 bg-white/30 mx-auto mb-8 rounded-full"></div>
+                    <p class="text-lg md:text-2xl text-white/90 leading-relaxed font-medium drop-shadow-lg">
+                        La Saison Bleue oeuvre pour la protection et la valorisation de l’environnement marin à travers
+                        des actions de sensibilisation, de coopérations et d'interconnexions internationales.
                     </p>
                 </div>
+            </div>
+
+            <div class="container mx-auto px-6 pb-20">
 
                 <!-- Detailed Content -->
                 <div class="max-w-4xl mx-auto space-y-12 text-lg text-gray-600 leading-relaxed">
@@ -537,52 +541,6 @@
     <script src="blur-text.js"></script>
     <script src="loader.js"></script>
     <script src="script.js"></script>
-    <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // 1. La liste de toutes vos photos (assurez-vous qu'elles sont sur GitHub !)
-    const images = [
-      '1.jpg', 
-      '2.jpg', 
-      '3.jpg', 
-      '4.jpg', 
-      '5.jpg', 
-      '6.jpeg', 
-      '7.jpeg', 
-      '8.jpg'
-    ];
-
-    let currentIndex = 0;
-    const bgImage = document.getElementById('about-cover-bg');
-    const fgImage = document.getElementById('about-cover-img');
-    const slideshowContainer = document.querySelector('.relative.w-full.max-w-5xl'); // Le conteneur
-
-    // Fonction pour changer l'image
-    function changeImage() {
-      // Calculer l'image suivante
-      currentIndex = (currentIndex + 1) % images.length;
-      const nextImage = images[currentIndex];
-
-      // 1. Préparer l'image de fond (la suivante)
-      if(bgImage) bgImage.src = nextImage;
-
-      // 2. Faire disparaître l'image de devant (transition)
-      if(fgImage) {
-        fgImage.style.opacity = '0'; // On la rend transparente
-
-        // 3. Après 1 seconde (le temps de la transition CSS), on met à jour l'image de devant
-        setTimeout(() => {
-          fgImage.src = nextImage;
-          fgImage.style.opacity = '1'; // On la réaffiche
-        }, 1000); // 1000ms correspond à duration-1000 dans votre CSS
-      }
-    }
-
-    // Lancer le changement toutes les 4 secondes
-    if (images.length > 1) {
-      setInterval(changeImage, 4000);
-    }
-  });
-</script>
 </body>
 
 </html>
