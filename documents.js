@@ -2,10 +2,10 @@ const folderData = [
     {
         title: "Blue Africa Summit 2025",
         files: [
-            { name: "Booklet Blue Africa Summit-2025", path: "Booklet-Blue-Africa-Summit-2025.pdf" },
-            { name: "Brochure Blue Africa Summit 2025", path: "Brochure-Blue-Africa-Summit-2025.pdf" },
-            { name: "Declaration de Tanger 2025 FR", path: "Declaration-de-Tanger-2025-FR.pdf" },
-            { name: "Tangier Declaration Blue Africa Summit 2025", path: "Tangier-Declaration-–-Blue-Africa-Summit-2025.docx.pdf" }
+            { name: "Booklet Blue Africa Summit-2025", path: ".Booklet-Blue-Africa-Summit-2025.pdf" },
+            { name: "Brochure Blue Africa Summit 2025", path: ".Brochure-Blue-Africa-Summit-2025.pdf" },
+            { name: "Declaration de Tanger 2025 FR", path: ".Declaration-de-Tanger-2025-FR.pdf" },
+            { name: "Tangier Declaration Blue Africa Summit 2025", path: ".Tangier-Declaration-–-Blue-Africa-Summit-2025.docx.pdf" }
         ]
     }
 ];
