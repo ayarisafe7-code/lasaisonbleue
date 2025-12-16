@@ -2,10 +2,10 @@ const folderData = [
     {
         title: "Blue Africa Summit 2025",
         files: [
-            { name: "Booklet-Blue-Africa-Summit-2025.pdf", path: "./assets/docs/Booklet-Blue-Africa-Summit-2025.pdf" },
-            { name: "Brochure-Blue-Africa-Summit-2025.pdf", path: "./assets/docs/Brochure-Blue-Africa-Summit-2025.pdf" },
-            { name: "Declaration-de-Tanger-2025-FR.pdf", path: "./assets/docs/Declaration-de-Tanger-2025-FR.pdf" },
-            { name: "Tangier-Declaration-–-Blue-Africa-Summit-2025.docx.pdf", path: "./assets/docs/Tangier-Declaration-–-Blue-Africa-Summit-2025.docx.pdf" }
+            { name: "Booklet-Blue-Africa-Summit-2025.pdf", path: ".Booklet-Blue-Africa-Summit-2025.pdf" },
+            { name: "Brochure-Blue-Africa-Summit-2025.pdf", path: ".Brochure-Blue-Africa-Summit-2025.pdf" },
+            { name: "Declaration-de-Tanger-2025-FR.pdf", path: ".Declaration-de-Tanger-2025-FR.pdf" },
+            { name: "Tangier-Declaration-–-Blue-Africa-Summit-2025.docx.pdf", path: ".Tangier-Declaration-–-Blue-Africa-Summit-2025.docx.pdf" }
         ]
     }
 ];
@@ -26,16 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // The visual stacking will be handled by CSS/JS.
         const papersHtml = folderItem.files.map((file, i) => `
             <div class="paper" data-pdf="${file.path}" data-index="${i}" title="${file.name}">
-                <div class="w-full h-full bg-white flex flex-col items-center justify-center text-[6px] text-center p-1 overflow-hidden border border-gray-100">
-                     <i data-lucide="file-text" class="w-4 h-4 mb-1 text-blue-500"></i>
-                     <span class="line-clamp-2">${file.name}</span>
+                <div class="w-full h-full bg-white flex flex-col items-center justify-center text-xs text-center p-1 overflow-hidden border border-gray-100">
+                     <i data-lucide="file-text" class="w-8 h-8 mb-2 text-blue-500"></i>
+                     <span class="line-clamp-2 leading-tight">${file.name}</span>
                 </div>
             </div>
         `).join('');
 
         // Folder HTML Structure
         folderWrapper.innerHTML = `
-            <div class="folder-container" style="transform: scale(1.5);">
+            <div class="folder-container">
                 <div class="folder" data-index="${folderIndex}">
                     <div class="folder__back">
                         ${papersHtml}
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             </div>
-            <div class="folder-label mt-8 max-w-[150px] leading-tight text-center font-semibold text-slate-700">${folderItem.title}</div>
+            <div class="folder-label mt-8 max-w-[250px] leading-tight text-center font-semibold text-slate-700 text-lg">${folderItem.title}</div>
         `;
 
         grid.appendChild(folderWrapper);
@@ -63,13 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             e.stopPropagation(); // Prevent document click from closing immediately
 
-            // Close other folders? User didn't specify, but "Click Outside" implies others might stay open or close.
-            // Let's close others for cleaner UI.
-            document.querySelectorAll('.folder.open').forEach(f => {
-                if (f !== folder) f.classList.remove('open');
+            // Close other folders
+            document.querySelectorAll('.folder-wrapper').forEach(w => {
+                if (w !== folderWrapper && w.querySelector('.folder').classList.contains('open')) {
+                    if (w.close) w.close();
+                }
             });
 
-            folder.classList.toggle('open');
+            if (folder.classList.contains('open')) {
+                if (folderWrapper.close) folderWrapper.close();
+            } else {
+                folder.classList.add('open');
+            }
         });
 
         // Magnet Effect & Fan Out for Papers
@@ -123,8 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Actually, simpler: Update styles whenever 'open' class is added/removed? 
         // Or just use the CSS transition with CSS variables?
-        // Let's use the `transitionend` or just rely on the fact that we can set inline styles for the "open" position
-        // and let CSS transition to it? 
         // Problem: CSS needs to know the "open" state. 
         // Solution: We'll set CSS variables on the paper elements for their "open" position.
 
@@ -134,7 +137,18 @@ document.addEventListener('DOMContentLoaded', () => {
             paper.style.setProperty('--open-y', transform.y);
             paper.style.setProperty('--open-r', transform.r);
             paper.style.zIndex = i + 1;
+            paper.style.setProperty('--open-r', transform.r);
+            paper.style.zIndex = i + 1;
         });
+
+        // Helper to close folder and reset papers
+        folderWrapper.close = function () {
+            folder.classList.remove('open');
+            // Clear inline transforms so CSS closed state takes over
+            papers.forEach(p => {
+                p.style.transform = '';
+            });
+        };
     });
 
     // Helper for Fan Out Transforms
@@ -170,10 +184,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Click Outside to Close Folders
     document.addEventListener('click', (e) => {
+        // If the click is NOT inside a folder (or its children), close all open folders
         if (!e.target.closest('.folder')) {
-            document.querySelectorAll('.folder.open').forEach(f => {
-                f.classList.remove('open');
+            document.querySelectorAll('.folder-wrapper').forEach(w => {
+                if (w.close) w.close();
             });
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.folder-wrapper').forEach(w => {
+                if (w.close) w.close();
+            });
+            // Also close modal if open
+            if (!modal.classList.contains('hidden')) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                pdfContainer.innerHTML = '';
+            }
         }
     });
 
