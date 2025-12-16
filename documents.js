@@ -5,7 +5,7 @@ const folderData = [
             { name: "Booklet-Blue-Africa-Summit-2025.pdf", path: "Booklet-Blue-Africa-Summit-2025.pdf" },
             { name: "Brochure-Blue-Africa-Summit-2025.pdf", path: "Brochure-Blue-Africa-Summit-2025.pdf" },
             { name: "Declaration-de-Tanger-2025-FR.pdf", path: "Declaration-de-Tanger-2025-FR.pdf" },
-            { name: "Tangier-Declaration-–-Blue-Africa-Summit-2025.docx.pdf", path: "Tangier-Declaration-–-Blue-Africa-Summit-2025.pdf" }
+            { name: "Tangier-Declaration-–-Blue-Africa-Summit-2025.pdf", path: "Tangier-Declaration-–-Blue-Africa-Summit-2025.pdf" }
         ]
     }
 ];
