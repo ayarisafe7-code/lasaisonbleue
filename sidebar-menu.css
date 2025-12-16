@@ -100,7 +100,7 @@
     pointer-events: auto;
 }
 
-/* --- SIDEBAR DRAWER (White, Right Side) --- */
+/* --- SIDEBAR DRAWER (Sky Blue, Right Side) --- */
 .menu-drawer {
     position: fixed;
     top: 0;
@@ -111,10 +111,12 @@
     max-width: 600px;
     min-width: 400px;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: #E0F2FE;
+    /* Sky Blue */
     z-index: 10001;
     /* Highest Priority */
-    padding: 80px 60px;
+    padding: 80px 40px;
+    /* Reduced side padding slightly */
 
     /* Hidden State (Slide out to right) */
     transform: translateX(100%);
@@ -130,6 +132,69 @@
     transform: translateX(0);
 }
 
+/* Sidebar Footer (Contact & Socials) */
+.sidebar-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sidebar-section-title {
+    font-size: 0.8rem;
+    color: #000;
+    margin-bottom: 10px;
+    opacity: 0.6;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.sidebar-contact-email {
+    font-size: 1.5rem;
+    color: #FF5722;
+    /* Orange/Red color from screenshot */
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    transition: opacity 0.3s;
+}
+
+.sidebar-contact-email:hover {
+    opacity: 0.8;
+}
+
+.sidebar-social-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.sidebar-social-link {
+    font-size: 1.1rem;
+    color: #000;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.3s;
+}
+
+.sidebar-social-link:hover {
+    opacity: 0.7;
+}
+
+.sidebar-social-link svg {
+    width: 14px;
+    height: 14px;
+    color: #666;
+    /* Arrow color */
+}
+
+/* Close Button Position Adjustment */
 .menu-close-area {
     position: absolute;
     top: 40px;
@@ -166,7 +231,7 @@
 .nav-link {
     display: inline-block;
     font-family: 'Inter', sans-serif;
-    font-size: 4rem;
+    font-size: 3rem;
     /* Big Typography */
     font-weight: 700;
     color: #000000;
@@ -185,7 +250,7 @@
     }
 
     .nav-link {
-        font-size: 3rem;
+        font-size: 2.2rem;
     }
 }
 
