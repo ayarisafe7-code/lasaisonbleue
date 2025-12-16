@@ -304,3 +304,16 @@
     /* Increased to prevent cutting off items */
     transition: max-height 0.5s ease-in-out;
 }
+/* Force la couleur du texte et des icônes en blanc lorsque le menu est ouvert */
+.menu-drawer.open .nav-link,
+.menu-drawer.open .nav-num,
+.menu-drawer.open .menu-close-area,
+.menu-drawer.open .sidebar-footer,
+.menu-drawer.open .sidebar-social-link {
+    color: white !important;
+}
+
+/* Force la couleur des icônes SVG en blanc lorsque le menu est ouvert */
+.menu-drawer.open .sidebar-social-link svg {
+    stroke: white !important;
+}
