@@ -5,12 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard WAO | La Saison Bleue</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Playfair Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="sidebar-menu.css">
+    <link rel="stylesheet" href="wao-rain.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+<style>
+    /* overrides for dark rain theme */
+    .dash-header {
+        background-color: transparent !important;
+        box-shadow: none !important;
+        color: white !important;
+    }
 
-<body class="dashboard-body">
+    .user-area {
+        color: white !important;
+    }
+
+    .user-area span {
+        color: white !important;
+    }
+
+    .logout-btn {
+        color: #ff4d4d !important;
+        /* brighter red for dark bg */
+    }
+
+    /* Force dark text for logout button spans to override user-area span rule */
+    .btn-logout span {
+        color: #18181a !important;
+    }
+
+    /* Fix Input Visibility: Dark text on white background */
+    .search-input,
+    .filter-select {
+        color: #1e293b !important;
+        /* Dark Slate */
+    }
+
+    /* Make stats cards and member cards slightly transparent or darker? 
+       User didn't complain about cards, but white cards on black bg is stark.
+       Let's keep them white for readability as per screenshot, but ensure text elsewhere is readable.
+    */
+    .dash-container {
+        position: relative;
+        z-index: 10;
+    }
+</style>
+
+<body class="font-sans antialiased text-white">
+    <div class="rain-background"></div>
 
     <!-- HEADER FIXE (LEFT TRIGGER) -->
     <header class="nav-trigger-container">
@@ -140,11 +194,12 @@
 
     <header class="dash-header">
         <div class="logo-area">
-            <h2>Espace WAO</h2>
         </div>
         <div class="user-area">
-            <span>Bienvenue, Membre</span>
-            <a href="wao.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+            <button class="btn-logout" onclick="window.location.href='index.html'">
+                <span class="text">Logout</span>
+                <span>Bye!</span>
+            </button>
         </div>
     </header>
 
@@ -182,10 +237,9 @@
         </div>
 
         <div class="filter-section">
-            <h3>Annuaire des Membres</h3>
             <div class="search-controls">
                 <select id="countryFilter" class="filter-select">
-                    <option value="all">Tous les pays</option>
+                    <option value="all">Séléctionner un pays</option>
                 </select>
                 <input type="text" id="nameSearch" placeholder="Rechercher par nom ou pays..." class="search-input">
             </div>
@@ -201,7 +255,7 @@
         // --- DONNÉES SIMULÉES (MOCK DATA) ---
         const membersData = [
             { name: "Sarah Cohen", country: "France", role: "Biologiste Marine", project: "Protection des coraux" },
-            { name: "Fatima Zahra", country: "Maroc", role: "Entrepreneure Blue Tech", project: "Algues Durables" },
+            { name: "Nedra Berrich", country: "Maroc", role: "Entrepreneure Blue Tech", project: "Algues Durables" },
             { name: "Layla Mahfouz", country: "Egypte", role: "Chercheuse", project: "Mer Rouge 2030" },
             { name: "Elena Rossi", country: "Italie", role: "Directrice ONG", project: "Clean Med" },
             { name: "Amina Diop", country: "Sénégal", role: "Ingénieure Océan", project: "Pêche Durable" },
