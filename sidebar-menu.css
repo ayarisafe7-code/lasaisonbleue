@@ -111,7 +111,7 @@
     max-width: 600px;
     min-width: 400px;
     height: 100vh;
-    background-color: #E0F2FE;
+    background-color: #0f172a;
     /* Sky Blue */
     z-index: 10001;
     /* Highest Priority */
@@ -304,16 +304,26 @@
     /* Increased to prevent cutting off items */
     transition: max-height 0.5s ease-in-out;
 }
-/* Force la couleur du texte et des icônes en blanc lorsque le menu est ouvert */
-.menu-drawer.open .nav-link,
-.menu-drawer.open .nav-num,
-.menu-drawer.open .menu-close-area,
-.menu-drawer.open .sidebar-footer,
-.menu-drawer.open .sidebar-social-link {
+/* --- CORRECTIF COULEURS TEXTE --- */
+
+/* Force la couleur du texte et des icônes en blanc lorsque le menu est ACTIF */
+.menu-drawer.active .nav-link,
+.menu-drawer.active .nav-num,
+.menu-drawer.active .menu-close-area,
+.menu-drawer.active .sidebar-footer .sidebar-section-title, /* Ajout du titre de section */
+.menu-drawer.active .sidebar-social-link {
     color: white !important;
 }
 
-/* Force la couleur des icônes SVG en blanc lorsque le menu est ouvert */
-.menu-drawer.open .sidebar-social-link svg {
+/* Force la couleur des icônes SVG en blanc lorsque le menu est ACTIF */
+.menu-drawer.active .sidebar-social-link svg,
+.menu-drawer.active .menu-close-area i {
+    color: white !important;
     stroke: white !important;
+    fill: white !important; /* Ajouté par sécurité pour FontAwesome */
+}
+
+/* Garder l'email en orange même si le reste est blanc */
+.menu-drawer.active .sidebar-contact-email {
+    color: #FF5722 !important;
 }
