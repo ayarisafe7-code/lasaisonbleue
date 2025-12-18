@@ -123,7 +123,9 @@
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* Fixed vertically centering issue causing cut-off on small screens */
+    overflow-y: auto;
+    justify-content: flex-start;
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -304,13 +306,15 @@
     /* Increased to prevent cutting off items */
     transition: max-height 0.5s ease-in-out;
 }
+
 /* --- CORRECTIF COULEURS TEXTE --- */
 
 /* Force la couleur du texte et des icônes en blanc lorsque le menu est ACTIF */
 .menu-drawer.active .nav-link,
 .menu-drawer.active .nav-num,
 .menu-drawer.active .menu-close-area,
-.menu-drawer.active .sidebar-footer .sidebar-section-title, /* Ajout du titre de section */
+.menu-drawer.active .sidebar-footer .sidebar-section-title,
+/* Ajout du titre de section */
 .menu-drawer.active .sidebar-social-link {
     color: white !important;
 }
@@ -320,7 +324,8 @@
 .menu-drawer.active .menu-close-area i {
     color: white !important;
     stroke: white !important;
-    fill: white !important; /* Ajouté par sécurité pour FontAwesome */
+    fill: white !important;
+    /* Ajouté par sécurité pour FontAwesome */
 }
 
 /* Garder l'email en orange même si le reste est blanc */
