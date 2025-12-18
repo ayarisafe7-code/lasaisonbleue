@@ -66,7 +66,7 @@
             z-index: 10;
         }
 
-        .form {
+        .login-form {
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -90,7 +90,7 @@
             color: #fff;
         }
 
-        .header {
+        .login-header {
             text-align: center;
             font-size: 22px;
             font-weight: 700;
@@ -98,7 +98,7 @@
             margin-bottom: 5px;
         }
 
-        .input {
+        .login-input {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid var(--glass-border);
@@ -111,16 +111,16 @@
             font-family: inherit;
         }
 
-        .input::placeholder {
+        .login-input::placeholder {
             color: rgba(255, 255, 255, 0.6);
         }
 
-        .input:focus {
+        .login-input:focus {
             background: rgba(0, 0, 0, 0.4);
             border-color: rgba(255, 255, 255, 0.8);
         }
 
-        .button {
+        .login-button {
             width: 100%;
             padding: 12px;
             border: none;
@@ -373,17 +373,17 @@
     <div class="login-page-wrapper">
         <div class="plasma-login-container">
             <div class="login-box">
-                <form class="form">
+                <form class="login-form">
                     <div class="logo">
                         <img src="Logo WAO.png" alt="WAO Logo" class="user-icon-img"
                             style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%; padding: 8px;">
                     </div>
-                    <span class="header">Welcome Back!</span>
-                    <input type="email" placeholder="Email" class="input" required />
-                    <input type="password" placeholder="Password" class="input" required />
-                    <a href="wao-interface.html" class="button sign-in">Sign In</a>
+                    <span class="login-header">Welcome Back!</span>
+                    <input type="email" placeholder="Email" class="login-input" required />
+                    <input type="password" placeholder="Password" class="login-input" required />
+                    <a href="wao-interface.html" class="login-button sign-in">Sign In</a>
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSchjo2EwBApee3HCJWpOEAtLih_5JSAdDubigZuPg_IYOZWoQ/viewform?usp=header"
-                        target="_blank" class="button google-sign-in">
+                        target="_blank" class="login-button google-sign-in">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
