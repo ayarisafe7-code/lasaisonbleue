@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil | La Saison Bleue</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Playfair Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/sidebar-menu.css">
+    <link rel="stylesheet" href="assets/css/wao-rain.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .dash-header {
+            background-color: transparent !important;
+            box-shadow: none !important;
+            color: white !important;
+        }
+
+        .user-area {
+            color: white !important;
+        }
+
+        .user-area span {
+            color: white !important;
+        }
+
+        .logout-btn {
+            color: #ff4d4d !important;
+        }
+
+        .btn-logout span {
+            color: #18181a !important;
+        }
+
+        .dash-container {
+            position: relative;
+            z-index: 10;
+            padding-top: 100px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Profile Form Styles */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+        }
+
+        .avatar-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            background: #2a2a35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .avatar-edit-btn {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: #e11d48; /* rose red */
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4);
+            border: none;
+        }
+
+        .avatar-edit-btn:hover {
+            transform: scale(1.1);
+            background: #be123c;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #e11d48;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.2);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        textarea.form-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-save {
+            background-color: #e11d48;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-save:hover {
+            background-color: #be123c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(225, 29, 72, 0.4);
+        }
+
+        .back-link {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: white;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 30px 0;
+        }
+
+        /* Profile Preview Styles */
+        .preview-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-color: #2a2a35;
+            background-size: cover;
+            background-position: center;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .preview-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .preview-role {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: #e11d48;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .preview-details {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .preview-bio {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            white-space: pre-line;
+        }
+
+        .preview-btn {
+            background-color: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin-bottom: 10px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .preview-btn:hover {
+            background-color: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+
+        .preview-btn.primary {
+            background-color: #e11d48;
+            border-color: #e11d48;
+        }
+
+        .preview-btn.primary:hover {
+            background-color: #be123c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(225, 29, 72, 0.4);
+        }
+
+        .preview-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .preview-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .preview-links a:hover {
+            color: #e11d48;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased text-white">
+    <div class="rain-background"></div>
+
+    <!-- HEADER FIXE (LEFT TRIGGER) -->
+    <header class="nav-trigger-container">
+        <!-- Home Button -->
+        <a href="index.html" class="home-btn" title="Retour à l'accueil">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+        </a>
+        <div class="menu-btn" id="menuToggle">
+            <span>MENU</span>
+            <div class="btn-icon">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BACKDROP & DRAWER -->
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+
+    <div class="menu-drawer" id="menuDrawer">
+        <!-- Close Button inside drawer -->
+        <div class="menu-close-area" id="menuCloseBtn">Close <i class="fas fa-times"></i></div>
+
+        <div class="menu-content">
+            <ul class="main-nav-list">
+
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        ACCUEIL
+                        <span class="nav-num">01</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="missions.html">Nos missions</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        INITIATIVE
+                        <span class="nav-num">02</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="wao.html">Women Actions for the Ocean</a></li>
+                        <li><a href="pacte-afrique.html">Le Pacte pour une Afrique Bleue Durable</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        ÉVÉNEMENTS
+                        <span class="nav-num">03</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="blue-africa-summit.html">Blue Africa Summit</a></li>
+                        <li><a href="grande-maree.html">La Grande Marée</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        ACTU & MEDIA
+                        <span class="nav-num">04</span>
+                    </a>
+                    <ul class="nav-submenu">
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="#">Photos</a></li>
+                        <li><a href="restitutions.html">Restitutions</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">
+                        CONTACT
+                        <span class="nav-num">05</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Script for Sidebar Menu -->
+    <!-- Make sure script exists, it might need to match other pages -->
+
+    <header class="dash-header">
+        <div class="logo-area">
+        </div>
+        <div class="user-area">
+            <button class="btn-logout" onclick="window.location.href='https://lasaisonbleue.org/healthcare/'">
+                <span class="text">Logout</span>
+                <span>Bye!</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="dash-container">
+        <a href="wao-interface.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Retour au tableau de bord
+        </a>
+
+        <div class="profile-card">
+            <h1 class="section-title" id="mainTitle">Éditer mon Profil</h1>
+
+            <form id="profileForm">
+                <!-- Avatar Section -->
+                <div class="avatar-container">
+                    <div class="avatar-circle" id="avatarPreview">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <button type="button" class="avatar-edit-btn" title="Modifier la photo" onclick="document.getElementById('avatarUpload').click()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                </div>
+
+                <!-- Personal Info -->
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="fullName">Nom / Prénom</label>
+                        <input type="text" id="fullName" class="form-input" placeholder="Ex: Rym Benzina" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Rôle / Fonction</label>
+                        <input type="text" id="role" class="form-input" placeholder="Ex: Chairwoman of La Saison Bleue" required>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="country">Pays</label>
+                        <select id="country" class="form-input" required>
+                            <option value="">Sélectionner un pays</option>
+                            <option value="Tunisie">Tunisie</option>
+                            <option value="France">France</option>
+                            <option value="Indonésie">Indonésie</option>
+                            <option value="Maroc">Maroc</option>
+                            <option value="Sénégal">Sénégal</option>
+                            <option value="Égypte">Égypte</option>
+                            <option value="Allemagne">Allemagne</option>
+                            <option value="Italie">Italie</option>
+                            <option value="Autre">Autre...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="project">Projet / Initiative</label>
+                        <input type="text" id="project" class="form-input" placeholder="Ex: Women Actions for the Ocean" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectFile">Document narratif du projet (PDF, DOC/DOCX) <span style="font-size:0.8rem; opacity:0.6;">(Optionnel)</span></label>
+                    <div class="upload-area" id="uploadArea" style="border: 2px dashed rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 25px; text-align: center; cursor: pointer; transition: all 0.3s ease; background: rgba(0,0,0,0.2);">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2.5rem; color: #e11d48; margin-bottom: 10px;"></i>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.8); margin-bottom: 5px;">Cliquer ou glisser pour ajouter votre document (.pdf, .doc)</p>
+                        <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">Taille maximale recommandée : 10MB</p>
+                        <input type="file" id="projectFile" accept=".pdf,.doc,.docx" style="display: none;">
+                    </div>
+                    <div id="fileInfo" style="margin-top: 10px; padding: 12px 16px; border-radius: 8px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; font-size: 0.95rem; display: none; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 10px; overflow: hidden;">
+                            <i class="fas fa-check-circle"></i>
+                            <span id="fileNameDisplay" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Fichier.pdf</span>
+                        </div>
+                        <button type="button" id="removeFileBtn" title="Supprimer le fichier" style="background: none; border: none; color: #ff4d4d; cursor: pointer; padding: 5px;"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Biographie</label>
+                    <textarea id="bio" class="form-input" placeholder="Parlez-nous de vous, de votre parcours et de votre engagement pour l'océan..."></textarea>
+                </div>
+
+                <div class="section-divider"></div>
+                
+                <h3 class="section-title" style="font-size: 1.5rem; text-align: left; margin-bottom: 20px;">Réseaux Sociaux & Contact</h3>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="linkedin">Profil LinkedIn</label>
+                        <input type="url" id="linkedin" class="form-input" placeholder="https://linkedin.com/in/votre-profil">
+                    </div>
+                    <div class="form-group">
+                        <label for="x_twitter">Profil X (Twitter)</label>
+                        <input type="url" id="x_twitter" class="form-input" placeholder="https://x.com/votre_profil">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactEmail">Email de contact <span style="font-size:0.8rem; opacity:0.6;">(Optionnel, public)</span></label>
+                    <input type="email" id="contactEmail" class="form-input" placeholder="contact@example.com">
+                </div>
+
+                <button type="submit" class="btn-save">
+                    <i class="fas fa-save"></i> Enregistrer les modifications
+                </button>
+            </form>
+
+            <!-- Preview Section -->
+            <div id="profilePreview" style="display: none;">
+                <div class="preview-avatar" id="prevAvatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                
+                <div class="preview-name" id="prevName">Nom Prénom</div>
+                <div class="preview-role" id="prevRole">Rôle / Fonction</div>
+                
+                <div class="preview-details">
+                    <div><i class="fas fa-map-marker-alt" style="color:#e11d48; margin-right:5px;"></i> <span id="prevCountry">Pays</span></div>
+                    <div><i class="fas fa-project-diagram" style="color:#e11d48; margin-right:5px;"></i> <span id="prevProject">Projet</span></div>
+                </div>
+                
+                <div class="preview-bio" id="prevBio">
+                    Biographie...
+                </div>
+                
+                <div class="preview-links" id="prevSocials">
+                    <!-- Dynamic Social Links -->
+                </div>
+                
+                <!-- Document preview placeholder (just text representation) -->
+                <div id="prevDocContainer" style="display:none; text-align:center; margin-bottom: 25px;">
+                    <span style="font-size: 0.9rem; color: rgba(255,255,255,0.6); display:block; margin-bottom: 8px;">Document rattaché :</span>
+                    <div style="display:inline-flex; align-items:center; gap:8px; padding: 10px 15px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; color: #10b981;">
+                        <i class="fas fa-file-alt"></i> <span id="prevDocName">Fichier.pdf</span>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <a href="wao-interface.html" class="preview-btn primary">
+                    <i class="fas fa-arrow-left"></i> Retour à la page WAO
+                </a>
+                <button type="button" class="preview-btn" onclick="document.getElementById('profilePreview').style.display='none'; document.getElementById('profileForm').style.display='block'; document.getElementById('mainTitle').textContent = 'Éditer mon Profil'; window.scrollTo(0,0);">
+                    <i class="fas fa-edit"></i> Modifier à nouveau les informations
+                </button>
+            </div>
+        </div>
+    </main>
+    
+    <br><br><br>
+
+    <script>
+        // Simple Sidebar Menu Script Implementation (just in case sidebar-menu.js isn't linked correctly)
+        const menuToggle = document.getElementById('menuToggle');
+        const menuBackdrop = document.getElementById('menuBackdrop');
+        const menuDrawer = document.getElementById('menuDrawer');
+        const menuCloseBtn = document.getElementById('menuCloseBtn');
+
+        function openMenu() {
+            if(menuBackdrop) menuBackdrop.classList.add('active');
+            if(menuDrawer) menuDrawer.classList.add('active');
+        }
+
+        function closeMenu() {
+            if(menuBackdrop) menuBackdrop.classList.remove('active');
+            if(menuDrawer) menuDrawer.classList.remove('active');
+        }
+
+        if(menuToggle) menuToggle.addEventListener('click', openMenu);
+        if(menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
+        if(menuCloseBtn) menuCloseBtn.addEventListener('click', closeMenu);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to get query string parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const nameParam = urlParams.get('name');
+
+            // Set preset data based on URL parameter or fallback to generic
+            if (nameParam) {
+                document.getElementById('fullName').value = decodeURIComponent(nameParam);
+                
+                // Demo data for specific names (for demonstration)
+                if (nameParam.toLowerCase() === 'rym benzina') {
+                    document.getElementById('role').value = 'Chairwoman of La Saison Bleue';
+                    document.getElementById('country').value = 'Tunisie';
+                    document.getElementById('project').value = 'Women Actions for the Ocean';
+                    document.getElementById('bio').value = "Passionaria de la cause environnementale et engagée pour la protection des océans, je préside La Saison Bleue, une initiative majeure pour un avenir maritime durable en Tunisie et au-delà.";
+                } else if (nameParam.toLowerCase() === 'patricia ricard') {
+                    document.getElementById('role').value = 'Chairwoman of Oceanographic Institute Paul Ricard';
+                    document.getElementById('country').value = 'France';
+                    document.getElementById('project').value = 'Women Actions for the Ocean';
+                } else if (nameParam.toLowerCase() === 'rili djohani') {
+                    document.getElementById('role').value = 'Co-Founder & Executive Director';
+                    document.getElementById('country').value = 'Indonésie';
+                    document.getElementById('project').value = 'Coral Triangle Center';
+                }
+            }
+
+            // Avatar Upload Preview Simulation
+            const avatarUpload = document.getElementById('avatarUpload');
+            const avatarPreview = document.getElementById('avatarPreview');
+
+            avatarUpload.addEventListener('change', function(e) {
+                if(e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        avatarPreview.innerHTML = '';
+                        avatarPreview.style.backgroundImage = `url('${e.target.result}')`;
+                        avatarPreview.style.backgroundSize = 'cover';
+                        avatarPreview.style.backgroundPosition = 'center';
+                    }
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+
+            // Project Document Upload Logic
+            const uploadArea = document.getElementById('uploadArea');
+            const projectFileInput = document.getElementById('projectFile');
+            const fileInfo = document.getElementById('fileInfo');
+            const fileNameDisplay = document.getElementById('fileNameDisplay');
+            const removeFileBtn = document.getElementById('removeFileBtn');
+
+            if (uploadArea && projectFileInput) {
+                uploadArea.addEventListener('click', () => {
+                    projectFileInput.click();
+                });
+
+                uploadArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadArea.style.borderColor = '#e11d48';
+                    uploadArea.style.background = 'rgba(225, 29, 72, 0.1)';
+                });
+
+                uploadArea.addEventListener('dragleave', (e) => {
+                    e.preventDefault();
+                    uploadArea.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    uploadArea.style.background = 'rgba(0,0,0,0.2)';
+                });
+
+                uploadArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    uploadArea.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    uploadArea.style.background = 'rgba(0,0,0,0.2)';
+                    
+                    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                        projectFileInput.files = e.dataTransfer.files;
+                        updateFileDisplay();
+                    }
+                });
+
+                projectFileInput.addEventListener('change', updateFileDisplay);
+
+                removeFileBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Empêcher le clic de se propager à uploadArea
+                    projectFileInput.value = '';
+                    updateFileDisplay();
+                });
+
+                function updateFileDisplay() {
+                    if (projectFileInput.files && projectFileInput.files.length > 0) {
+                        const file = projectFileInput.files[0];
+                        fileNameDisplay.textContent = file.name;
+                        fileInfo.style.display = 'flex';
+                        uploadArea.style.display = 'none';
+                    } else {
+                        fileInfo.style.display = 'none';
+                        uploadArea.style.display = 'block';
+                    }
+                }
+            }
+
+            // Form Submit Simulation & Preview Generation
+            document.getElementById('profileForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const btn = document.querySelector('.btn-save');
+                const originalText = btn.innerHTML;
+                
+                // Show loading state
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enregistrement...';
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check"></i> Profil mis à jour !';
+                    btn.style.backgroundColor = '#10b981'; // Green color
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.backgroundColor = ''; // Reset to default
+                        
+                        // Generate and show preview from save action
+                        generatePreview(true);
+                    }, 1200);
+                }, 1000);
+            });
+
+            function generatePreview(isSaveAction = false) {
+                // Get values
+                const name = document.getElementById('fullName').value;
+                const role = document.getElementById('role').value;
+                const country = document.getElementById('country').value;
+                const project = document.getElementById('project').value;
+                const bio = document.getElementById('bio').value;
+                const linkedin = document.getElementById('linkedin').value;
+                const twitter = document.getElementById('x_twitter').value;
+                const email = document.getElementById('contactEmail').value;
+                
+                // Populate Preview
+                document.getElementById('prevName').textContent = name || 'Non renseigné';
+                document.getElementById('prevRole').textContent = role || 'Non renseigné';
+                document.getElementById('prevCountry').textContent = country || 'Non renseigné';
+                document.getElementById('prevProject').textContent = project || 'Non renseigné';
+                
+                const prevBio = document.getElementById('prevBio');
+                if (bio) {
+                    prevBio.textContent = bio;
+                    prevBio.style.display = 'block';
+                } else {
+                    prevBio.style.display = 'none';
+                }
+                
+                // Avatar
+                const prevAvatar = document.getElementById('prevAvatar');
+                const formAvatar = document.getElementById('avatarPreview');
+                
+                // Demo specific avatars if not manually uploaded
+                if (!formAvatar.style.backgroundImage && name) {
+                    // Pour le demo: on s'assure qu'au moins l'icône est affichée
+                    prevAvatar.style.backgroundImage = 'none';
+                    prevAvatar.innerHTML = '<i class="fas fa-user"></i>';
+                } else if (formAvatar.style.backgroundImage) {
+                    prevAvatar.style.backgroundImage = formAvatar.style.backgroundImage;
+                    prevAvatar.innerHTML = '';
+                }
+                
+                // Document Info Preview
+                const projectFileInput = document.getElementById('projectFile');
+                const prevDocContainer = document.getElementById('prevDocContainer');
+                const prevDocName = document.getElementById('prevDocName');
+                
+                if (projectFileInput && projectFileInput.files.length > 0) {
+                    const file = projectFileInput.files[0];
+                    const fileUrl = URL.createObjectURL(file);
+                    
+                    prevDocName.innerHTML = `<a href="${fileUrl}" download="${file.name}" target="_blank" style="color: inherit; text-decoration: underline; cursor: pointer;" title="Télécharger ou ouvrir le document">${file.name}</a>`;
+                    prevDocContainer.style.display = 'block';
+                } else {
+                    prevDocContainer.style.display = 'none';
+                }
+                
+                // Social Links
+                const prevSocials = document.getElementById('prevSocials');
+                prevSocials.innerHTML = '';
+                if (linkedin) prevSocials.innerHTML += `<a href="${linkedin}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>`;
+                if (twitter) prevSocials.innerHTML += `<a href="${twitter}" target="_blank" title="X / Twitter"><i class="fab fa-twitter"></i></a>`;
+                if (email) prevSocials.innerHTML += `<a href="mailto:${email}" title="Email"><i class="fas fa-envelope"></i></a>`;
+                
+                // Switch Tabs
+                document.getElementById('profileForm').style.display = 'none';
+                document.getElementById('profilePreview').style.display = 'block';
+                
+                // Change title based on action context
+                if (isSaveAction) {
+                    document.getElementById('mainTitle').textContent = 'Profil Enregistré';
+                } else {
+                    document.getElementById('mainTitle').textContent = name ? 'Profil de ' + name : 'Aperçu du Profil';
+                }
+                
+                if (isSaveAction) window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Immediately show preview if we opened a specific profile
+            if (nameParam) {
+                generatePreview(false);
+            }
+
+        });
+    </script>
+</body>
+
+</html>

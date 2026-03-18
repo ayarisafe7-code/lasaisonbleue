@@ -15,9 +15,9 @@
         href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Playfair Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="sidebar-menu.css">
-    <link rel="stylesheet" href="wao-rain.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/sidebar-menu.css">
+    <link rel="stylesheet" href="assets/css/wao-rain.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <style>
@@ -138,8 +138,7 @@
                     <ul class="nav-submenu">
                         <li><a href="news.html">News</a></li>
                         <li><a href="#">Photos</a></li>
-                        <li><a href="videos.html">Vidéos</a></li>
-                        <li><a href="documents.html">Documents</a></li>
+                        <li><a href="restitutions.html">Restitutions</a></li>
                     </ul>
                 </li>
 
@@ -190,13 +189,13 @@
     </div>
 
     <!-- Script for Sidebar Menu -->
-    <script src="sidebar-menu.js"></script>
+    <script src="assets/js/sidebar-menu.js"></script>
 
     <header class="dash-header">
         <div class="logo-area">
         </div>
         <div class="user-area">
-            <button class="btn-logout" onclick="window.location.href='index.html'">
+            <button class="btn-logout" onclick="window.location.href='https://lasaisonbleue.org/healthcare/'">
                 <span class="text">Logout</span>
                 <span>Bye!</span>
             </button>
@@ -250,7 +249,7 @@
 
     </main>
 
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
     <script>
         // --- DONNÉES SIMULÉES (MOCK DATA) ---
         const membersData = [
@@ -308,7 +307,7 @@
                         <p class="text-body" style="font-size: 0.9em;"><i class="fas fa-map-marker-alt"></i> ${member.country}</p>
                         <p class="text-body" style="font-size: 0.8em; margin-top:5px;">Projet : ${member.project}</p>
                     </div>
-                    <button class="card-button">Voir le profil</button>
+                    <button class="card-button" onclick="window.location.href='profile.html?name=' + encodeURIComponent('${member.name}')">Voir le profil</button>
                 </div>
                 `;
                 grid.innerHTML += cardHTML;
