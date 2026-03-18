@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>Portail d'Accès WAO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="sidebar-menu.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/sidebar-menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
@@ -48,7 +48,9 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            /* height: 100%; removed to fit in flow */
+            /* Prevent shrinking and ensure width */
+            flex-shrink: 0;
+            width: var(--form-width);
         }
 
         .login-box {
@@ -320,8 +322,7 @@
                     <ul class="nav-submenu">
                         <li><a href="news.html">News</a></li>
                         <li><a href="#">Photos</a></li>
-                        <li><a href="videos.html">Vidéos</a></li>
-                        <li><a href="documents.html">Documents</a></li>
+                        <li><a href="restitutions.html">Restitutions</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">CONTACT <span class="nav-num">05</span></a>
@@ -367,13 +368,13 @@
     </div>
 
     <!-- Script for Sidebar Menu - RESTORED -->
-    <script src="sidebar-menu.js"></script>
+    <script src="assets/js/sidebar-menu.js"></script>
 
     <!-- LAYOUT RESTORED -->
     <div class="login-page-wrapper">
         <div class="plasma-login-container">
             <div class="login-box">
-                <form class="login-form">
+                <form class="login-form" id="waoLoginForm">
                     <div class="logo">
                         <img src="Logo WAO.png" alt="WAO Logo" class="user-icon-img"
                             style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%; padding: 8px;">
@@ -381,7 +382,7 @@
                     <span class="login-header">Welcome Back!</span>
                     <input type="email" placeholder="Email" class="login-input" required />
                     <input type="password" placeholder="Password" class="login-input" required />
-                    <a href="wao-interface.html" class="login-button sign-in">Sign In</a>
+                    <button type="submit" class="login-button sign-in">Sign In</button>
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSchjo2EwBApee3HCJWpOEAtLih_5JSAdDubigZuPg_IYOZWoQ/viewform?usp=header"
                         target="_blank" class="login-button google-sign-in">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -413,6 +414,19 @@
             <img src="./cartonwao.png" alt="Carton WAO" class="login-side-image">
         </div>
     </div>
+
+    <!-- Login Form Handler Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('waoLoginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    window.location.href = 'wao-interface.html';
+                });
+            }
+        });
+    </script>
 
     <!-- PLASMA ANIMATION SCRIPT (Blue Sky, No Interaction) -->
     <script type="module">
