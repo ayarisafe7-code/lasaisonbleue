@@ -7,7 +7,8 @@
     <title>Mon Profil | La Saison Bleue</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -504,63 +505,104 @@
 
                 <div class="grid-2">
                     <div class="form-group">
-                        <label for="linkedin">Profil LinkedIn</label>
+                        <label for="linkedin">Profil LinkedIn <span style="font-size:0.8rem; opacity:0.6;">(Optionnel)</span></label>
                         <input type="url" id="linkedin" class="form-input" placeholder="https://linkedin.com/in/votre-profil">
                     </div>
                     <div class="form-group">
-                        <label for="x_twitter">Profil X (Twitter)</label>
+                        <label for="x_twitter">Profil X (Twitter) <span style="font-size:0.8rem; opacity:0.6;">(Optionnel)</span></label>
                         <input type="url" id="x_twitter" class="form-input" placeholder="https://x.com/votre_profil">
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="facebook">Page Facebook <span style="font-size:0.8rem; opacity:0.6;">(Optionnel)</span></label>
+                        <input type="url" id="facebook" class="form-input" placeholder="https://facebook.com/votre-page">
+                    </div>
+                    <div class="form-group">
+                        <label for="youtube">Chaîne YouTube <span style="font-size:0.8rem; opacity:0.6;">(Optionnel)</span></label>
+                        <input type="url" id="youtube" class="form-input" placeholder="https://youtube.com/@votre_chaine">
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="contactEmail">Email de contact <span style="font-size:0.8rem; opacity:0.6;">(Optionnel, public)</span></label>
-                    <input type="email" id="contactEmail" class="form-input" placeholder="contact@example.com">
+                    <label for="contactEmail">Email de contact <span style="font-size:0.8rem; color:#e11d48;">*Obligatoire</span></label>
+                    <input type="email" id="contactEmail" class="form-input" placeholder="contact@example.com" required>
                 </div>
 
-                <button type="submit" class="btn-save">
-                    <i class="fas fa-save"></i> Enregistrer les modifications
-                </button>
+                <div style="margin-top: 40px;">
+                    <button type="submit" class="btn-save" id="btnSave" style="width: 100%;">
+                        <i class="fas fa-save"></i> Enregistrer les modifications et voir l'aperçu
+                    </button>
+                </div>
             </form>
 
             <!-- Preview Section -->
-            <div id="profilePreview" style="display: none;">
-                <div class="preview-avatar" id="prevAvatar">
-                    <i class="fas fa-user"></i>
-                </div>
-                
-                <div class="preview-name" id="prevName">Nom Prénom</div>
-                <div class="preview-role" id="prevRole">Rôle / Fonction</div>
-                
-                <div class="preview-details">
-                    <div><i class="fas fa-map-marker-alt" style="color:#e11d48; margin-right:5px;"></i> <span id="prevCountry">Pays</span></div>
-                    <div><i class="fas fa-project-diagram" style="color:#e11d48; margin-right:5px;"></i> <span id="prevProject">Projet</span></div>
-                </div>
-                
-                <div class="preview-bio" id="prevBio">
-                    Biographie...
-                </div>
-                
-                <div class="preview-links" id="prevSocials">
-                    <!-- Dynamic Social Links -->
-                </div>
-                
-                <!-- Document preview placeholder (just text representation) -->
-                <div id="prevDocContainer" style="display:none; text-align:center; margin-bottom: 25px;">
-                    <span style="font-size: 0.9rem; color: rgba(255,255,255,0.6); display:block; margin-bottom: 8px;">Document rattaché :</span>
-                    <div style="display:inline-flex; align-items:center; gap:8px; padding: 10px 15px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; color: #10b981;">
-                        <i class="fas fa-file-alt"></i> <span id="prevDocName">Fichier.pdf</span>
+            <!-- Removed overflow: hidden to prevent text clipping during PDF generation -->
+            <div id="profilePreview" style="display: none; background: white; color: #1f2937; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-top: 40px; margin-bottom: 30px;">
+                <!-- Cover Photo -->
+                <div style="height: 200px; background-color: #f8fafc; background-image: url('Logo%20WAO.png'); background-size: contain; background-repeat: no-repeat; background-position: center; border-bottom: 1px solid #e2e8f0; position: relative; border-top-left-radius: 16px; border-top-right-radius: 16px;">
+                    <!-- Avatar overlapping -->
+                    <div style="position: absolute; bottom: -50px; left: 30px; width: 140px; height: 140px; border-radius: 50%; border: 5px solid white; background-color: #f1f5f9; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #94a3b8; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" id="prevAvatar">
+                        <i class="fas fa-user"></i>
                     </div>
                 </div>
 
-                <div class="section-divider"></div>
+                <!-- Profile Info -->
+                <div style="padding: 60px 30px 30px 30px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+                        <div>
+                            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; margin: 0; color: #0f172a;" id="prevName">Nom Prénom</h2>
+                            <p style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #e11d48; font-weight: 600; margin: 5px 0 15px 0;" id="prevRole">Rôle / Fonction</p>
+                            
+                            <div style="display: flex; gap: 20px; font-size: 0.95rem; color: #64748b; margin-bottom: 25px;">
+                                <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-map-marker-alt"></i> <span id="prevCountry">Pays</span></div>
+                                <div style="display: flex; align-items: center; gap: 8px;"><i class="fas fa-briefcase"></i> <span id="prevProject">Projet</span></div>
+                            </div>
+                        </div>
 
-                <a href="wao-interface.html" class="preview-btn primary">
-                    <i class="fas fa-arrow-left"></i> Retour à la page WAO
-                </a>
-                <button type="button" class="preview-btn" onclick="document.getElementById('profilePreview').style.display='none'; document.getElementById('profileForm').style.display='block'; document.getElementById('mainTitle').textContent = 'Éditer mon Profil'; window.scrollTo(0,0);">
-                    <i class="fas fa-edit"></i> Modifier à nouveau les informations
+                        <!-- Social Links on the right -->
+                        <div style="display: flex; gap: 15px;" id="prevSocials">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+
+                    <div style="font-family: 'Inter', sans-serif;">
+                        <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin-bottom: 15px;">À propos</h3>
+                        <div style="font-size: 1rem; line-height: 1.6; color: #334155; white-space: pre-line;" id="prevBio">
+                            Biographie...
+                        </div>
+                    </div>
+
+                    <div id="prevDocContainer" style="display:none; margin-top: 25px;">
+                        <h3 style="font-size: 1.2rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">Document rattaché</h3>
+                        <div style="display:inline-flex; align-items:center; gap:8px; padding: 12px 20px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; color: #0284c7;">
+                            <i class="fas fa-file-pdf"></i> <span id="prevDocName">Fichier.pdf</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                </div>
+            </div>
+
+            <!-- 3 Action Buttons shown ONLY when previewing -->
+            <div class="action-buttons-container" id="previewActionButtons" style="display: none; display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px;">
+                <button type="button" class="preview-btn" onclick="editProfile()" style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 12px; padding: 15px; font-weight: 600;">
+                    <i class="fas fa-edit"></i> Modifier le profil
                 </button>
+                
+                <button type="button" class="preview-btn" onclick="downloadPDF()" style="flex: 1; min-width: 200px; background: #10b981; border: none; color: white; border-radius: 12px; padding: 15px; font-weight: 600;">
+                    <i class="fas fa-file-pdf"></i> Télécharger en PDF
+                </button>
+
+                <!-- This button will be shown only if a document is available -->
+                <a href="#" id="btnDownloadDoc" target="_blank" class="preview-btn" style="display: none; flex: 1; min-width: 200px; background: #3b82f6; border: none; color: white; border-radius: 12px; padding: 15px; font-weight: 600; text-align: center; text-decoration: none; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fas fa-file-download"></i> Télécharger le doc envoyé
+                </a>
+            </div>
             </div>
         </div>
     </main>
@@ -595,22 +637,57 @@
 
             // Set preset data based on URL parameter or fallback to generic
             if (nameParam) {
-                document.getElementById('fullName').value = decodeURIComponent(nameParam);
+                const decodedName = decodeURIComponent(nameParam);
+                document.getElementById('fullName').value = decodedName;
                 
-                // Demo data for specific names (for demonstration)
-                if (nameParam.toLowerCase() === 'rym benzina') {
-                    document.getElementById('role').value = 'Chairwoman of La Saison Bleue';
-                    document.getElementById('country').value = 'Tunisie';
-                    document.getElementById('project').value = 'Women Actions for the Ocean';
-                    document.getElementById('bio').value = "Passionaria de la cause environnementale et engagée pour la protection des océans, je préside La Saison Bleue, une initiative majeure pour un avenir maritime durable en Tunisie et au-delà.";
-                } else if (nameParam.toLowerCase() === 'patricia ricard') {
-                    document.getElementById('role').value = 'Chairwoman of Oceanographic Institute Paul Ricard';
-                    document.getElementById('country').value = 'France';
-                    document.getElementById('project').value = 'Women Actions for the Ocean';
-                } else if (nameParam.toLowerCase() === 'rili djohani') {
-                    document.getElementById('role').value = 'Co-Founder & Executive Director';
-                    document.getElementById('country').value = 'Indonésie';
-                    document.getElementById('project').value = 'Coral Triangle Center';
+                // First check localStorage for saved data
+                const savedDataStr = localStorage.getItem('wao_profile_' + decodedName);
+                if (savedDataStr) {
+                    try {
+                        const savedData = JSON.parse(savedDataStr);
+                        if(savedData.role) document.getElementById('role').value = savedData.role;
+                        if(savedData.country) document.getElementById('country').value = savedData.country;
+                        if(savedData.project) document.getElementById('project').value = savedData.project;
+                        if(savedData.bio) document.getElementById('bio').value = savedData.bio;
+                        if(savedData.linkedin) document.getElementById('linkedin').value = savedData.linkedin;
+                        if(savedData.twitter) document.getElementById('x_twitter').value = savedData.twitter;
+                        if(savedData.facebook) document.getElementById('facebook').value = savedData.facebook;
+                        if(savedData.youtube) document.getElementById('youtube').value = savedData.youtube;
+                        if(savedData.email) document.getElementById('contactEmail').value = savedData.email;
+                        
+                        // Show loaded document filename in the dropzone if it exists
+                        if(savedData.documentName) {
+                            document.getElementById('fileNameDisplay').textContent = savedData.documentName;
+                            document.getElementById('fileInfo').style.display = 'flex';
+                            document.getElementById('uploadArea').style.display = 'none';
+                        }
+                        
+                        if(savedData.avatarBase64) {
+                            const avatarPreview = document.getElementById('avatarPreview');
+                            avatarPreview.innerHTML = '';
+                            avatarPreview.style.backgroundImage = `url('${savedData.avatarBase64}')`;
+                            avatarPreview.style.backgroundSize = 'cover';
+                            avatarPreview.style.backgroundPosition = 'center';
+                        }
+                    } catch(e) {
+                        console.error('Erreur lecture localStorage', e);
+                    }
+                } else {
+                    // Demo data for specific names (for demonstration) fallback
+                    if (decodedName.toLowerCase() === 'rym benzina') {
+                        document.getElementById('role').value = 'Chairwoman of La Saison Bleue';
+                        document.getElementById('country').value = 'Tunisie';
+                        document.getElementById('project').value = 'Women Actions for the Ocean';
+                        document.getElementById('bio').value = "Passionaria de la cause environnementale et engagée pour la protection des océans, je préside La Saison Bleue, une initiative majeure pour un avenir maritime durable en Tunisie et au-delà.";
+                    } else if (decodedName.toLowerCase() === 'patricia ricard') {
+                        document.getElementById('role').value = 'Chairwoman of Oceanographic Institute Paul Ricard';
+                        document.getElementById('country').value = 'France';
+                        document.getElementById('project').value = 'Women Actions for the Ocean';
+                    } else if (decodedName.toLowerCase() === 'rili djohani') {
+                        document.getElementById('role').value = 'Co-Founder & Executive Director';
+                        document.getElementById('country').value = 'Indonésie';
+                        document.getElementById('project').value = 'Coral Triangle Center';
+                    }
                 }
             }
 
@@ -704,8 +781,76 @@
                         btn.innerHTML = originalText;
                         btn.style.backgroundColor = ''; // Reset to default
                         
-                        // Generate and show preview from save action
-                        generatePreview(true);
+                        // Save to LocalStorage
+                        let name = document.getElementById('fullName').value || 'Sans Nom';
+                        
+                        const profileData = {
+                            role: document.getElementById('role').value,
+                            country: document.getElementById('country').value,
+                            project: document.getElementById('project').value,
+                            bio: document.getElementById('bio').value,
+                            linkedin: document.getElementById('linkedin').value,
+                            twitter: document.getElementById('x_twitter').value,
+                            facebook: document.getElementById('facebook').value,
+                            youtube: document.getElementById('youtube').value,
+                            email: document.getElementById('contactEmail').value
+                        };
+
+                        const avatarPreview = document.getElementById('avatarPreview');
+                        const bgImage = avatarPreview.style.backgroundImage;
+                        if (bgImage && bgImage !== 'none') {
+                            const match = bgImage.match(/url\(['"]?(.*?)['"]?\)/);
+                            if (match && match[1]) {
+                                profileData.avatarBase64 = match[1];
+                            }
+                        }
+                        
+                        function finishSave(finalName, finalData) {
+                            try {
+                                localStorage.setItem('wao_profile_' + finalName, JSON.stringify(finalData));
+                            } catch(e) {
+                                alert("Attention : le document attaché est trop volumineux et n'a pas pu être sauvegardé. Le reste du profil est sauvegardé.");
+                                delete finalData.documentBase64;
+                                delete finalData.documentName;
+                                localStorage.setItem('wao_profile_' + finalName, JSON.stringify(finalData));
+                            }
+                            
+                            // Save to custom profiles catalog so the dashboard discovers it
+                            let customProfiles = JSON.parse(localStorage.getItem('wao_custom_profiles') || '[]');
+                            if (!customProfiles.includes(finalName)) {
+                                customProfiles.push(finalName);
+                                localStorage.setItem('wao_custom_profiles', JSON.stringify(customProfiles));
+                            }
+
+                            // Generate and show preview from save action
+                            generatePreview(true);
+                        }
+                        
+                        // Handle File Async reading to establish Base64 string payload
+                        const fileInput = document.getElementById('projectFile');
+                        if (fileInput && fileInput.files && fileInput.files.length > 0) {
+                            const file = fileInput.files[0];
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                profileData.documentBase64 = e.target.result;
+                                profileData.documentName = file.name;
+                                finishSave(name, profileData);
+                            };
+                            reader.readAsDataURL(file);
+                        } else {
+                            // Recover previously established remote document data if no new document overrides it
+                            const existingStr = localStorage.getItem('wao_profile_' + name);
+                            if (existingStr) {
+                                try {
+                                    const existing = JSON.parse(existingStr);
+                                    if (existing.documentBase64) {
+                                        profileData.documentBase64 = existing.documentBase64;
+                                        profileData.documentName = existing.documentName;
+                                    }
+                                } catch(e) {}
+                            }
+                            finishSave(name, profileData);
+                        }
                     }, 1200);
                 }, 1000);
             });
@@ -719,6 +864,8 @@
                 const bio = document.getElementById('bio').value;
                 const linkedin = document.getElementById('linkedin').value;
                 const twitter = document.getElementById('x_twitter').value;
+                const facebook = document.getElementById('facebook').value;
+                const youtube = document.getElementById('youtube').value;
                 const email = document.getElementById('contactEmail').value;
                 
                 // Populate Preview
@@ -753,27 +900,62 @@
                 const projectFileInput = document.getElementById('projectFile');
                 const prevDocContainer = document.getElementById('prevDocContainer');
                 const prevDocName = document.getElementById('prevDocName');
+                const btnDownloadDoc = document.getElementById('btnDownloadDoc');
                 
+                let fileUrl = '';
+                let fileName = '';
+                let hasDoc = false;
+                
+                // Prioritize hot-loaded file
                 if (projectFileInput && projectFileInput.files.length > 0) {
                     const file = projectFileInput.files[0];
-                    const fileUrl = URL.createObjectURL(file);
-                    
-                    prevDocName.innerHTML = `<a href="${fileUrl}" download="${file.name}" target="_blank" style="color: inherit; text-decoration: underline; cursor: pointer;" title="Télécharger ou ouvrir le document">${file.name}</a>`;
+                    fileUrl = URL.createObjectURL(file);
+                    fileName = file.name;
+                    hasDoc = true;
+                } else if (name) {
+                    // Failing that, source from historically loaded LocalStorage Base64 cache
+                    const savedStr = localStorage.getItem('wao_profile_' + name);
+                    if (savedStr) {
+                        try {
+                            const saved = JSON.parse(savedStr);
+                            if (saved.documentBase64 && saved.documentName) {
+                                fileUrl = saved.documentBase64;
+                                fileName = saved.documentName;
+                                hasDoc = true;
+                            }
+                        } catch(e) {}
+                    }
+                }
+                
+                if (hasDoc) {
+                    prevDocName.innerHTML = `<a href="${fileUrl}" download="${fileName}" target="_blank" style="color: inherit; text-decoration: underline; cursor: pointer;" title="Télécharger ou ouvrir le document">${fileName}</a>`;
                     prevDocContainer.style.display = 'block';
+                    
+                    // Also activate the main action button for downloading
+                    btnDownloadDoc.href = fileUrl;
+                    btnDownloadDoc.download = fileName;
+                    btnDownloadDoc.style.display = 'flex';
                 } else {
                     prevDocContainer.style.display = 'none';
+                    btnDownloadDoc.style.display = 'none';
                 }
                 
                 // Social Links
                 const prevSocials = document.getElementById('prevSocials');
                 prevSocials.innerHTML = '';
-                if (linkedin) prevSocials.innerHTML += `<a href="${linkedin}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>`;
-                if (twitter) prevSocials.innerHTML += `<a href="${twitter}" target="_blank" title="X / Twitter"><i class="fab fa-twitter"></i></a>`;
-                if (email) prevSocials.innerHTML += `<a href="mailto:${email}" title="Email"><i class="fas fa-envelope"></i></a>`;
+                const socialBtnStyle = 'display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: #f1f5f9; color: #475569; font-size: 1.2rem; transition: background 0.3s, color 0.3s; text-decoration: none;';
                 
-                // Switch Tabs
+                if (linkedin) prevSocials.innerHTML += `<a href="${linkedin}" target="_blank" title="LinkedIn" style="${socialBtnStyle}" onmouseover="this.style.background='#0077b5'; this.style.color='white'" onmouseout="this.style.background='#f1f5f9'; this.style.color='#475569'"><i class="fab fa-linkedin-in"></i></a>`;
+                if (twitter) prevSocials.innerHTML += `<a href="${twitter}" target="_blank" title="X (Twitter)" style="${socialBtnStyle}" onmouseover="this.style.background='#000000'; this.style.color='white'" onmouseout="this.style.background='#f1f5f9'; this.style.color='#475569'"><i class="fab fa-twitter"></i></a>`;
+                if (facebook) prevSocials.innerHTML += `<a href="${facebook}" target="_blank" title="Facebook" style="${socialBtnStyle}" onmouseover="this.style.background='#1877f2'; this.style.color='white'" onmouseout="this.style.background='#f1f5f9'; this.style.color='#475569'"><i class="fab fa-facebook-f"></i></a>`;
+                if (youtube) prevSocials.innerHTML += `<a href="${youtube}" target="_blank" title="YouTube" style="${socialBtnStyle}" onmouseover="this.style.background='#ff0000'; this.style.color='white'" onmouseout="this.style.background='#f1f5f9'; this.style.color='#475569'"><i class="fab fa-youtube"></i></a>`;
+                // Open Email with Gmail web client specifically
+                if (email) prevSocials.innerHTML += `<a href="https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}" target="_blank" title="Envoyer un email via Gmail" style="${socialBtnStyle}" onmouseover="this.style.background='#ea4335'; this.style.color='white'" onmouseout="this.style.background='#f1f5f9'; this.style.color='#475569'"><i class="fas fa-envelope"></i></a>`;
+                
+                // Show Preview and Hide Form
                 document.getElementById('profileForm').style.display = 'none';
                 document.getElementById('profilePreview').style.display = 'block';
+                document.getElementById('previewActionButtons').style.display = 'flex';
                 
                 // Change title based on action context
                 if (isSaveAction) {
@@ -782,8 +964,20 @@
                     document.getElementById('mainTitle').textContent = name ? 'Profil de ' + name : 'Aperçu du Profil';
                 }
                 
-                if (isSaveAction) window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+
+            function editProfile() {
+                document.getElementById('profileForm').style.display = 'block';
+                document.getElementById('profilePreview').style.display = 'none';
+                document.getElementById('previewActionButtons').style.display = 'none';
+                document.getElementById('mainTitle').textContent = 'Éditer mon Profil';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            // Expose to global scope for HTML onclick attributes
+            window.editProfile = editProfile;
+            window.generatePreview = generatePreview;
 
             // Immediately show preview if we opened a specific profile
             if (nameParam) {
@@ -791,6 +985,32 @@
             }
 
         });
+
+        // PDF Generation function
+        function downloadPDF() {
+            const element = document.getElementById('profilePreview');
+            const btns = document.getElementById('previewActionButtons');
+            
+            // Hide action buttons for PDF export (optional since they are outside, but just in case)
+            if(btns) btns.style.display = 'none';
+
+            // PDF options
+            const opt = {
+                margin:       [0.5, 0.5, 0.5, 0.5],
+                filename:     'fiche-profil-wao.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true, scrollY: 0, scrollX: 0, windowWidth: 1200 },
+                // enableLinks support for clickable links in PDF
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            // Generate PDF
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Restore buttons
+                if(btns) btns.style.display = 'flex';
+            });
+        }
     </script>
 </body>
 
